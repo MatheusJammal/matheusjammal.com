@@ -67,9 +67,7 @@
   .stat:last-child{border-right:none;}
   .stat .n{font-size:clamp(30px,4.2vw,52px);font-weight:800;letter-spacing:-.04em;line-height:1;}
   .stat .l{font-size:14px;line-height:1.4;color:var(--ink-2);margin-top:12px;}
-  .stats .cap{grid-column:1/-1;font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--klein-ink);padding:14px 0;border-bottom:1.5px solid var(--ink);}
-  .stats .cap:hover{text-decoration:underline;}
-  @media(max-width:760px){
+  .stats .cap{grid-column:1/-1;font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--klein-ink);padding:14px 0;border-bottom:1.5px solid var(--ink);}  @media(max-width:760px){
     .stats{grid-template-columns:1fr 1fr;}
     .stat{padding:20px 14px 20px 0;}
     .stat + .stat{padding-left:0;}
@@ -191,14 +189,6 @@
     </div>
   </header>
 
-  <section class="stats" aria-label="Resultados do ZeniteApp">
-    <a class="cap" href="#trabalho">ZeniteApp em números <span aria-hidden="true">↓</span></a>
-    <div class="stat"><div class="n">5 min</div><div class="l">para cadastrar uma proposta de 50 itens no portal do governo. Antes, à mão, levava mais de 1 hora.</div></div>
-    <div class="stat"><div class="n">140 ms</div><div class="l">para buscar entre as licitações. Antes da otimização, 1,8 s: 13 vezes mais lento.</div></div>
-    <div class="stat"><div class="n">1,27 mi</div><div class="l">licitações públicas coletadas automaticamente do PNCP e guardadas no banco.</div></div>
-    <div class="stat"><div class="n">329</div><div class="l">testes automatizados com Pytest, cobrindo a API e o coletor.</div></div>
-  </section>
-
   <main>
   <section id="trabalho">
     <div class="shead"><h2>Projetos</h2><span class="c">[ 3 projetos ]</span></div>
@@ -210,15 +200,23 @@
         <h3>ZeniteApp</h3>
         <p class="desc">Plataforma de automação para empresas que participam de licitações públicas. Substituiu um processo inteiramente manual, lento e sujeito a erro.</p>
         <ul>
-          <li><b>Dados:</b> coletor em Python consulta a API do PNCP a cada hora e já gravou mais de 1,27 milhão de licitações em PostgreSQL. Otimizei a busca de 1,8 s para 140 ms.</li>
+          <li><b>Dados:</b> coletor em Python consulta a API do PNCP a cada hora e grava as licitações em PostgreSQL, com busca otimizada.</li>
           <li><b>IA:</b> perguntas sobre o edital respondidas pelo Google Gemini, citando item e seção da fonte, isoladas por cliente e com travas de custo no servidor.</li>
-          <li><b>Automação:</b> robôs Playwright no app desktop cadastram propostas. O cadastro de uma proposta de 50 itens no portal do governo, antes feito à mão, passou de mais de 1 hora para menos de 5 minutos.</li>
-          <li><b>Engenharia:</b> API em FastAPI, RBAC, tokens cifrados, 329 testes com Pytest e serviços em contêineres Docker, publicados um a um pelo Easypanel.</li>
+          <li><b>Automação:</b> robôs Playwright no app desktop cadastram as propostas no portal do governo, tarefa antes feita à mão.</li>
+          <li><b>Engenharia:</b> API em FastAPI, RBAC, tokens cifrados, testes com Pytest e serviços em contêineres Docker, publicados um a um pelo Easypanel.</li>
         </ul>
         <div class="chips"><span class="chip">Python</span><span class="chip">FastAPI</span><span class="chip">PostgreSQL</span><span class="chip">Gemini API</span><span class="chip">Playwright</span><span class="chip">Electron</span><span class="chip">React</span><span class="chip">Docker</span></div>
       </div>
       <div class="meta-r">2026<br>Em produção<br>Código privado<br><a class="open" href="https://app.zeniteapp.com.br" target="_blank" rel="noopener">Abrir o app ↗</a></div>
     </article>
+
+    <div class="stats" role="group" aria-label="Resultados do ZeniteApp">
+      <div class="cap">ZeniteApp em números</div>
+      <div class="stat"><div class="n">5 min</div><div class="l">para cadastrar uma proposta de 50 itens no portal do governo. Antes, à mão, levava mais de 1 hora.</div></div>
+      <div class="stat"><div class="n">140 ms</div><div class="l">para buscar entre as licitações. Antes da otimização, 1,8 s: 13 vezes mais lento.</div></div>
+      <div class="stat"><div class="n">1,27 mi</div><div class="l">licitações públicas coletadas automaticamente do PNCP e guardadas no banco.</div></div>
+      <div class="stat"><div class="n">329</div><div class="l">testes automatizados com Pytest, cobrindo a API e o coletor.</div></div>
+    </div>
 
     <article class="item">
       <div class="no">02</div>
