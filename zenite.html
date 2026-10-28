@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ZeniteApp: a história — Matheus Jammal</title>
+<meta name="description" content="Como o ZeniteApp foi de um buscador de licitações a uma plataforma de operação com robô de lances e IA: as decisões, as mudanças de direção e os erros que ensinaram.">
+<meta property="og:title" content="ZeniteApp: a história do projeto">
+<meta property="og:description" content="De um buscador do PNCP a uma plataforma que cadastra propostas, dá lances e analisa editais com IA — com as decisões e os erros do caminho.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://www.matheusjammal.com/zenite.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%231A1AE5'/%3E%3Ctext x='16' y='23' font-family='Arial' font-weight='800' font-size='18' fill='%23EDEAE3' text-anchor='middle'%3EMJ%3C/text%3E%3C/svg%3E">
+<style>
+  :root{
+    --paper:#EDEAE3;
+    --ink:#14130F;
+    --ink-2:#3b3a34;
+    --ink-faint:#6f6d64;
+    --klein:#1A1AE5;
+    --klein-ink:#0f0fb0;
+    --line:#14130F;
+    --sans:"Helvetica Neue",Helvetica,Arial,system-ui,sans-serif;
+    --mono:ui-monospace,"SF Mono","Cascadia Code",Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:var(--sans);line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+    background-image:radial-gradient(rgba(20,19,15,.05) 1px,transparent 1px);
+    background-size:22px 22px;
+  }
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 32px;}
+  @media(max-width:560px){.wrap{padding:0 16px;}}
+  ::selection{background:var(--klein);color:var(--paper);}
+  :focus-visible{outline:3px solid var(--klein);outline-offset:3px;}
+  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto;}*{transition:none!important;}}
+
+  .meta{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 0;border-bottom:2px solid var(--line);font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;}
+  .meta a:hover{color:var(--klein-ink);}
+
+  .hero{padding:44px 0 34px;border-bottom:2px solid var(--line);}
+  .tag{font-family:var(--mono);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--klein-ink);margin:0 0 18px;}
+  .hero h1{font-size:clamp(40px,8.6vw,108px);line-height:.88;letter-spacing:-.045em;font-weight:800;margin:0;text-transform:uppercase;}
+  .hero h1 .stroke{color:transparent;-webkit-text-stroke:2px var(--ink);}
+  .hero p{max-width:66ch;font-size:clamp(16px,1.8vw,19px);color:var(--ink-2);margin:26px 0 0;}
+  .ctas{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px;}
+  .btn{display:inline-block;font-family:var(--mono);font-size:13px;text-transform:uppercase;letter-spacing:.06em;border:2px solid var(--ink);padding:10px 16px;font-weight:600;transition:background .2s,color .2s,border-color .2s;}
+  .btn.forte{background:var(--ink);color:var(--paper);}
+  .btn:hover{background:var(--klein);border-color:var(--klein);color:var(--paper);}
+
+  /* índice */
+  .index{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:2px solid var(--line);}
+  .index a{padding:18px 18px 18px 0;border-right:2px solid var(--line);display:flex;justify-content:space-between;gap:10px;align-items:baseline;}
+  .index a:nth-child(n+2){padding-left:18px;}
+  .index a:last-child{border-right:none;}
+  .index a:hover{color:var(--klein-ink);}
+  .index .k{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.06em;}
+  .index .q{font-weight:800;font-size:22px;letter-spacing:-.03em;}
+  @media(max-width:760px){
+    .index{grid-template-columns:1fr 1fr;}
+    .index a,.index a:nth-child(n+2){padding:14px 12px 14px 0;border-bottom:1.5px solid var(--ink);}
+    .index a:nth-child(2n){padding-left:12px;border-right:none;}
+    .index a:nth-child(2n+1){border-right:2px solid var(--line);}
+  }
+
+  /* cabeçalho de parte */
+  .parte{padding:40px 0 14px;border-bottom:2px solid var(--line);scroll-margin-top:12px;display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;}
+  .parte h2{font-size:clamp(28px,4.6vw,56px);margin:0;text-transform:uppercase;letter-spacing:-.035em;font-weight:800;line-height:.95;}
+  .parte .c{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--klein-ink);}
+  .intro{max-width:70ch;color:var(--ink-2);font-size:16px;padding:18px 0 4px;margin:0;}
+
+  /* blocos numerados (linha do tempo e erros) */
+  .area{display:grid;grid-template-columns:auto 1fr;gap:28px;padding:30px 0;border-bottom:2px solid var(--line);}
+  .area .n{font-size:clamp(40px,7vw,84px);font-weight:800;line-height:.8;letter-spacing:-.04em;color:transparent;-webkit-text-stroke:1.5px var(--ink);min-width:2.2ch;}
+  .area h3{font-size:clamp(20px,2.8vw,30px);margin:0 0 6px;text-transform:uppercase;letter-spacing:-.02em;font-weight:800;line-height:1.05;}
+  .area .sub{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--klein-ink);}
+  .area p{color:var(--ink-2);font-size:15.5px;max-width:70ch;margin:14px 0 0;}
+  .area ul{margin:14px 0 0;padding-left:18px;max-width:70ch;}
+  .area li{color:var(--ink-2);font-size:15.5px;margin-bottom:8px;}
+  .area b{font-weight:600;color:var(--ink);}
+  .licao{margin-top:16px;max-width:70ch;border-left:4px solid var(--klein);padding:4px 0 4px 14px;font-size:15.5px;}
+  .licao .r{display:block;font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--klein-ink);margin-bottom:4px;}
+  @media(max-width:720px){.area{grid-template-columns:1fr;gap:10px;}}
+
+  /* decisões: grade de cartões */
+  .grade{display:grid;grid-template-columns:repeat(2,1fr);border-bottom:2px solid var(--line);}
+  .dec{padding:26px 24px 26px 0;border-bottom:1.5px solid var(--ink);}
+  .dec:nth-child(2n){padding-left:24px;padding-right:0;border-left:2px solid var(--line);}
+  .dec:nth-last-child(-n+2){border-bottom:none;}
+  .dec h3{font-size:19px;margin:0 0 8px;letter-spacing:-.01em;font-weight:800;line-height:1.2;}
+  .dec p{margin:0;color:var(--ink-2);font-size:15px;}
+  @media(max-width:760px){
+    .grade{grid-template-columns:1fr;}
+    .dec,.dec:nth-child(2n){padding:22px 0;border-left:none;border-bottom:1.5px solid var(--ink);}
+    .dec:last-child{border-bottom:none;}
+  }
+
+  /* números */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:2px solid var(--line);}
+  .stat{padding:26px 22px 24px 0;border-right:2px solid var(--line);}
+  .stat + .stat{padding-left:22px;}
+  .stat:last-child{border-right:none;}
+  .stat .v{font-size:clamp(30px,4.2vw,52px);font-weight:800;letter-spacing:-.04em;line-height:1;}
+  .stat .l{font-size:14px;line-height:1.4;color:var(--ink-2);margin-top:12px;}
+  @media(max-width:760px){
+    .stats{grid-template-columns:1fr 1fr;}
+    .stat,.stat + .stat{padding:20px 14px 20px 0;}
+    .stat:nth-child(2n){padding-left:14px;border-right:none;}
+    .stat:nth-child(-n+2){border-bottom:2px solid var(--line);}
+  }
+
+  .note{padding:30px 0 56px;font-size:14px;color:var(--ink-faint);max-width:72ch;}
+  .note p{margin:0 0 10px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <nav class="meta">
+    <a href="index.html">← Matheus A. G. Jammal</a>
+    <span>ZeniteApp · A história</span>
+  </nav>
+
+  <header class="hero">
+    <p class="tag">ZeniteApp · 2026 · Projeto autoral</p>
+    <h1>Do buscador<br><span class="stroke">à operação</span></h1>
+    <p>O ZeniteApp começou como uma busca nos dados públicos de licitações e virou uma plataforma que conduz o processo inteiro de uma consultoria: acha a oportunidade, pede a aprovação do cliente, cadastra a proposta no portal do governo, disputa o pregão e avisa quando o órgão chama. Abaixo está como ele chegou aí — as decisões, as mudanças de direção e, de propósito, os erros.</p>
+    <div class="ctas">
+      <a class="btn forte" href="https://app.zeniteapp.com.br/demo" target="_blank" rel="noopener">Testar a demo ↗</a>
+      <a class="btn" href="testes.html">Ver os testes →</a>
+    </div>
+  </header>
+
+  <div class="index" aria-label="Partes">
+    <a href="#linha"><span class="k">Linha do tempo</span><span class="q">01</span></a>
+    <a href="#decisoes"><span class="k">Decisões</span><span class="q">02</span></a>
+    <a href="#erros"><span class="k">Erros</span><span class="q">03</span></a>
+    <a href="#numeros"><span class="k">Números</span><span class="q">04</span></a>
+  </div>
+
+  <main>
+    <!-- ── 01 Linha do tempo ─────────────────────────────────────────────── -->
+    <div class="parte" id="linha"><h2>Linha do tempo</h2><span class="c">01 · de onde veio</span></div>
+
+    <section class="area">
+      <div class="n">01</div>
+      <div>
+        <h3>Um buscador do PNCP</h3>
+        <div class="sub">O começo, só leitura</div>
+        <p>Três peças: um <b>coletor em Python</b> que traz as contratações do Portal Nacional de Contratações Públicas para um PostgreSQL, uma <b>API em FastAPI</b> para buscar e uma <b>interface em React</b>. Nada de usuário, nada de escrita. Bastou para provar que dava para tirar valor dos dados públicos — e virou o alicerce de tudo.</p>
+      </div>
+    </section>
+
+    <section class="area">
+      <div class="n">02</div>
+      <div>
+        <h3>A virada: operar a consultoria</h3>
+        <div class="sub">A busca vira só a porta de entrada</div>
+        <p>Ficou claro que o produto não era a busca, e sim <b>conduzir a consultoria inteira</b> em cima dela: triar oportunidades, montar proposta, aprovar preço com o cliente, disputar. A API ganhou login, papéis de acesso, um quadro Kanban e uma triagem automática que transforma buscas salvas em cards. Nasceu aí a regra que mais protegeu o projeto: <b>os dados coletados e os dados da operação nunca se misturam</b>.</p>
+      </div>
+    </section>
+
+    <section class="area">
+      <div class="n">03</div>
+      <div>
+        <h3>A aprovação do cliente vira prova</h3>
+        <div class="sub">Auditoria imutável</div>
+        <p>O cliente aprova o <b>valor mínimo</b> de cada item por um link enviado ao e-mail dele, sem precisar de conta. Cada aprovação grava uma linha que <b>nunca é alterada</b>: quem, quando, de onde e uma cópia dos valores aprovados. Quando muitos clientes passaram a devolver os preços numa planilha, abri a aprovação ao consultor — mas só com a <b>impressão digital (SHA-256) do arquivo</b> recebido na trilha, para a prova continuar ligada a um documento específico.</p>
+      </div>
+    </section>
+
+    <section class="area">
+      <div class="n">04</div>
+      <div>
+        <h3>A automação sai do navegador</h3>
+        <div class="sub">A maior virada técnica</div>
+        <p>O plano era cadastrar a proposta pilotando o Chrome do consultor com Playwright. Testando de verdade, a requisição direta do servidor se mostrou mais estável, e a sessão do fornecedor funcionava fora da máquina dele. Reverti a arquitetura: o <b>login continua local</b> (é o único passo que precisa de uma pessoa) e todo o resto — cadastro, monitoramento, disputa — passou a rodar <b>no servidor, 24 horas</b>, com a sessão se renovando sozinha.</p>
+      </div>
+    </section>
+
+    <section class="area">
+      <div class="n">05</div>
+      <div>
+        <h3>Robô de lances com piso rígido</h3>
+        <div class="sub">Dinheiro real, decisões irreversíveis</div>
+        <p>O componente de maior risco. O núcleo é uma <b>função de decisão pura</b>, testada à parte, com uma regra inviolável: <b>nunca dar lance abaixo do mínimo aprovado pelo cliente</b>, conferido em duas camadas antes de cada envio. O robô é ligado à mão por pregão e fica em prontidão até o item abrir, em vez de depender de um horário marcado. No teste ao vivo, ele tomou a liderança de um pregão real.</p>
+      </div>
+    </section>
+
+    <section class="area">
+      <div class="n">06</div>
+      <div>
+        <h3>Radar, IA e mercado</h3>
+        <div class="sub">O sistema passa a avisar e a ler</div>
+        <ul>
+          <li><b>Radar:</b> lê as mensagens das licitações em que o cliente participa e avisa quando ele é citado — com lembretes que apertam conforme o prazo chega.</li>
+          <li><b>IA de editais:</b> perguntas sobre o edital respondidas pelo Google Gemini, com citação da seção, isoladas por cliente e com travas de custo no servidor.</li>
+          <li><b>Inteligência de mercado:</b> quem venceu cada item e por quanto, coletado continuamente do PNCP.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="area">
+      <div class="n">07</div>
+      <div>
+        <h3>Uma porta aberta para quem não é cliente</h3>
+        <div class="sub">Demo pública e identidade própria</div>
+        <p>Para que recrutadores pudessem usar a ferramenta, criei uma <b>conta de demonstração com cadastro público</b>: só busca e IA, cota própria, validade de 14 dias e uma conta por e-mail. Foi também quando o produto ganhou a identidade visual da marca, com o modo escuro mantido. A <a href="#d-demo" style="text-decoration:underline">decisão de segurança</a> por trás dessa porta está mais abaixo.</p>
+      </div>
+    </section>
+
+    <!-- ── 02 Decisões ───────────────────────────────────────────────────── -->
+    <div class="parte" id="decisoes"><h2>Decisões que eu tomaria de novo</h2><span class="c">02 · arquitetura</span></div>
+    <p class="intro">Escolhas que pareciam detalhe e acabaram segurando o resto do sistema.</p>
+
+    <div class="grade">
+      <div class="dec">
+        <h3>Separar o que é coletado do que é operado</h3>
+        <p>O coletor é o único dono das tabelas de licitações; a operação tem tabelas próprias e nunca as edita. Quando um item precisa de outro valor na proposta, grava-se um <b>override</b>, não se altera o edital. Isso evitou que uma correção num lado quebrasse o outro.</p>
+      </div>
+      <div class="dec">
+        <h3>Regra de negócio no servidor, não na tela</h3>
+        <p>O mínimo aprovado pelo cliente é defendido pela API. Quando apareceu uma forma de rebaixá-lo pela interface, a correção foi dupla: a tela virou só leitura e o servidor passou a recusar qualquer valor abaixo do aprovado, usando a cópia imutável da aprovação como fonte.</p>
+      </div>
+      <div class="dec" id="d-demo">
+        <h3>Lista do que é permitido, não do que é proibido</h3>
+        <p>A conta de demonstração enxerga só as rotas da lista. Uma rota criada amanhã nasce <b>bloqueada</b> para o visitante, em vez de nascer exposta porque alguém esqueceu de barrá-la. E a conta só vale depois que a pessoa abre o link no próprio e-mail — a prova de posse veio de graça, reaproveitando o fluxo de “definir senha”.</p>
+      </div>
+      <div class="dec">
+        <h3>Poucas dependências, com uma exceção consciente</h3>
+        <p>Login com sessão no servidor e senha com <code>scrypt</code> da biblioteca padrão, sem JWT nem libs de autenticação. A exceção foi a criptografia das credenciais de acesso ao portal: a biblioteca padrão não tem cifra autenticada, e criptografia caseira é pior que nenhuma.</p>
+      </div>
+      <div class="dec">
+        <h3>Contar o que aconteceu, não manter contador</h3>
+        <p>A cota da IA não é um número guardado à parte: é a contagem das respostas que a IA de fato deu. Assim ela nunca diverge do histórico, e uma falha do provedor nunca consome cota de ninguém.</p>
+      </div>
+      <div class="dec">
+        <h3>Gravar tudo o que o robô faz</h3>
+        <p>Cada lance vai para uma tabela de auditoria com o valor, o melhor lance do momento e a resposta do portal. Pareceu excesso até o dia em que um pregão deu errado: o diagnóstico inteiro saiu dali, com precisão de milissegundo.</p>
+      </div>
+    </div>
+
+    <!-- ── 03 Erros ──────────────────────────────────────────────────────── -->
+    <div class="parte" id="erros"><h2>Erros que ensinaram</h2><span class="c">03 · o que deu errado</span></div>
+    <p class="intro">Esta parte é honesta de propósito. Cada item começou de um jeito, mostrou-se errado e foi corrigido — vários deles viraram testes para não voltar.</p>
+
+    <section class="area">
+      <div class="n">01</div>
+      <div>
+        <h3>O robô perdeu um pregão por ser rápido demais</h3>
+        <div class="sub">Tratamento de erro que desiste</div>
+        <p>Num pregão de 25 itens que fechavam no mesmo minuto, o robô disparou quatro lances em <b>161 milissegundos</b> e o portal recusou o quarto por excesso de requisições. Duas decisões minhas transformaram um bloqueio isolado na perda do pregão: o erro abortava o pregão inteiro, não só o item, e a espera depois do bloqueio era de <b>três minutos — mais longa do que a disputa ainda tinha</b>. Voltar era aritmeticamente impossível. Hoje o erro pula só o item, a espera é proporcional ao tempo que resta, e os lances saem espaçados de 1 a 3 segundos, porque ninguém dá três lances em menos de um segundo.</p>
+        <div class="licao"><span class="r">Lição</span>Tratamento de erro que “protege” desistindo é pior do que erro nenhum: parece prudente na revisão de código e só aparece no dia em que custa dinheiro.</div>
+      </div>
+    </section>
+
+    <section class="area">
+      <div class="n">02</div>
+      <div>
+        <h3>21 testes verdes e um modo que nunca funcionou</h3>
+        <div class="sub">A falha morava na junção</div>
+        <p>O modo de “minutos finais” do robô aparecia na tela, tinha testes passando — e nunca deu um lance. O portal informa o horário de fechamento em Brasília, sem fuso; o código comparava com um horário em UTC, e o Python levanta exceção nessa conta. Os testes não viram porque montavam os dados à mão, já coerentes, e nunca passavam pelo leitor do JSON real. Os testes novos partem da resposta crua capturada numa disputa de verdade, e o robô passou a perguntar a hora ao próprio portal.</p>
+        <div class="licao"><span class="r">Lição</span>Cobertura alta numa peça não diz nada sobre a costura entre duas peças.</div>
+      </div>
+    </section>
+
+    <section class="area">
+      <div class="n">03</div>
+      <div>
+        <h3>Os dias que sumiam à noite</h3>
+        <div class="sub">A prova estava no relógio</div>
+        <p>Dias inteiros apareciam no banco com zero licitações. Primeiro escrevi uma guarda de plausibilidade (“dia útil vazio não existe”) — e os dias continuaram furando. A causa real era o fuso: o servidor roda em UTC e, entre 21h e meia-noite de Brasília, pedia ao portal um dia que ainda não tinha começado. A prova estava nos carimbos de hora: <b>todos os oito furos foram gravados nessa janela</b>, sem exceção em dois meses. De quebra, descobri que tinha inventado uma premissa — “fim de semana vazio é normal” — que os dados de dois anos desmentiam.</p>
+        <div class="licao"><span class="r">Lição</span>Quando várias coisas falham juntas, pergunte o que elas têm em comum antes de remendar cada uma.</div>
+      </div>
+    </section>
+
+    <section class="area">
+      <div class="n">04</div>
+      <div>
+        <h3>A busca parou — faltava um índice desde sempre</h3>
+        <div class="sub">Produção e local falhando igual</div>
+        <p>De um dia para o outro, toda busca passou a estourar o tempo limite. A suspeita era uma mudança recente no código, mas a produção, que rodava o código antigo, falhava do mesmo jeito. Então não era o código. O <code>EXPLAIN</code> mostrou uma contagem varrendo 2,4 milhões de linhas para cada resultado, porque nunca tinha existido um índice naquela coluna — só não doía enquanto a tabela era pequena. Uma linha de SQL levou a busca de <b>mais de 30 segundos para 120 ms</b>, sem deploy.</p>
+        <div class="licao"><span class="r">Lição</span>Quando versões diferentes do código falham idêntico, o problema está no dado ou no ambiente. Um EXPLAIN vale mais que dez hipóteses.</div>
+      </div>
+    </section>
+
+    <section class="area">
+      <div class="n">05</div>
+      <div>
+        <h3>Detectar não é avisar</h3>
+        <div class="sub">O e-mail saiu, e o prazo passou</div>
+        <p>Um órgão convocou um cliente para enviar documentos em <b>duas horas</b>. O Radar detectou e mandou o e-mail um minuto depois, sem erro nenhum — e o prazo venceu mesmo assim. O aviso ia só para o contato do cliente; quem opera a conta não estava em lista nenhuma. Corrigido o destinatário, sobrou a pergunta de fundo: um e-mail é passivo. Hoje o sistema lê o prazo no texto do órgão e insiste com intervalos cada vez menores, e só para quando alguém arquiva o aviso — não quando lê, porque naquele dia a mensagem estava lida.</p>
+        <div class="licao"><span class="r">Lição</span>Construí um detector e esqueci de perguntar quem age. Avisar uma vez não é avisar quando o prazo é de horas.</div>
+      </div>
+    </section>
+
+    <section class="area">
+      <div class="n">06</div>
+      <div>
+        <h3>Renomear o app apagou o login confiável</h3>
+        <div class="sub">Um caminho que dependia do nome</div>
+        <p>Ao empacotar o app desktop, troquei o nome do pacote. O perfil do navegador usado na automação ficava numa pasta derivada desse nome, então o app nasceu com um perfil vazio — e o portal voltou a exigir o código de dois fatores, justamente no único passo que precisa de uma pessoa. O perfil passou a morar num caminho fixo, com migração automática do antigo.</p>
+        <div class="licao"><span class="r">Lição</span>Um caminho derivado da identidade do app muda quando a identidade muda. O ativo mais caro do fluxo morava ali.</div>
+      </div>
+    </section>
+
+    <section class="area">
+      <div class="n">07</div>
+      <div>
+        <h3>“Não encontrei” não é “não existe”</h3>
+        <div class="sub">Amostra pequena, conclusão grande</div>
+        <p>Antes de construir uma funcionalidade de prospecção, consultei 40 itens na API pública e concluí que o portal só publica o vencedor. Escrevi isso como fato. Horas depois, conferindo os 93 mil resultados que já estavam no banco, apareceram 1.727 itens com mais de um participante. O fenômeno existe em cerca de 2% dos casos, e uma amostra de 40 tinha boa chance de não ver nenhum. Mantive a funcionalidade e ajustei a promessa ao que os dados sustentam.</p>
+        <div class="licao"><span class="r">Lição</span>Amostrar uma API não é medir o acervo — e o acervo estava em casa.</div>
+      </div>
+    </section>
+
+    <section class="area">
+      <div class="n">08</div>
+      <div>
+        <h3>Um laço sem pausa no caminho de erro</h3>
+        <div class="sub">A CPU que não baixava</div>
+        <p>A CPU do servidor subiu e não baixava. Medindo antes de supor, apareceu a consulta que monta a fila de coleta de resultados varrendo 1,26 milhão de licitações a cada rodada — e o laço emendava uma rodada na outra, inclusive depois de falhar. Quando o banco começou a recusar a consulta, ela virou um ciclo de falha a cada dez segundos. Um índice resolveu a varredura, e o laço passou a descansar quando a fila acaba ou quando algo dá errado.</p>
+        <div class="licao"><span class="r">Lição</span>Um laço de serviço sem pausa no caminho de erro é uma bomba-relógio: quando o erro chega, ele se repete na velocidade máxima da máquina.</div>
+      </div>
+    </section>
+
+    <!-- ── 04 Números ────────────────────────────────────────────────────── -->
+    <div class="parte" id="numeros"><h2>Em números</h2><span class="c">04 · outubro de 2026</span></div>
+    <div class="stats">
+      <div class="stat"><div class="v">1,27 mi</div><div class="l">licitações públicas coletadas automaticamente e guardadas no banco.</div></div>
+      <div class="stat"><div class="v">5 min</div><div class="l">para cadastrar uma proposta de 50 itens no portal do governo. À mão, levava mais de 1 hora.</div></div>
+      <div class="stat"><div class="v">140 ms</div><div class="l">para buscar entre as licitações, depois de reescrever a consulta (antes, 1,8 s).</div></div>
+      <div class="stat"><div class="v">342</div><div class="l">testes automatizados com Pytest na API e no coletor, muitos nascidos de um problema real.</div></div>
+    </div>
+  </main>
+
+  <div class="note">
+    <p>O código do ZeniteApp é privado. Esta página resume um diário de decisões mantido ao longo do projeto; nomes de clientes e detalhes de infraestrutura ficaram de fora de propósito.</p>
+    <div class="ctas">
+      <a class="btn forte" href="https://app.zeniteapp.com.br/demo" target="_blank" rel="noopener">Testar a demo ↗</a>
+      <a class="btn" href="testes.html">Ver os testes →</a>
+      <a class="btn" href="index.html#trabalho">← Voltar ao portfólio</a>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
