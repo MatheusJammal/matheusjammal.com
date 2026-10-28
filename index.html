@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Matheus Jammal — Desenvolvedor Full Stack</title>
+<meta name="description" content="Desenvolvedor full stack em Curitiba. Automação, dados e IA aplicada: sistemas que substituem trabalho manual e repetitivo.">
+<meta property="og:title" content="Matheus Jammal — Desenvolvedor Full Stack">
+<meta property="og:description" content="Automação, dados e IA aplicada. Python, FastAPI, React, TypeScript, PostgreSQL e Google Gemini em produção.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.matheusjammal.com/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%231A1AE5'/%3E%3Ctext x='16' y='23' font-family='Arial' font-weight='800' font-size='18' fill='%23EDEAE3' text-anchor='middle'%3EMJ%3C/text%3E%3C/svg%3E">
+<style>
+  :root{
+    --paper:#EDEAE3;
+    --ink:#14130F;
+    --ink-2:#3b3a34;
+    --ink-faint:#6f6d64;
+    --klein:#1A1AE5;
+    --klein-ink:#0f0fb0;
+    --line:#14130F;
+    --sans:"Helvetica Neue",Helvetica,Arial,system-ui,sans-serif;
+    --mono:ui-monospace,"SF Mono","Cascadia Code",Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:var(--sans);line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+    background-image:radial-gradient(rgba(20,19,15,.05) 1px,transparent 1px);
+    background-size:22px 22px;
+  }
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 32px;}
+  @media(max-width:560px){.wrap{padding:0 16px;}}
+  ::selection{background:var(--klein);color:var(--paper);}
+  :focus-visible{outline:3px solid var(--klein);outline-offset:3px;}
+
+  /* faixa animada */
+  .rail{border-bottom:2px solid var(--line);overflow:hidden;background:var(--klein);color:var(--paper);}
+  .marq{display:flex;width:max-content;white-space:nowrap;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;padding:8px 0;animation:marq 32s linear infinite;}
+  .marq span{padding-right:40px;}
+  @keyframes marq{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+  /* barra superior */
+  .meta{display:flex;justify-content:space-between;align-items:center;padding:16px 0;border-bottom:2px solid var(--line);font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;}
+  .meta .r{display:flex;gap:26px;}
+  .meta a:hover{color:var(--klein-ink);}
+  @media(max-width:700px){.meta .r{display:none;}}
+
+  /* abertura */
+  .hero{padding:52px 0 34px;border-bottom:2px solid var(--line);}
+  .tag{font-family:var(--mono);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--klein-ink);margin:0 0 20px;}
+  .hero h1{font-size:clamp(52px,14vw,168px);line-height:.86;letter-spacing:-.045em;font-weight:800;margin:0;text-transform:uppercase;}
+  .hero h1 .stroke{color:transparent;-webkit-text-stroke:2px var(--ink);}
+  .hero .sub{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-top:30px;flex-wrap:wrap;}
+  .hero .sub p{max-width:48ch;font-size:clamp(16px,1.9vw,20px);color:var(--ink-2);margin:0;}
+  .hero .sub p b{background:var(--klein);color:var(--paper);padding:0 5px;font-weight:600;}
+  .avail{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.08em;border:2px solid var(--line);padding:10px 16px;white-space:nowrap;}
+  .avail .b{display:inline-block;width:8px;height:8px;background:var(--klein);border-radius:50%;margin-right:8px;vertical-align:middle;}
+
+  /* números */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:2px solid var(--line);}
+  .stat{padding:26px 22px 24px 0;border-right:2px solid var(--line);}
+  .stat + .stat{padding-left:22px;}
+  .stat:last-child{border-right:none;}
+  .stat .n{font-size:clamp(30px,4.2vw,52px);font-weight:800;letter-spacing:-.04em;line-height:1;}
+  .stat .l{font-family:var(--mono);font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-faint);margin-top:10px;}
+  @media(max-width:760px){
+    .stats{grid-template-columns:1fr 1fr;}
+    .stat{padding:20px 14px 20px 0;}
+    .stat + .stat{padding-left:0;}
+    .stat:nth-child(2n){padding-left:14px;border-right:none;}
+    .stat:nth-child(-n+2){border-bottom:2px solid var(--line);}
+  }
+
+  /* cabeçalho de seção */
+  .shead{display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:30px 0 6px;border-bottom:2px solid var(--line);}
+  .shead.flat{border-bottom:none;padding-bottom:18px;}
+  .shead h2{font-size:clamp(20px,3vw,30px);text-transform:uppercase;letter-spacing:-.01em;font-weight:800;margin:0;}
+  .shead .c{font-family:var(--mono);font-size:12px;color:var(--ink-faint);letter-spacing:.06em;white-space:nowrap;}
+
+  /* projetos */
+  .item{display:grid;grid-template-columns:auto 1fr auto;gap:28px;align-items:start;padding:34px 0;border-bottom:2px solid var(--line);transition:padding .25s,background .25s;}
+  .item .no{font-size:clamp(40px,7vw,88px);font-weight:800;line-height:.8;letter-spacing:-.04em;color:transparent;-webkit-text-stroke:1.5px var(--ink);transition:.25s;}
+  .item:hover{background:var(--klein);color:var(--paper);padding-left:20px;padding-right:20px;}
+  .item:hover .no{-webkit-text-stroke-color:var(--paper);color:var(--paper);}
+  .item:hover .meta-r,.item:hover .desc,.item:hover .role,.item:hover li{color:var(--paper);}
+  .item:hover .chip{border-color:var(--paper);color:var(--paper);}
+  .item h3{font-size:clamp(24px,3.6vw,40px);margin:0 0 4px;text-transform:uppercase;letter-spacing:-.02em;font-weight:800;line-height:1;}
+  .role{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--klein-ink);}
+  .desc{margin:16px 0 12px;max-width:64ch;color:var(--ink-2);font-size:15.5px;}
+  .item ul{margin:0 0 16px;padding-left:18px;max-width:64ch;}
+  .item li{color:var(--ink-2);font-size:15px;margin-bottom:4px;}
+  .item li b{font-weight:600;}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;}
+  .chip{font-family:var(--mono);font-size:11.5px;text-transform:uppercase;letter-spacing:.04em;border:1.5px solid var(--ink);padding:4px 9px;}
+  .meta-r{font-family:var(--mono);font-size:12px;color:var(--ink-faint);text-align:right;white-space:nowrap;letter-spacing:.04em;line-height:1.7;}
+  @media(max-width:720px){
+    .item{grid-template-columns:1fr;gap:12px;}
+    .meta-r{text-align:left;}
+    .item:hover{padding-left:14px;padding-right:14px;}
+  }
+
+  /* IA */
+  .ai{padding:10px 0 40px;border-bottom:2px solid var(--line);}
+  .aigrid{display:grid;grid-template-columns:repeat(3,1fr);border:2px solid var(--line);}
+  .ablock{padding:26px;border-right:2px solid var(--line);}
+  .ablock:last-child{border-right:none;}
+  .ablock h4{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--klein-ink);margin:0 0 12px;}
+  .ablock p{margin:0;font-size:15px;color:var(--ink-2);}
+  @media(max-width:820px){.aigrid{grid-template-columns:1fr;}.ablock{border-right:none;border-bottom:2px solid var(--line);}.ablock:last-child{border-bottom:none;}}
+
+  /* stack */
+  .stack{padding:10px 0 44px;border-bottom:2px solid var(--line);}
+  .stackgrid{display:grid;grid-template-columns:repeat(2,1fr);border:2px solid var(--line);}
+  .sblock{padding:26px;border-right:2px solid var(--line);border-bottom:2px solid var(--line);}
+  .sblock:nth-child(2n){border-right:none;}
+  .sblock:nth-last-child(-n+2){border-bottom:none;}
+  .sblock h4{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--klein-ink);margin:0 0 14px;}
+  .sblock .list{display:flex;flex-wrap:wrap;gap:8px;}
+  .sblock .list span{font-size:15px;font-weight:600;}
+  .sblock .list span::after{content:"·";color:var(--ink-faint);margin-left:8px;}
+  .sblock .list span:last-child::after{content:"";}
+  @media(max-width:640px){.stackgrid{grid-template-columns:1fr;}.sblock{border-right:none;}.sblock:nth-last-child(2){border-bottom:2px solid var(--line);}}
+
+  /* trajetória */
+  .track{padding:10px 0 40px;border-bottom:2px solid var(--line);}
+  .row{display:grid;grid-template-columns:200px 1fr;gap:28px;padding:26px 0;border-top:1.5px solid var(--ink);}
+  .row:first-of-type{border-top:none;}
+  .row .yr{font-family:var(--mono);font-size:13px;color:var(--ink-faint);letter-spacing:.04em;}
+  .row h3{margin:0 0 2px;font-size:21px;text-transform:uppercase;letter-spacing:-.01em;}
+  .row .org{font-family:var(--mono);font-size:13px;color:var(--klein-ink);margin-bottom:12px;}
+  .row p{margin:0;color:var(--ink-2);max-width:64ch;font-size:15px;}
+  @media(max-width:600px){.row{grid-template-columns:1fr;gap:8px;}}
+
+  /* contato */
+  .foot{padding:64px 0 40px;}
+  .foot .big{font-size:clamp(40px,10vw,120px);line-height:.9;font-weight:800;text-transform:uppercase;letter-spacing:-.04em;margin:0 0 34px;}
+  .foot .big a{border-bottom:6px solid var(--klein);}
+  .foot .big a:hover{color:var(--klein-ink);}
+  .clist{display:grid;grid-template-columns:repeat(2,1fr);border:2px solid var(--line);}
+  .clist a{padding:20px 22px;border-right:2px solid var(--line);border-bottom:2px solid var(--line);font-family:var(--mono);font-size:14px;display:flex;justify-content:space-between;align-items:center;gap:12px;text-transform:uppercase;letter-spacing:.04em;transition:.15s;overflow-wrap:anywhere;}
+  .clist a:nth-child(2n){border-right:none;}
+  .clist a:nth-last-child(-n+2){border-bottom:none;}
+  .clist .k{color:var(--ink-faint);font-size:11px;display:block;margin-bottom:4px;}
+  .clist a:hover{background:var(--klein);color:var(--paper);}
+  .clist a:hover .k{color:var(--paper);}
+  .sign{font-family:var(--mono);font-size:11.5px;color:var(--ink-faint);text-transform:uppercase;letter-spacing:.08em;margin-top:30px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+  @media(max-width:560px){.clist{grid-template-columns:1fr;}.clist a{border-right:none;font-size:13px;}.clist a:nth-last-child(2){border-bottom:2px solid var(--line);}}
+
+  @media(prefers-reduced-motion:reduce){.marq{animation:none;}*{transition:none!important;}html{scroll-behavior:auto;}}
+</style>
+</head>
+<body>
+
+<div class="rail" aria-hidden="true"><div class="marq">
+  <span>Full Stack — Python — FastAPI — React — TypeScript — PostgreSQL — Google Gemini — Playwright — Automação — Dados — IA aplicada —</span>
+  <span>Full Stack — Python — FastAPI — React — TypeScript — PostgreSQL — Google Gemini — Playwright — Automação — Dados — IA aplicada —</span>
+</div></div>
+
+<div class="wrap">
+
+  <nav class="meta">
+    <span>Matheus A. G. Jammal</span>
+    <div class="r">
+      <a href="#trabalho">Projetos</a>
+      <a href="#ia">IA</a>
+      <a href="#stack">Stack</a>
+      <a href="#trajeto">Trajetória</a>
+      <a href="#contato">Contato</a>
+    </div>
+    <span>Curitiba, BR</span>
+  </nav>
+
+  <header class="hero">
+    <p class="tag">Desenvolvedor Full Stack · Automação · Dados · IA</p>
+    <h1>Matheus<br><span class="stroke">Jammal</span></h1>
+    <div class="sub">
+      <p>Construo sistemas que substituem <b>trabalho manual</b> e repetitivo. Desenvolvedor full stack na L8 Group desde 2025. Antes, quatro anos em vendas técnicas e licitações públicas, onde comecei a programar para resolver os problemas da operação.</p>
+      <div class="avail"><span class="b"></span>Aberto a oportunidades</div>
+    </div>
+  </header>
+
+  <section class="stats" aria-label="Resultados do ZeniteApp">
+    <div class="stat"><div class="n">1h → 5min</div><div class="l">Cadastro de proposta (50 itens)</div></div>
+    <div class="stat"><div class="n">13×</div><div class="l">Busca: 1,8 s → 140 ms</div></div>
+    <div class="stat"><div class="n">1,27 mi</div><div class="l">Licitações coletadas</div></div>
+    <div class="stat"><div class="n">329</div><div class="l">Testes automatizados</div></div>
+  </section>
+
+  <main>
+  <section id="trabalho">
+    <div class="shead"><h2>Projetos</h2><span class="c">[ 3 projetos ]</span></div>
+
+    <article class="item">
+      <div class="no">01</div>
+      <div>
+        <div class="role">Projeto autoral — Automação + IA</div>
+        <h3>ZeniteApp</h3>
+        <p class="desc">Plataforma de automação para empresas que participam de licitações públicas. Substituiu um processo inteiramente manual, lento e sujeito a erro.</p>
+        <ul>
+          <li><b>Dados:</b> coletor em Python consulta a API do PNCP a cada hora e já gravou mais de 1,27 milhão de licitações em PostgreSQL. Otimizei a busca de 1,8 s para 140 ms.</li>
+          <li><b>IA:</b> perguntas sobre o edital respondidas pelo Google Gemini, citando item e seção da fonte, isoladas por cliente e com travas de custo no servidor.</li>
+          <li><b>Automação:</b> robôs Playwright no app desktop cadastram propostas. O cadastro de uma proposta de 50 itens no portal do governo, antes feito à mão, passou de mais de 1 hora para menos de 5 minutos.</li>
+          <li><b>Engenharia:</b> API em FastAPI, RBAC, tokens cifrados, 329 testes com Pytest, Docker e deploy automático a cada push.</li>
+        </ul>
+        <div class="chips"><span class="chip">Python</span><span class="chip">FastAPI</span><span class="chip">PostgreSQL</span><span class="chip">Gemini API</span><span class="chip">Playwright</span><span class="chip">Electron</span><span class="chip">React</span><span class="chip">Docker</span></div>
+      </div>
+      <div class="meta-r">2026<br>Em produção<br>Código privado</div>
+    </article>
+
+    <article class="item">
+      <div class="no">02</div>
+      <div>
+        <div class="role">L8 Group — Ferramenta interna + IA</div>
+        <h3>L8 Notes AI</h3>
+        <p class="desc">Transforma atas de reunião em tarefas com responsáveis, usando o Google Gemini. Usada diariamente pela equipe de compliance da L8.</p>
+        <ul>
+          <li>SPA em React 19 com back-end Express e modelo Firestore multi-entidade (usuários, tarefas, áreas, diretórios).</li>
+          <li>Autenticação OAuth2, criptografia server-side, RBAC hierárquico e processamento automático diário via cron job.</li>
+        </ul>
+        <div class="chips"><span class="chip">React 19</span><span class="chip">TypeScript</span><span class="chip">Express</span><span class="chip">Firestore</span><span class="chip">Gemini API</span><span class="chip">OAuth2</span></div>
+      </div>
+      <div class="meta-r">2025<br>Em produção<br>Código da empresa</div>
+    </article>
+
+    <article class="item">
+      <div class="no">03</div>
+      <div>
+        <div class="role">L8 Group — Vendas + Energia solar</div>
+        <h3>Portal L8 Energy</h3>
+        <p class="desc">Gestão do ciclo de vendas que centralizou estoque, propostas e clientes, antes espalhados em planilhas.</p>
+        <ul>
+          <li>CRUD de propostas com RBAC e geração automática de contratos em PDF.</li>
+          <li>Integração com a Google Solar API para análise de viabilidade técnica por geolocalização, com funções serverless.</li>
+        </ul>
+        <div class="chips"><span class="chip">React</span><span class="chip">Firebase Functions</span><span class="chip">Firestore</span><span class="chip">TailwindCSS</span><span class="chip">Solar API</span></div>
+      </div>
+      <div class="meta-r">2025<br>Em produção<br>Código da empresa</div>
+    </article>
+  </section>
+
+  <section id="ia" class="ai">
+    <div class="shead flat"><h2>Como trabalho com IA</h2><span class="c">[ na prática ]</span></div>
+    <div class="aigrid">
+      <div class="ablock">
+        <h4>Resposta ancorada</h4>
+        <p>O prompt prende a resposta ao documento, exige citar item e seção e proíbe inventar. Escolhi contexto direto em vez de RAG: o edital cabe na janela e isso isola os dados de cada cliente.</p>
+      </div>
+      <div class="ablock">
+        <h4>Custo sob controle</h4>
+        <p>Antes de cada chamada ao modelo, o servidor aplica 6 travas: escopo de acesso, rate limit, teto diário em reais, cota mensal e limite de tokens. O custo de cada chamada é contabilizado.</p>
+      </div>
+      <div class="ablock">
+        <h4>Desenvolvimento por especificação</h4>
+        <p>Uso o Claude Code no dia a dia. Primeiro escrevo a especificação — escopo, regras e restrições — e uso esse documento para dirigir a implementação e revisar o resultado.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="stack" class="stack">
+    <div class="shead flat"><h2>Stack</h2><span class="c">[ ferramentas ]</span></div>
+    <div class="stackgrid">
+      <div class="sblock"><h4>Back-end &amp; APIs</h4><div class="list"><span>Python</span><span>FastAPI</span><span>Node.js</span><span>Express</span><span>APIs REST</span><span>OAuth2</span><span>Pytest</span></div></div>
+      <div class="sblock"><h4>Front-end</h4><div class="list"><span>React 19</span><span>TypeScript</span><span>JavaScript</span><span>HTML</span><span>CSS</span><span>TailwindCSS</span><span>Vite</span></div></div>
+      <div class="sblock"><h4>Dados &amp; IA</h4><div class="list"><span>PostgreSQL</span><span>Firestore</span><span>SQL</span><span>Google Gemini API</span><span>Claude Code</span></div></div>
+      <div class="sblock"><h4>Automação &amp; Entrega</h4><div class="list"><span>Playwright</span><span>Electron</span><span>Cron</span><span>Docker</span><span>Git/GitHub</span><span>GCP</span><span>Firebase</span></div></div>
+    </div>
+  </section>
+
+  <section id="trajeto" class="track">
+    <div class="shead flat"><h2>Trajetória</h2><span class="c">[ 2020 → hoje ]</span></div>
+    <div class="row">
+      <div class="yr">MAR 2025 — PRESENTE</div>
+      <div>
+        <h3>Desenvolvedor Full Stack</h3>
+        <div class="org">L8 Group — Tecnologia &amp; Energia Solar</div>
+        <p>Desenvolvo para a área de compliance, que recebe projetos de toda a empresa. Meu foco principal é automatizar a gestão e a manutenção das normas ISO 9001, 22301, 27001 e 27701, do levantamento de requisitos até a implantação e a manutenção.</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="yr">AGO 2020 — NOV 2024</div>
+      <div>
+        <h3>Vendedor / Assistente Financeiro</h3>
+        <div class="org">MHF do Paraná Ind. e Com.</div>
+        <p>Vendas técnicas e licitações públicas, com contribuição para o aumento de 50% na receita da equipe. Foi ali que vi quanto trabalho manual a operação tinha e comecei a programar para resolvê-lo.</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="yr">FEV 2026 — DEZ 2028</div>
+      <div>
+        <h3>Gestão em Tecnologia da Informação</h3>
+        <div class="org">Instituto Federal do Paraná (IFPR)</div>
+        <p>Tecnólogo em andamento. Antes, Análise e Desenvolvimento de Sistemas na Uninter. Inglês intermediário.</p>
+      </div>
+    </div>
+  </section>
+  </main>
+
+  <footer id="contato" class="foot">
+    <p class="tag">Contato</p>
+    <div class="big">Vamos<br><a href="mailto:matheusagjammal@hotmail.com">conversar.</a></div>
+    <div class="clist">
+      <a href="mailto:matheusagjammal@hotmail.com"><span><span class="k">E-mail</span>matheusagjammal@hotmail.com</span><span aria-hidden="true">↗</span></a>
+      <a href="tel:+5541998091576"><span><span class="k">Telefone</span>(41) 99809-1576</span><span aria-hidden="true">↗</span></a>
+      <a href="https://www.linkedin.com/in/matheusjammal/" target="_blank" rel="noopener"><span><span class="k">LinkedIn</span>/in/matheusjammal</span><span aria-hidden="true">↗</span></a>
+      <a href="https://github.com/MatheusJammal" target="_blank" rel="noopener"><span><span class="k">GitHub</span>/MatheusJammal</span><span aria-hidden="true">↗</span></a>
+    </div>
+    <div class="sign">
+      <span>© 2026 Matheus A. G. Jammal</span>
+      <span>Desenvolvedor Full Stack — Curitiba, BR</span>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
