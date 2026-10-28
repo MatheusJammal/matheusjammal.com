@@ -67,6 +67,10 @@
   .stat:last-child{border-right:none;}
   .stat .n{font-size:clamp(30px,4.2vw,52px);font-weight:800;letter-spacing:-.04em;line-height:1;}
   .stat .l{font-size:14px;line-height:1.4;color:var(--ink-2);margin-top:12px;}
+  .stat.link{display:block;transition:background .2s,color .2s;}
+  .stat.link .go{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--klein-ink);margin-top:12px;}
+  .stat.link:hover{background:var(--klein);color:var(--paper);}
+  .stat.link:hover .l,.stat.link:hover .go{color:var(--paper);}
   .stats .cap{grid-column:1/-1;font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--klein-ink);padding:14px 0;border-bottom:1.5px solid var(--ink);}  @media(max-width:760px){
     .stats{grid-template-columns:1fr 1fr;}
     .stat{padding:20px 14px 20px 0;}
@@ -215,7 +219,7 @@
       <div class="stat"><div class="n">5 min</div><div class="l">para cadastrar uma proposta de 50 itens no portal do governo. Antes, à mão, levava mais de 1 hora.</div></div>
       <div class="stat"><div class="n">140 ms</div><div class="l">para buscar entre as licitações. Antes da otimização, 1,8 s: 13 vezes mais lento.</div></div>
       <div class="stat"><div class="n">1,27 mi</div><div class="l">licitações públicas coletadas automaticamente do PNCP e guardadas no banco.</div></div>
-      <div class="stat"><div class="n">329</div><div class="l">testes automatizados com Pytest, cobrindo a API e o coletor.</div></div>
+      <a class="stat link" href="testes.html"><div class="n">342</div><div class="l">testes automatizados com Pytest, cobrindo a API e o coletor.</div><div class="go">Ver os testes →</div></a>
     </div>
 
     <article class="item">

@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Testes do ZeniteApp — Matheus Jammal</title>
+<meta name="description" content="Os 342 testes automatizados do ZeniteApp, agrupados por área: o que cada grupo garante e por quê.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%231A1AE5'/%3E%3Ctext x='16' y='23' font-family='Arial' font-weight='800' font-size='18' fill='%23EDEAE3' text-anchor='middle'%3EMJ%3C/text%3E%3C/svg%3E">
+<style>
+  :root{
+    --paper:#EDEAE3;
+    --ink:#14130F;
+    --ink-2:#3b3a34;
+    --ink-faint:#6f6d64;
+    --klein:#1A1AE5;
+    --klein-ink:#0f0fb0;
+    --line:#14130F;
+    --sans:"Helvetica Neue",Helvetica,Arial,system-ui,sans-serif;
+    --mono:ui-monospace,"SF Mono","Cascadia Code",Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:var(--sans);line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+    background-image:radial-gradient(rgba(20,19,15,.05) 1px,transparent 1px);
+    background-size:22px 22px;
+  }
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 32px;}
+  @media(max-width:560px){.wrap{padding:0 16px;}}
+  ::selection{background:var(--klein);color:var(--paper);}
+  :focus-visible{outline:3px solid var(--klein);outline-offset:3px;}
+
+  .meta{display:flex;justify-content:space-between;align-items:center;padding:16px 0;border-bottom:2px solid var(--line);font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;}
+  .meta a:hover{color:var(--klein-ink);}
+
+  .hero{padding:44px 0 30px;border-bottom:2px solid var(--line);}
+  .tag{font-family:var(--mono);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--klein-ink);margin:0 0 18px;}
+  .hero h1{font-size:clamp(44px,10vw,120px);line-height:.86;letter-spacing:-.045em;font-weight:800;margin:0;text-transform:uppercase;}
+  .hero h1 .stroke{color:transparent;-webkit-text-stroke:2px var(--ink);}
+  .hero p{max-width:62ch;font-size:clamp(16px,1.8vw,19px);color:var(--ink-2);margin:26px 0 0;}
+
+  /* índice das áreas */
+  .index{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:2px solid var(--line);}
+  .index a{padding:18px 18px 18px 0;border-right:2px solid var(--line);border-bottom:1.5px solid var(--ink);display:flex;justify-content:space-between;gap:10px;align-items:baseline;}
+  .index a:nth-child(n+2){padding-left:18px;}
+  .index a:nth-child(4n+1){padding-left:0;}
+  .index a:nth-child(4n){border-right:none;}
+  .index a:hover{color:var(--klein-ink);}
+  .index .k{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.06em;}
+  .index .q{font-weight:800;font-size:22px;letter-spacing:-.03em;}
+  @media(max-width:760px){
+    .index{grid-template-columns:1fr 1fr;}
+    .index a,.index a:nth-child(n+2){padding:14px 12px 14px 0;}
+    .index a:nth-child(2n){padding-left:12px;border-right:none;}
+    .index a:nth-child(2n+1){border-right:2px solid var(--line);}
+  }
+
+  /* áreas */
+  .area{display:grid;grid-template-columns:auto 1fr;gap:28px;padding:34px 0;border-bottom:2px solid var(--line);scroll-margin-top:12px;}
+  .area .n{font-size:clamp(40px,7vw,88px);font-weight:800;line-height:.8;letter-spacing:-.04em;color:transparent;-webkit-text-stroke:1.5px var(--ink);min-width:2.2ch;}
+  .area h2{font-size:clamp(22px,3.2vw,34px);margin:0 0 6px;text-transform:uppercase;letter-spacing:-.02em;font-weight:800;line-height:1;}
+  .area .sub{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--klein-ink);}
+  .area ul{margin:18px 0 0;padding-left:18px;max-width:70ch;}
+  .area li{color:var(--ink-2);font-size:15.5px;margin-bottom:8px;}
+  .area li b{font-weight:600;color:var(--ink);}
+  @media(max-width:720px){.area{grid-template-columns:1fr;gap:10px;}}
+
+  .note{padding:30px 0 50px;font-size:14px;color:var(--ink-faint);max-width:72ch;}
+  .note p{margin:0 0 10px;}
+  .back{display:inline-block;margin-top:14px;font-family:var(--mono);font-size:13px;text-transform:uppercase;letter-spacing:.06em;border:2px solid var(--ink);color:var(--ink);padding:10px 16px;}
+  .back:hover{background:var(--klein);border-color:var(--klein);color:var(--paper);}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <nav class="meta">
+    <a href="index.html">← Matheus A. G. Jammal</a>
+    <span>ZeniteApp · Testes</span>
+  </nav>
+
+  <header class="hero">
+    <p class="tag">ZeniteApp · Pytest</p>
+    <h1>342<br><span class="stroke">testes</span></h1>
+    <p>O código do ZeniteApp é privado, mas dá para mostrar o que ele garante. Abaixo estão os testes automatizados agrupados por área, com exemplos do que cada grupo verifica. Muitos deles nasceram de um problema real em produção e existem para que ele não volte.</p>
+  </header>
+
+  <div class="index" aria-label="Áreas">
+    <a href="#lances"><span class="k">Robô de lances</span><span class="q">62</span></a>
+    <a href="#seguranca"><span class="k">Segurança</span><span class="q">42</span></a>
+    <a href="#ia"><span class="k">IA de editais</span><span class="q">13</span></a>
+    <a href="#coletor"><span class="k">Coletor PNCP</span><span class="q">59</span></a>
+    <a href="#busca"><span class="k">Busca</span><span class="q">72</span></a>
+    <a href="#radar"><span class="k">Radar e avisos</span><span class="q">46</span></a>
+    <a href="#gestao"><span class="k">Gestão</span><span class="q">48</span></a>
+    <a href="index.html#trabalho"><span class="k">Voltar ao portfólio</span><span class="q">←</span></a>
+  </div>
+
+  <main>
+    <section class="area" id="lances">
+      <div class="n">62</div>
+      <div>
+        <h2>Robô de lances</h2>
+        <div class="sub">Disputa automática em pregões eletrônicos</div>
+        <ul>
+          <li><b>Nunca abaixo do mínimo.</b> O robô não dá lance abaixo do valor mínimo aprovado pelo cliente, nem por um centavo. Sem mínimo definido, ele não age.</li>
+          <li><b>Um bloqueio não derruba a disputa.</b> Se o portal do governo recusa um lance por excesso de requisições (erro 429), o robô segue nos outros itens. O teste reproduz um pregão real de 25 itens em que só 3 lances tinham saído.</li>
+          <li><b>O tempo de espera respeita o fechamento.</b> Depois de um bloqueio, a pausa nunca passa do horário de encerramento da disputa.</li>
+          <li><b>Fuso horário.</b> Regressão de um bug em que o modo de minutos finais nunca dava lance por confundir o horário de Brasília com UTC.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="area" id="seguranca">
+      <div class="n">42</div>
+      <div>
+        <h2>Segurança e acesso</h2>
+        <div class="sub">Isolamento entre clientes, sessões e criptografia</div>
+        <ul>
+          <li><b>Testes de ataque.</b> Um assinante tenta criar card, montar proposta, ligar o robô e gastar a cota de outra empresa. Todas as tentativas precisam falhar.</li>
+          <li><b>O papel não é forjável.</b> O nível de acesso vem do banco, pela sessão, e nunca de algo enviado pelo navegador.</li>
+          <li><b>Credenciais cifradas.</b> Os tokens de acesso ao portal do governo ficam cifrados no banco. Com a chave errada, nada é revelado.</li>
+          <li><b>Sessões.</b> Logout revoga a sessão, e a redefinição de senha é testada do início ao fim.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="area" id="ia">
+      <div class="n">13</div>
+      <div>
+        <h2>IA de editais</h2>
+        <div class="sub">Travas de custo do Google Gemini</div>
+        <ul>
+          <li><b>Cota esgotada bloqueia.</b> Quando a cota acaba, a pergunta é recusada antes de chegar ao modelo. O teto diário global bloqueia o sistema inteiro.</li>
+          <li><b>Cada empresa paga a sua.</b> Uma empresa não consegue consumir a cota de outra.</li>
+          <li><b>Testes não gastam dinheiro.</b> O Gemini é simulado nos testes, então nenhuma execução gera custo real.</li>
+          <li><b>Edital escaneado.</b> Um PDF sem texto extraível é identificado e marcado como sem texto.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="area" id="coletor">
+      <div class="n">59</div>
+      <div>
+        <h2>Coletor PNCP</h2>
+        <div class="sub">Coleta automática das licitações públicas</div>
+        <ul>
+          <li><b>Um dia só fecha quando termina em Brasília.</b> Regressão de um dia real perdido porque o servidor, em UTC, deu o dia por encerrado antes da hora.</li>
+          <li><b>Dia vazio é suspeito.</b> Se a API não devolve nada para um dia já encerrado, o coletor pergunta de novo antes de aceitar. Feriado sem publicação existe, mas é exceção.</li>
+          <li><b>Falha parcial não apaga o resto.</b> Um timeout em um item não descarta a licitação inteira.</li>
+          <li><b>Dado absurdo não entra.</b> Valores impossíveis vindos da API viram nulos em vez de corromper o banco.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="area" id="busca">
+      <div class="n">72</div>
+      <div>
+        <h2>Busca e licitações</h2>
+        <div class="sub">API de consulta e validação de entrada</div>
+        <ul>
+          <li><b>Filtros.</b> Estado, datas, faixa de valor, texto no objeto e nos itens, ordenação e paginação.</li>
+          <li><b>Otimização sem mudar o resultado.</b> A versão otimizada da consulta devolve exatamente o mesmo resultado que a versão anterior.</li>
+          <li><b>Entrada inválida é recusada.</b> Estado inexistente, valor negativo e datas invertidas recebem erro claro, sem chegar ao banco.</li>
+          <li><b>Arquivos do edital.</b> Nomes de arquivo sem caracteres perigosos e com o tipo correto.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="area" id="radar">
+      <div class="n">46</div>
+      <div>
+        <h2>Radar e avisos</h2>
+        <div class="sub">Alertas por e-mail para o cliente</div>
+        <ul>
+          <li><b>Encontrar a empresa citada.</b> Detecta o cliente numa licitação pelo CNPJ, com ou sem máscara, ou pela razão social com acento e caixa diferentes.</li>
+          <li><b>Lembretes que apertam.</b> Os avisos de prazo ficam mais frequentes perto do fim. Se o serviço ficou fora do ar, chega um aviso, não cinco de uma vez.</li>
+          <li><b>Na dúvida, não avisa.</b> Um prazo lido errado é pior que nenhum, então texto ambíguo não vira prazo.</li>
+          <li><b>E-mail que chega inteiro.</b> O botão aparece sem depender de CSS, e o link vai sempre também em texto.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="area" id="gestao">
+      <div class="n">48</div>
+      <div>
+        <h2>Gestão e conformidade</h2>
+        <div class="sub">Certidões, CRM, desfecho e auditoria</div>
+        <ul>
+          <li><b>Auditoria intocável.</b> Gerar o relatório de conformidade quantas vezes for não altera uma linha da trilha de auditoria.</li>
+          <li><b>Sem cadastro duplicado.</b> A mesma proposta gera sempre a mesma assinatura, e qualquer mudança de marca, modelo, valor ou quantidade gera outra.</li>
+          <li><b>Perda exige motivo.</b> Uma disputa perdida só é registrada com uma justificativa válida.</li>
+          <li><b>Certidões do SICAF.</b> O relatório oficial é lido automaticamente, e uma data impossível é ignorada sem quebrar a leitura.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <div class="note">
+    <p>Contagem feita com <code>pytest --collect-only</code> em outubro de 2026: 293 testes na API e 49 no coletor. Os testes de integração rodam contra um PostgreSQL de teste separado, que o próprio conjunto recusa usar se o endereço parecer o de produção.</p>
+    <a class="back" href="index.html#trabalho">← Voltar ao portfólio</a>
+  </div>
+
+</div>
+</body>
+</html>
