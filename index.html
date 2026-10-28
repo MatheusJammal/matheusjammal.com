@@ -66,13 +66,17 @@
   .stat + .stat{padding-left:22px;}
   .stat:last-child{border-right:none;}
   .stat .n{font-size:clamp(30px,4.2vw,52px);font-weight:800;letter-spacing:-.04em;line-height:1;}
-  .stat .l{font-family:var(--mono);font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-faint);margin-top:10px;}
+  .stat .l{font-size:14px;line-height:1.4;color:var(--ink-2);margin-top:12px;}
+  .stats .cap{grid-column:1/-1;font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--klein-ink);padding:14px 0;border-bottom:1.5px solid var(--ink);}
+  .stats .cap:hover{text-decoration:underline;}
   @media(max-width:760px){
     .stats{grid-template-columns:1fr 1fr;}
     .stat{padding:20px 14px 20px 0;}
     .stat + .stat{padding-left:0;}
-    .stat:nth-child(2n){padding-left:14px;border-right:none;}
-    .stat:nth-child(-n+2){border-bottom:2px solid var(--line);}
+    /* nth-child conta a legenda .cap como 1º filho */
+    .stat:nth-child(2n+1){padding-left:14px;border-right:none;}
+    .stat:nth-child(2n){padding-left:0;border-right:2px solid var(--line);}
+    .stat:nth-child(-n+3){border-bottom:2px solid var(--line);}
   }
 
   /* cabeçalho de seção */
@@ -97,6 +101,9 @@
   .chips{display:flex;flex-wrap:wrap;gap:8px;}
   .chip{font-family:var(--mono);font-size:11.5px;text-transform:uppercase;letter-spacing:.04em;border:1.5px solid var(--ink);padding:4px 9px;}
   .meta-r{font-family:var(--mono);font-size:12px;color:var(--ink-faint);text-align:right;white-space:nowrap;letter-spacing:.04em;line-height:1.7;}
+  .meta-r .open{display:inline-block;margin-top:12px;border:2px solid var(--ink);color:var(--ink);padding:6px 12px;text-transform:uppercase;font-weight:600;}
+  .item:hover .meta-r .open{border-color:var(--paper);color:var(--paper);}
+  .meta-r .open:hover{background:var(--paper);color:var(--klein-ink)!important;}
   @media(max-width:720px){
     .item{grid-template-columns:1fr;gap:12px;}
     .meta-r{text-align:left;}
@@ -108,6 +115,7 @@
   .aigrid{display:grid;grid-template-columns:repeat(3,1fr);border:2px solid var(--line);}
   .ablock{padding:26px;border-right:2px solid var(--line);}
   .ablock:last-child{border-right:none;}
+  .ablock .ctx{display:inline-block;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;border:1.5px solid var(--ink);padding:3px 8px;margin-bottom:14px;}
   .ablock h4{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--klein-ink);margin:0 0 12px;}
   .ablock p{margin:0;font-size:15px;color:var(--ink-2);}
   @media(max-width:820px){.aigrid{grid-template-columns:1fr;}.ablock{border-right:none;border-bottom:2px solid var(--line);}.ablock:last-child{border-bottom:none;}}
@@ -184,10 +192,11 @@
   </header>
 
   <section class="stats" aria-label="Resultados do ZeniteApp">
-    <div class="stat"><div class="n">1h → 5min</div><div class="l">Cadastro de proposta (50 itens)</div></div>
-    <div class="stat"><div class="n">13×</div><div class="l">Busca: 1,8 s → 140 ms</div></div>
-    <div class="stat"><div class="n">1,27 mi</div><div class="l">Licitações coletadas</div></div>
-    <div class="stat"><div class="n">329</div><div class="l">Testes automatizados</div></div>
+    <a class="cap" href="#trabalho">ZeniteApp em números <span aria-hidden="true">↓</span></a>
+    <div class="stat"><div class="n">5 min</div><div class="l">para cadastrar uma proposta de 50 itens no portal do governo. Antes, à mão, levava mais de 1 hora.</div></div>
+    <div class="stat"><div class="n">140 ms</div><div class="l">para buscar entre as licitações. Antes da otimização, 1,8 s: 13 vezes mais lento.</div></div>
+    <div class="stat"><div class="n">1,27 mi</div><div class="l">licitações públicas coletadas automaticamente do PNCP e guardadas no banco.</div></div>
+    <div class="stat"><div class="n">329</div><div class="l">testes automatizados com Pytest, cobrindo a API e o coletor.</div></div>
   </section>
 
   <main>
@@ -204,11 +213,11 @@
           <li><b>Dados:</b> coletor em Python consulta a API do PNCP a cada hora e já gravou mais de 1,27 milhão de licitações em PostgreSQL. Otimizei a busca de 1,8 s para 140 ms.</li>
           <li><b>IA:</b> perguntas sobre o edital respondidas pelo Google Gemini, citando item e seção da fonte, isoladas por cliente e com travas de custo no servidor.</li>
           <li><b>Automação:</b> robôs Playwright no app desktop cadastram propostas. O cadastro de uma proposta de 50 itens no portal do governo, antes feito à mão, passou de mais de 1 hora para menos de 5 minutos.</li>
-          <li><b>Engenharia:</b> API em FastAPI, RBAC, tokens cifrados, 329 testes com Pytest, Docker e deploy automático a cada push.</li>
+          <li><b>Engenharia:</b> API em FastAPI, RBAC, tokens cifrados, 329 testes com Pytest e serviços em contêineres Docker, publicados um a um pelo Easypanel.</li>
         </ul>
         <div class="chips"><span class="chip">Python</span><span class="chip">FastAPI</span><span class="chip">PostgreSQL</span><span class="chip">Gemini API</span><span class="chip">Playwright</span><span class="chip">Electron</span><span class="chip">React</span><span class="chip">Docker</span></div>
       </div>
-      <div class="meta-r">2026<br>Em produção<br>Código privado</div>
+      <div class="meta-r">2026<br>Em produção<br>Código privado<br><a class="open" href="https://app.zeniteapp.com.br" target="_blank" rel="noopener">Abrir o app ↗</a></div>
     </article>
 
     <article class="item">
@@ -243,17 +252,20 @@
   </section>
 
   <section id="ia" class="ai">
-    <div class="shead flat"><h2>Como trabalho com IA</h2><span class="c">[ na prática ]</span></div>
+    <div class="shead flat"><h2>IA na prática</h2><span class="c">[ no produto e no processo ]</span></div>
     <div class="aigrid">
       <div class="ablock">
+        <div class="ctx">No ZeniteApp</div>
         <h4>Resposta ancorada</h4>
         <p>O prompt prende a resposta ao documento, exige citar item e seção e proíbe inventar. Escolhi contexto direto em vez de RAG: o edital cabe na janela e isso isola os dados de cada cliente.</p>
       </div>
       <div class="ablock">
+        <div class="ctx">No ZeniteApp</div>
         <h4>Custo sob controle</h4>
-        <p>Antes de cada chamada ao modelo, o servidor aplica 6 travas: escopo de acesso, rate limit, teto diário em reais, cota mensal e limite de tokens. O custo de cada chamada é contabilizado.</p>
+        <p>Antes de cada chamada ao modelo, o servidor aplica 6 travas: escopo de acesso, validação do edital, teto diário em reais, rate limit por usuário, cota mensal e limite de tokens. O custo de cada chamada é contabilizado.</p>
       </div>
       <div class="ablock">
+        <div class="ctx">No dia a dia</div>
         <h4>Desenvolvimento por especificação</h4>
         <p>Uso o Claude Code no dia a dia. Primeiro escrevo a especificação — escopo, regras e restrições — e uso esse documento para dirigir a implementação e revisar o resultado.</p>
       </div>
