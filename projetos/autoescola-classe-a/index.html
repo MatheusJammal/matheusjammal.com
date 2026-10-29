@@ -164,14 +164,6 @@ legend + *{clear:both}
 .resumo .btn{width:100%}
 .obs{font-size:13px;line-height:1.45;color:rgba(255,255,255,.7)}
 
-/* o que mudou */
-.mudancas{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.mudanca{display:flex;flex-direction:column;gap:10px;background:var(--branco);border:1px solid var(--borda);border-radius:10px;padding:28px 24px}
-.mudanca .num{font-family:'Overpass Mono',monospace;font-size:13px;font-weight:700;color:var(--vermelho)}
-.mudanca h3{font-size:20px;font-weight:800;line-height:1.2}
-.mudanca p{font-size:16px;color:var(--tinta-2)}
-.fonte{margin-top:22px;font-size:14px;color:var(--tinta-2)}
-
 /* por que */
 .motivos{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid #3a3d42}
 .motivo{padding:34px 28px 0 0}
@@ -210,7 +202,6 @@ legend + *{clear:both}
 
 @media (max-width:960px){
   .pacotes-grid{grid-template-columns:1fr;max-width:520px}
-  .mudancas{grid-template-columns:repeat(2,1fr)}
   .motivos{grid-template-columns:repeat(2,1fr)}
   .motivo:nth-child(3){padding-left:0;border-left:0}
   .monte-grid{grid-template-columns:1fr}
@@ -231,7 +222,7 @@ legend + *{clear:both}
   .topo .wrap{height:68px}
   .logo img{width:50px;height:50px}
   .logo-texto small{display:none}
-  .opcoes,.mudancas,.motivos{grid-template-columns:1fr}
+  .opcoes,.motivos{grid-template-columns:1fr}
   .motivo + .motivo{padding-left:0;border-left:0;border-top:1px dashed #4b4f55;margin-top:28px}
   .motivo{padding-right:0}
   fieldset{padding:22px 18px}
@@ -253,7 +244,6 @@ legend + *{clear:both}
     <nav aria-label="Principal">
       <a class="link" href="#pacotes">Pacotes</a>
       <a class="link" href="#monte">Monte o seu</a>
-      <a class="link" href="#mudou">O que mudou</a>
       <a class="link" href="#duvidas">Dúvidas</a>
       <a class="btn btn-amarelo btn-pequeno" data-whatsapp href="#" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.7 14.9L2 22l5.2-1.3A10 10 0 1 0 12 2Z"/></svg>
@@ -367,37 +357,6 @@ legend + *{clear:both}
     </div>
   </section>
 
-  <section class="bloco" id="mudou">
-    <div class="wrap">
-      <span class="placa">O que mudou</span>
-      <h2>Menos horas obrigatórias. Mais escolha para você.</h2>
-      <p class="intro">A nova regra deixou o processo mais barato e mais flexível. Veja o que mudou para quem vai tirar a primeira habilitação.</p>
-      <div class="mudancas">
-        <article class="mudanca">
-          <span class="num">01</span>
-          <h3>Só 2 horas obrigatórias</h3>
-          <p>O mínimo de aula prática para carro e moto caiu de 20 para 2 horas. Você faz quantas precisar.</p>
-        </article>
-        <article class="mudanca">
-          <span class="num">02</span>
-          <h3>Prova no carro do candidato</h3>
-          <p>O exame prático pode ser feito no seu veículo. Não tem carro? Use o nosso no dia da prova.</p>
-        </article>
-        <article class="mudanca">
-          <span class="num">03</span>
-          <h3>Segunda chance sem taxa</h3>
-          <p>Se não passar na primeira tentativa, a segunda não cobra uma nova taxa.</p>
-        </article>
-        <article class="mudanca">
-          <span class="num">04</span>
-          <h3>Instrutor autônomo liberado</h3>
-          <p>Agora dá para aprender fora da autoescola. A diferença está em quem prepara você para passar.</p>
-        </article>
-      </div>
-      <p class="fonte">Fonte: Resolução CONTRAN nº 1.020/2025, aplicada pelo Detran-PR.</p>
-    </div>
-  </section>
-
   <section class="bloco escuro" id="por-que">
     <div class="wrap">
       <span class="placa">Por que a Classe A</span>
@@ -432,8 +391,8 @@ legend + *{clear:both}
       </div>
       <div class="faq">
         <details>
-          <summary>Ainda preciso fazer autoescola?</summary>
-          <p>Não é mais obrigatório. Pela Resolução CONTRAN nº 1.020/2025, as aulas práticas podem ser feitas em autoescola ou com instrutor autônomo credenciado, com mínimo de 2 horas para carro e moto. As provas teórica e prática continuam obrigatórias.</p>
+          <summary>Se o mínimo é de 2 horas, por que fazer mais aulas?</summary>
+          <p>Porque o mínimo é o que a lei exige, não o que a prova cobra. O exame prático continua igual e quem chega sem preparo arrisca reprovar e perder tempo. Com a gente você faz quantas aulas precisar para chegar seguro no dia.</p>
         </details>
         <details>
           <summary>Quantas aulas eu preciso fazer?</summary>
