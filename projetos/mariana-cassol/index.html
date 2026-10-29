@@ -1,0 +1,407 @@
+<!doctype html>
+<!-- Demonstração: remover a faixa .demo e o noindex quando virar o site oficial. -->
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Mariana Cassol · Biomédica esteta em Curitiba</title>
+<meta name="description" content="Harmonização, rejuvenescimento e estética avançada com resultados naturais. Biomédica esteta, CRBM 9356. Atendimento na Clínica Binutri, Cabral, Curitiba.">
+<link rel="icon" href="logo-oliva.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..600;1,6..96,400..600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* cores tiradas do monograma MC */
+  --oliva:#57573d;
+  --oliva-escuro:#3e3f2b;
+  --dourado:#b8955a;
+  --dourado-claro:#d9bf8c;
+  --bronze:#a87650;
+  --creme:#f8f3ef;
+  --creme-2:#efe7df;
+  --branco:#fffdfb;
+  --tinta:#2e2d24;
+  --tinta-2:#6a675c;
+  --linha:#dccfc2;
+  --max:1120px;
+  --serif:'Bodoni Moda',Georgia,serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{font-family:'Jost',system-ui,sans-serif;font-weight:400;background:var(--creme);color:var(--tinta);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+img,svg,iframe{display:block;max-width:100%}
+a{color:inherit}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+
+.demo{background:var(--oliva-escuro);color:#d8d3c4;font-size:13px;line-height:1.4;text-align:center;padding:8px 20px}
+.demo a{color:var(--dourado-claro)}
+
+/* botões */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font:inherit;font-size:15px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;padding:16px 26px;border-radius:999px;border:1px solid transparent;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.btn-oliva{background:var(--oliva);color:var(--creme)}
+.btn-oliva:hover{background:var(--oliva-escuro)}
+.btn-contorno{border-color:var(--oliva);color:var(--oliva)}
+.btn-contorno:hover{background:var(--oliva);color:var(--creme)}
+.btn-dourado{background:var(--dourado);color:var(--tinta)}
+.btn-dourado:hover{background:var(--dourado-claro)}
+.btn-pequeno{padding:11px 18px;font-size:13px}
+
+.olho{display:block;font-size:13px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--bronze);margin-bottom:20px}
+h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.01em}
+h1 em,h2 em{font-style:italic;color:var(--bronze)}
+h2{font-size:clamp(32px,4.4vw,50px);line-height:1.1;margin-bottom:20px;max-width:16em}
+.intro{font-size:18px;font-weight:300;color:var(--tinta-2);max-width:36em}
+.bloco{padding:110px 0}
+
+/* topo */
+.topo{position:sticky;top:0;z-index:20;background:var(--creme);border-bottom:1px solid var(--linha)}
+.topo .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:76px}
+.marca{display:flex;align-items:center;gap:12px;text-decoration:none}
+.marca img{width:50px;height:50px;border-radius:50%;mix-blend-mode:multiply}
+.marca strong{display:block;font-family:var(--serif);font-size:21px;font-weight:500;line-height:1.1}
+.marca small{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--tinta-2)}
+.topo nav{display:flex;align-items:center;gap:28px}
+.topo nav .link{font-size:15px;color:var(--tinta-2);text-decoration:none}
+.topo nav .link:hover{color:var(--tinta)}
+
+/* hero */
+.hero{position:relative;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:56px;align-items:center;padding-top:96px;padding-bottom:110px}
+.hero h1{font-size:clamp(44px,6.6vw,84px);line-height:1.02;margin-bottom:28px}
+.hero .intro{margin-bottom:36px}
+.acoes{display:flex;flex-wrap:wrap;gap:12px}
+.local{margin-top:28px;font-size:15px;color:var(--tinta-2)}
+.local::before{content:"";display:inline-block;width:28px;height:1px;background:var(--dourado);vertical-align:middle;margin-right:12px}
+.anel{position:relative;justify-self:center;width:min(100%,400px);aspect-ratio:1}
+.anel svg{position:absolute;inset:0;width:100%;height:100%}
+.anel p{position:absolute;inset:18%;display:grid;place-items:center;text-align:center;font-family:var(--serif);font-style:italic;font-size:clamp(24px,2.6vw,34px);line-height:1.25;color:var(--oliva)}
+
+/* procedimentos */
+.procedimentos{background:var(--branco)}
+.lista{margin-top:56px;border-top:1px solid var(--linha)}
+.item{display:grid;grid-template-columns:70px minmax(0,1fr) minmax(0,1.2fr) auto;gap:24px;align-items:baseline;padding:34px 0;border-bottom:1px solid var(--linha)}
+.item .num{font-family:var(--serif);font-style:italic;font-size:20px;color:var(--dourado)}
+.item h3{font-size:28px;line-height:1.15}
+.item p{color:var(--tinta-2);font-weight:300}
+.item .meta{display:block;margin-top:8px;font-size:14px;font-weight:400;color:var(--bronze)}
+.item a{font-size:14px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;white-space:nowrap;border-bottom:1px solid var(--dourado);padding-bottom:3px}
+.item a:hover{color:var(--bronze)}
+.nota{margin-top:24px;font-size:14px;color:var(--tinta-2)}
+
+/* queixas (venda consultiva) */
+.queixas{background:var(--oliva);color:var(--creme)}
+.queixas .olho{color:var(--dourado-claro)}
+.queixas h2 em{color:var(--dourado-claro)}
+.queixas .intro{color:rgba(248,243,239,.8)}
+.queixas-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:56px;align-items:center}
+.caixa{border:1px solid rgba(217,191,140,.45);border-radius:24px;padding:36px}
+.caixa-titulo{display:block;margin-bottom:18px;font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--dourado-claro)}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:28px}
+.chip{padding:10px 18px;border:1px solid rgba(248,243,239,.45);border-radius:999px;background:none;color:var(--creme);font:inherit;font-size:15px;cursor:pointer;transition:background .2s,border-color .2s,color .2s}
+.chip:hover{border-color:var(--creme)}
+.chip[aria-pressed="true"]{background:var(--creme);border-color:var(--creme);color:var(--oliva-escuro)}
+.caixa .btn{width:100%}
+
+/* sobre */
+.sobre-grid{display:grid;grid-template-columns:minmax(0,.7fr) minmax(0,1.3fr);gap:64px;align-items:center}
+.sobre-marca{justify-self:center;display:grid;place-items:center;width:min(100%,280px);aspect-ratio:1;border-radius:50%;background:var(--oliva)}
+.sobre-marca img{width:62%;border-radius:50%}
+.sobre-texto p{font-size:18px;font-weight:300;color:var(--tinta-2);max-width:34em;margin-bottom:18px}
+.assinatura{margin-top:8px;font-family:var(--serif);font-style:italic;font-size:22px;color:var(--oliva)}
+.assinatura small{display:block;font-family:'Jost',sans-serif;font-style:normal;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--tinta-2)}
+
+/* como funciona */
+.como{background:var(--creme-2)}
+.etapas{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:28px;margin-top:56px}
+.etapas li{padding-top:22px;border-top:1px solid var(--dourado)}
+.etapas .num{display:block;font-family:var(--serif);font-style:italic;font-size:20px;color:var(--dourado);margin-bottom:10px}
+.etapas h3{font-size:24px;margin-bottom:8px}
+.etapas p{font-weight:300;color:var(--tinta-2)}
+
+/* dúvidas */
+.duvidas{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:56px;align-items:start}
+.faq details{border-bottom:1px solid var(--linha)}
+.faq details:first-child{border-top:1px solid var(--linha)}
+.faq summary{position:relative;list-style:none;cursor:pointer;padding:24px 44px 22px 0;font-family:var(--serif);font-size:22px;line-height:1.3}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";position:absolute;right:6px;top:20px;font-family:'Jost',sans-serif;font-size:26px;font-weight:300;color:var(--dourado);transition:transform .2s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{padding-bottom:24px;font-weight:300;color:var(--tinta-2);max-width:38em}
+
+/* onde */
+.onde{background:var(--branco)}
+.onde-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:56px;align-items:center}
+.endereco{font-style:normal;font-size:19px;font-weight:300;line-height:1.7;margin-bottom:32px}
+.endereco strong{display:block;font-family:var(--serif);font-size:26px;font-weight:400;margin-bottom:6px}
+.mapa{width:100%;aspect-ratio:4/3;border:0;border-radius:24px;filter:grayscale(.6) sepia(.25)}
+.insta{display:inline-block;margin-top:24px;font-size:15px;color:var(--tinta-2)}
+
+/* rodapé */
+.rodape{background:var(--oliva-escuro);color:#d8d3c4;font-size:14px}
+.rodape .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;padding-top:28px;padding-bottom:28px}
+.rodape a{color:var(--dourado-claro)}
+
+/* botão flutuante */
+.flutuante{position:fixed;right:20px;bottom:20px;z-index:30;display:grid;place-items:center;width:58px;height:58px;border-radius:50%;background:var(--oliva);color:var(--creme);box-shadow:0 10px 24px rgba(46,45,36,.28);transition:background .2s}
+.flutuante:hover{background:var(--oliva-escuro)}
+
+@media (max-width:960px){
+  .item{grid-template-columns:50px minmax(0,1fr);gap:8px 16px}
+  .item p,.item a{grid-column:2}
+  .item a{justify-self:start;margin-top:10px}
+  .queixas-grid,.sobre-grid,.duvidas,.onde-grid{grid-template-columns:1fr;gap:40px}
+  .sobre-marca{justify-self:start;width:200px}
+  .etapas{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:860px){
+  .topo nav .link{display:none}
+  .hero .wrap{grid-template-columns:1fr;padding-top:56px;padding-bottom:80px;gap:48px}
+  .anel{justify-self:start;width:min(100%,300px)}
+}
+@media (max-width:640px){
+  body{font-size:16px}
+  .bloco{padding:76px 0}
+  .marca small{display:none}
+  .topo .btn{display:none}
+  .acoes .btn{flex:1 1 100%}
+  .etapas{grid-template-columns:1fr}
+  .caixa{padding:26px 22px}
+}
+</style>
+</head>
+<body>
+
+<div class="demo">Proposta de site para Mariana Cassol, criada por <a href="https://www.matheusjammal.com">Matheus Jammal</a>. Textos e procedimentos ilustrativos.</div>
+
+<header class="topo">
+  <div class="wrap">
+    <a class="marca" href="#">
+      <img src="logo-creme.jpg" alt="" width="50" height="50">
+      <span><strong>Mariana Cassol</strong><small>Biomédica esteta</small></span>
+    </a>
+    <nav aria-label="Principal">
+      <a class="link" href="#procedimentos">Procedimentos</a>
+      <a class="link" href="#sobre">Sobre</a>
+      <a class="link" href="#duvidas">Dúvidas</a>
+      <a class="link" href="#onde">Onde estou</a>
+      <a class="btn btn-oliva btn-pequeno" data-avaliacao href="#" target="_blank" rel="noopener">Agendar avaliação</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <span class="olho">Biomédica esteta · CRBM 9356 · Curitiba</span>
+        <h1>Beleza com <em>naturalidade</em> e elegância.</h1>
+        <p class="intro">Harmonização, rejuvenescimento e estética avançada com um plano pensado para os seus traços. Tudo começa com uma avaliação.</p>
+        <div class="acoes">
+          <a class="btn btn-oliva" data-avaliacao href="#" target="_blank" rel="noopener">Agendar avaliação</a>
+          <a class="btn btn-contorno" href="#queixas">Ainda tenho dúvidas</a>
+        </div>
+        <p class="local">Atendimento na Clínica Binutri, no Cabral</p>
+      </div>
+      <div class="anel" aria-hidden="true">
+        <svg viewBox="0 0 400 400">
+          <defs>
+            <linearGradient id="ouro" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#e2c992"/>
+              <stop offset=".5" stop-color="#b8955a"/>
+              <stop offset="1" stop-color="#a87650"/>
+            </linearGradient>
+          </defs>
+          <circle cx="200" cy="200" r="196" fill="none" stroke="url(#ouro)" stroke-width="2"/>
+          <circle cx="200" cy="200" r="178" fill="none" stroke="url(#ouro)" stroke-width=".75" opacity=".6"/>
+        </svg>
+        <p>Realçar o que é seu, sem exageros.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bloco procedimentos" id="procedimentos">
+    <div class="wrap">
+      <span class="olho">Procedimentos</span>
+      <h2>Cada rosto pede um <em>plano</em> diferente.</h2>
+      <p class="intro">Conheça os procedimentos e agende uma avaliação. É nela que definimos juntas o que faz sentido para você.</p>
+      <div class="lista">
+        <article class="item">
+          <span class="num">i.</span>
+          <h3>Harmonização facial</h3>
+          <p>Planejamento do rosto como um todo, equilibrando proporções com técnicas combinadas.<span class="meta">Plano definido na avaliação</span></p>
+          <a data-procedimento="harmonização facial" href="#" target="_blank" rel="noopener">Agendar avaliação</a>
+        </article>
+        <article class="item">
+          <span class="num">ii.</span>
+          <h3>Toxina botulínica</h3>
+          <p>Suaviza linhas de expressão da testa, entre as sobrancelhas e ao redor dos olhos.<span class="meta">Duração média de 4 a 6 meses</span></p>
+          <a data-procedimento="toxina botulínica" href="#" target="_blank" rel="noopener">Agendar avaliação</a>
+        </article>
+        <article class="item">
+          <span class="num">iii.</span>
+          <h3>Preenchimento</h3>
+          <p>Ácido hialurônico para repor volume e contorno em lábios, olheiras, mandíbula e queixo.<span class="meta">Duração média de 6 a 18 meses, conforme a área</span></p>
+          <a data-procedimento="preenchimento" href="#" target="_blank" rel="noopener">Agendar avaliação</a>
+        </article>
+        <article class="item">
+          <span class="num">iv.</span>
+          <h3>Bioestimulador de colágeno</h3>
+          <p>Estimula a produção natural de colágeno para melhorar a firmeza e a qualidade da pele.<span class="meta">Resultado gradual ao longo dos meses</span></p>
+          <a data-procedimento="bioestimulador de colágeno" href="#" target="_blank" rel="noopener">Agendar avaliação</a>
+        </article>
+        <article class="item">
+          <span class="num">v.</span>
+          <h3>Skinbooster</h3>
+          <p>Hidratação profunda que devolve viço e textura à pele.<span class="meta">Protocolo em sessões</span></p>
+          <a data-procedimento="skinbooster" href="#" target="_blank" rel="noopener">Agendar avaliação</a>
+        </article>
+      </div>
+      <p class="nota">A duração e o resultado variam de pessoa para pessoa e são avaliados individualmente.</p>
+    </div>
+  </section>
+
+  <section class="bloco queixas" id="queixas">
+    <div class="wrap queixas-grid">
+      <div>
+        <span class="olho">Ainda não sabe o que fazer?</span>
+        <h2>Me conte o que te incomoda. <em>Descobrimos juntas</em> o melhor caminho.</h2>
+        <p class="intro">Marque o que você gostaria de melhorar e me chame no WhatsApp. Sem compromisso.</p>
+      </div>
+      <div class="caixa">
+        <span class="caixa-titulo">O que te incomoda?</span>
+        <div class="chips" id="chips"></div>
+        <a class="btn btn-dourado" id="enviar-queixa" href="#" target="_blank" rel="noopener">Conversar com a Mariana</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bloco" id="sobre">
+    <div class="wrap sobre-grid">
+      <div class="sobre-marca"><img src="logo-oliva.jpg" alt="Monograma MC de Mariana Cassol" width="150" height="150"></div>
+      <div class="sobre-texto">
+        <span class="olho">Sobre mim</span>
+        <h2>Realçar, <em>nunca</em> transformar.</h2>
+        <p>Sou a Mariana Cassol, biomédica esteta. Acredito numa estética que respeita a sua história: resultados naturais, em que você continua se reconhecendo no espelho.</p>
+        <p>Cada plano começa com uma avaliação cuidadosa. Escuto o que você deseja e explico com honestidade o que faz sentido para o seu rosto, e também o que não faz.</p>
+        <p class="assinatura">Mariana Cassol<small>Biomédica esteta · CRBM 9356</small></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bloco como" id="como">
+    <div class="wrap">
+      <span class="olho">Como funciona</span>
+      <h2>Do primeiro contato ao <em>resultado</em>.</h2>
+      <ol class="etapas">
+        <li><span class="num">01</span><h3>Avaliação</h3><p>Conversamos sobre o que te incomoda e analisamos o seu rosto com calma.</p></li>
+        <li><span class="num">02</span><h3>Plano</h3><p>Você recebe um plano personalizado, com prioridades e valores.</p></li>
+        <li><span class="num">03</span><h3>Procedimento</h3><p>Realizado na Clínica Binutri, com cuidado e conforto.</p></li>
+        <li><span class="num">04</span><h3>Acompanhamento</h3><p>Acompanhamos a evolução e ajustamos o que for preciso.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="bloco" id="duvidas">
+    <div class="wrap duvidas">
+      <div>
+        <span class="olho">Dúvidas</span>
+        <h2>Perguntas <em>frequentes</em>.</h2>
+      </div>
+      <div class="faq">
+        <details>
+          <summary>Vai ficar artificial?</summary>
+          <p>O objetivo é o oposto. O plano é feito para realçar os seus traços, com doses e volumes pensados para um resultado natural.</p>
+        </details>
+        <details>
+          <summary>Dói?</summary>
+          <p>Em geral o desconforto é leve e passageiro. Quando indicado, usamos anestésico para deixar o procedimento mais confortável.</p>
+        </details>
+        <details>
+          <summary>Quanto tempo dura?</summary>
+          <p>Depende do procedimento e do organismo de cada pessoa. Na avaliação você recebe uma estimativa para o seu caso.</p>
+        </details>
+        <details>
+          <summary>Quanto custa?</summary>
+          <p>O valor depende do plano definido na avaliação. Assim você investe apenas no que realmente precisa.</p>
+        </details>
+        <details>
+          <summary>Quem não pode fazer?</summary>
+          <p>Gestantes, lactantes e algumas condições de saúde exigem cuidado ou contraindicam os procedimentos. Tudo isso é avaliado antes de qualquer aplicação.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="bloco onde" id="onde">
+    <div class="wrap onde-grid">
+      <div>
+        <span class="olho">Onde estou</span>
+        <address class="endereco">
+          <strong>Clínica Binutri</strong>
+          Av. Anita Garibaldi, 850 · Cabral<br>
+          Curitiba · PR · 82540-180
+        </address>
+        <div class="acoes">
+          <a class="btn btn-oliva" data-avaliacao href="#" target="_blank" rel="noopener">Agendar avaliação</a>
+          <a class="btn btn-contorno" href="https://www.google.com/maps/search/?api=1&amp;query=Cl%C3%ADnica%20Binutri%2C%20Av.%20Anita%20Garibaldi%2C%20850%2C%20Cabral%2C%20Curitiba" target="_blank" rel="noopener">Como chegar</a>
+        </div>
+        <a class="insta" href="https://www.instagram.com/marianacassolc/" target="_blank" rel="noopener">@marianacassolc no Instagram</a>
+      </div>
+      <iframe class="mapa" title="Mapa da Clínica Binutri" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        src="https://maps.google.com/maps?q=Av.%20Anita%20Garibaldi%2C%20850%20-%20Cabral%2C%20Curitiba%20-%20PR%2C%2082540-180&amp;z=16&amp;output=embed"></iframe>
+    </div>
+  </section>
+</main>
+
+<footer class="rodape">
+  <div class="wrap">
+    <span>Mariana Cassol · Biomédica esteta · CRBM 9356 · Curitiba, PR</span>
+    <span>Site por <a href="https://www.matheusjammal.com">Matheus Jammal</a></span>
+  </div>
+</footer>
+
+<a class="flutuante" data-avaliacao href="#" target="_blank" rel="noopener" aria-label="Agendar avaliação pelo WhatsApp">
+  <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.7 14.9L2 22l5.2-1.3A10 10 0 1 0 12 2Z"/></svg>
+</a>
+
+<script>
+const CONFIG = {
+  // Número da Mariana com DDI e DDD, ex.: '5541999999999'. Vazio: o WhatsApp abre para escolher o contato.
+  whatsapp: '',
+  queixas: ['Linhas de expressão', 'Olheiras', 'Lábios', 'Flacidez', 'Contorno do rosto', 'Bigode chinês', 'Pele sem viço'],
+};
+
+const $ = s => document.querySelector(s);
+const linkWhatsApp = texto => `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(texto)}`;
+const saudacao = 'Olá, Mariana! Vim pelo seu site';
+
+document.querySelectorAll('[data-avaliacao]').forEach(a => {
+  a.href = linkWhatsApp(`${saudacao} e quero agendar uma avaliação.`);
+});
+
+document.querySelectorAll('[data-procedimento]').forEach(a => {
+  a.href = linkWhatsApp(`${saudacao} e quero agendar uma avaliação de ${a.dataset.procedimento}.`);
+});
+
+const escolhidas = new Set();
+const enviarQueixa = $('#enviar-queixa');
+const atualizarQueixa = () => {
+  const lista = escolhidas.size ? ` O que me incomoda: ${[...escolhidas].join(', ').toLowerCase()}.` : '';
+  enviarQueixa.href = linkWhatsApp(`${saudacao} e queria entender o que é indicado para mim.${lista}`);
+};
+CONFIG.queixas.forEach(q => {
+  const chip = Object.assign(document.createElement('button'), { type: 'button', className: 'chip', textContent: q });
+  chip.setAttribute('aria-pressed', 'false');
+  chip.addEventListener('click', () => {
+    escolhidas.has(q) ? escolhidas.delete(q) : escolhidas.add(q);
+    chip.setAttribute('aria-pressed', escolhidas.has(q));
+    atualizarQueixa();
+  });
+  $('#chips').append(chip);
+});
+atualizarQueixa();
+</script>
+</body>
+</html>
