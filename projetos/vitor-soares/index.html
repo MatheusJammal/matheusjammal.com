@@ -1,0 +1,434 @@
+<!doctype html>
+<!-- Demonstração: remover a faixa .demo e o noindex quando virar o site oficial. -->
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Mentoria para Delegado · Vitor Soares</title>
+<meta name="description" content="Mentoria para Delegado de Polícia com José Vitor Soares, Delegado da PC-SP aprovado nos concursos de Delegado do ES e de SP.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230e1a2b'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='Arial' font-weight='900' font-size='15' fill='%23c9a54b'%3EVS%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --marinho:#0e1a2b;
+  --marinho-2:#16263d;
+  --marinho-3:#22354f;
+  --ouro:#c9a54b;
+  --ouro-claro:#e3c77e;
+  --gelo:#f3f1ec;
+  --branco:#ffffff;
+  --tinta:#0e1a2b;
+  --tinta-2:#4c5768;
+  --cinza:#9aa6b8;
+  --linha:#d9d5cc;
+  --max:1120px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{font-family:'Archivo',system-ui,sans-serif;font-variation-settings:'wdth' 100;background:var(--gelo);color:var(--tinta);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+img,svg{display:block;max-width:100%}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+
+.demo{background:#000;color:#c4ccd8;font-size:13px;line-height:1.4;text-align:center;padding:8px 20px}
+.demo a{color:var(--ouro-claro)}
+
+/* títulos condensados */
+h1,h2,h3,.cond{font-variation-settings:'wdth' 72;font-weight:800;text-transform:uppercase;letter-spacing:.005em;line-height:1}
+h2{font-size:clamp(36px,5vw,58px);margin-bottom:18px;max-width:16em}
+h2 em,h1 em{font-style:normal;color:var(--ouro)}
+.olho{display:block;font-size:13px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--ouro);margin-bottom:18px}
+.intro{font-size:18px;color:var(--tinta-2);max-width:36em;margin-bottom:48px}
+.bloco{padding:100px 0}
+.escuro{background:var(--marinho);color:var(--branco)}
+.escuro .intro{color:#c4ccd8}
+
+/* botões */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font:inherit;font-size:15px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;padding:17px 26px 16px;border:2px solid transparent;border-radius:4px;cursor:pointer;transition:background .15s,border-color .15s,color .15s}
+.btn-ouro{background:var(--ouro);color:var(--marinho)}
+.btn-ouro:hover{background:var(--ouro-claro)}
+.btn-contorno{border-color:rgba(255,255,255,.4);color:var(--branco)}
+.btn-contorno:hover{border-color:var(--ouro);color:var(--ouro)}
+.btn-pequeno{padding:11px 16px 10px;font-size:13px}
+
+/* topo */
+.topo{position:sticky;top:0;z-index:20;background:var(--marinho);border-bottom:1px solid var(--marinho-3)}
+.topo .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:70px}
+.marca{text-decoration:none;color:var(--branco);line-height:1.1}
+.marca strong{display:block;font-size:22px}
+.marca small{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--cinza)}
+.topo nav{display:flex;align-items:center;gap:26px}
+.topo nav .link{color:#c4ccd8;text-decoration:none;font-size:15px;font-weight:500}
+.topo nav .link:hover{color:var(--branco)}
+
+/* hero */
+.hero{background:var(--marinho);color:var(--branco);position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(135deg,transparent 0 22px,rgba(255,255,255,.025) 22px 23px);pointer-events:none}
+.hero .wrap{position:relative;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:56px;align-items:center;padding-top:88px;padding-bottom:100px}
+.hero h1{font-size:clamp(46px,7.2vw,94px);line-height:.95;margin-bottom:26px}
+.hero .sub{font-size:19px;color:#c4ccd8;max-width:32em;margin-bottom:34px}
+.acoes{display:flex;flex-wrap:wrap;gap:12px}
+.credencial{justify-self:center;width:min(100%,340px);background:linear-gradient(160deg,var(--marinho-2),var(--marinho));border:1px solid rgba(201,165,75,.55);border-radius:14px;padding:26px;box-shadow:0 30px 60px rgba(0,0,0,.35)}
+.credencial-topo{display:flex;justify-content:space-between;align-items:center;padding-bottom:16px;margin-bottom:20px;border-bottom:1px solid rgba(201,165,75,.35);font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--ouro)}
+.foto{display:grid;place-items:center;aspect-ratio:4/5;margin-bottom:20px;border-radius:8px;background:var(--marinho-3);color:var(--cinza);font-size:13px;text-align:center;padding:20px}
+.foto span{display:block;font-variation-settings:'wdth' 72;font-weight:800;font-size:64px;line-height:1;color:var(--ouro);margin-bottom:8px}
+.credencial dl{display:grid;grid-template-columns:auto 1fr;gap:8px 14px;font-size:14px}
+.credencial dt{color:var(--cinza);text-transform:uppercase;letter-spacing:.1em;font-size:11px;padding-top:3px}
+.credencial dd{font-weight:700}
+
+/* faixa */
+.faixa{background:var(--ouro);color:var(--marinho)}
+.faixa ul{list-style:none;display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 28px;padding:18px 20px;font-variation-settings:'wdth' 80;font-weight:800;font-size:16px;letter-spacing:.06em;text-transform:uppercase}
+
+/* para quem */
+.perfis{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.perfil{background:var(--branco);border:1px solid var(--linha);border-top:4px solid var(--marinho);border-radius:6px;padding:30px 26px}
+.perfil .num{display:block;font-variation-settings:'wdth' 72;font-weight:800;font-size:42px;line-height:1;color:var(--ouro);margin-bottom:14px}
+.perfil h3{font-size:26px;margin-bottom:10px}
+.perfil p{color:var(--tinta-2)}
+
+/* o que você recebe */
+.pilares{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--marinho-3)}
+.pilar{padding:32px 28px 32px 0;border-bottom:1px solid var(--marinho-3)}
+.pilar:not(:nth-child(3n+1)){padding-left:28px;border-left:1px solid var(--marinho-3)}
+.pilar h3{font-size:26px;color:var(--ouro);margin-bottom:10px}
+.pilar p{color:#c4ccd8}
+.nota{margin-top:24px;font-size:14px;color:var(--cinza)}
+
+/* mentor */
+.mentor-grid{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:64px;align-items:center}
+.mentor-foto{aspect-ratio:4/5;border-radius:8px;background:var(--marinho);display:grid;place-items:center;color:var(--cinza);font-size:14px;text-align:center;padding:24px;border:1px solid var(--linha)}
+.mentor-foto span{display:block;font-variation-settings:'wdth' 72;font-weight:800;font-size:90px;line-height:1;color:var(--ouro);margin-bottom:10px}
+.mentor-texto p{font-size:18px;color:var(--tinta-2);margin-bottom:18px;max-width:34em}
+.marcos{list-style:none;display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.marcos li{padding:10px 16px 9px;border:2px solid var(--marinho);border-radius:4px;font-variation-settings:'wdth' 80;font-weight:800;font-size:15px;letter-spacing:.06em;text-transform:uppercase}
+
+/* depoimentos */
+.depoimentos{background:var(--branco)}
+.depo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.depo{border:2px dashed var(--linha);border-radius:8px;padding:28px;color:var(--tinta-2);min-height:200px;display:flex;flex-direction:column;justify-content:space-between}
+.depo p{font-size:16px}
+.depo span{font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--cinza)}
+
+/* análise de perfil */
+.analise{background:var(--marinho-2);color:var(--branco)}
+.analise-grid{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:56px;align-items:start}
+.analise .intro{color:#c4ccd8}
+.form{display:flex;flex-direction:column;gap:22px;background:var(--marinho);border:1px solid var(--marinho-3);border-radius:10px;padding:32px}
+.campo-titulo{display:block;margin-bottom:10px;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ouro)}
+.opcoes{display:flex;flex-wrap:wrap;gap:8px}
+.opcao{position:relative;cursor:pointer}
+.opcao input{position:absolute;opacity:0;pointer-events:none}
+.opcao span{display:block;padding:10px 14px 9px;border:1px solid rgba(255,255,255,.3);border-radius:4px;font-size:15px;transition:border-color .15s,background .15s}
+.opcao:hover span{border-color:var(--branco)}
+.opcao input:checked + span{background:var(--ouro);border-color:var(--ouro);color:var(--marinho);font-weight:700}
+.opcao input:focus-visible + span{outline:2px solid var(--ouro-claro);outline-offset:2px}
+.form input[type="text"]{width:100%;padding:14px 16px;border:1px solid rgba(255,255,255,.3);border-radius:4px;background:transparent;color:var(--branco);font:inherit}
+.form input[type="text"]:focus{outline:none;border-color:var(--ouro)}
+.form input::placeholder{color:var(--cinza)}
+.form .btn{width:100%}
+
+/* dúvidas */
+.duvidas{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:56px;align-items:start}
+.faq details{border-bottom:1px solid var(--linha)}
+.faq details:first-child{border-top:1px solid var(--linha)}
+.faq summary{position:relative;list-style:none;cursor:pointer;padding:22px 44px 20px 0;font-size:19px;font-weight:700;line-height:1.3}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";position:absolute;right:6px;top:16px;font-size:28px;font-weight:500;color:var(--ouro);transition:transform .2s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{padding-bottom:22px;color:var(--tinta-2);max-width:38em}
+
+/* chamada final */
+.final{text-align:center}
+.final h2{margin-left:auto;margin-right:auto}
+.final .intro{margin-left:auto;margin-right:auto;margin-bottom:34px}
+.final .acoes{justify-content:center}
+
+.rodape{background:#070e18;color:var(--cinza);font-size:14px}
+.rodape .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;padding-top:24px;padding-bottom:24px}
+.rodape a{color:#c4ccd8}
+
+@media (max-width:960px){
+  .perfis,.depo-grid{grid-template-columns:1fr}
+  .pilares{grid-template-columns:1fr 1fr}
+  .pilar:not(:nth-child(3n+1)){padding-left:0;border-left:0}
+  .pilar:nth-child(even){padding-left:28px;border-left:1px solid var(--marinho-3)}
+  .mentor-grid,.analise-grid,.duvidas{grid-template-columns:1fr;gap:40px}
+  .mentor-foto{max-width:320px}
+}
+@media (max-width:860px){
+  .topo nav .link{display:none}
+  .hero .wrap{grid-template-columns:1fr;padding-top:56px;padding-bottom:72px;gap:48px}
+  .credencial{justify-self:start}
+}
+@media (max-width:640px){
+  body{font-size:16px}
+  .bloco{padding:72px 0}
+  .pilares{grid-template-columns:1fr}
+  .pilar:nth-child(even){padding-left:0;border-left:0}
+  .acoes .btn{flex:1 1 100%}
+  .form{padding:24px 20px}
+  .marca small{display:none}
+}
+</style>
+</head>
+<body>
+
+<div class="demo">Proposta de site para José Vitor Soares, criada por <a href="https://www.matheusjammal.com">Matheus Jammal</a>. Conteúdo da mentoria ilustrativo.</div>
+
+<header class="topo">
+  <div class="wrap">
+    <a class="marca cond" href="#"><strong>Vitor Soares</strong><small>Delegado de Polícia · SP</small></a>
+    <nav aria-label="Principal">
+      <a class="link" href="#mentoria">Mentoria</a>
+      <a class="link" href="#mentor">O mentor</a>
+      <a class="link" href="#analise">Análise de perfil</a>
+      <a class="btn btn-ouro btn-pequeno" data-entrar href="#" target="_blank" rel="noopener">Quero entrar</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <span class="olho">Mentoria para Delegado de Polícia</span>
+        <h1>Aprovado 2x para Delegado. <em>O próximo é você.</em></h1>
+        <p class="sub">Mentoria com o Delegado José Vitor Soares, da Polícia Civil de São Paulo, aprovado nos concursos de Delegado do Espírito Santo e de São Paulo. Estratégia e acompanhamento para cada fase da prova.</p>
+        <div class="acoes">
+          <a class="btn btn-ouro" data-entrar href="#" target="_blank" rel="noopener">Quero entrar na mentoria</a>
+          <a class="btn btn-contorno" href="#analise">Fazer análise de perfil</a>
+        </div>
+      </div>
+      <div class="credencial">
+        <div class="credencial-topo"><span>Mentor</span><span>PC-SP</span></div>
+        <div class="foto"><div><span>JV</span>Foto do Vitor</div></div>
+        <dl>
+          <dt>Nome</dt><dd>José Vitor Soares</dd>
+          <dt>Cargo</dt><dd>Delegado de Polícia</dd>
+          <dt>Aprovações</dt><dd>Delegado PC-ES · Delegado PC-SP</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <div class="faixa">
+    <ul class="wrap">
+      <li>Delegado de Polícia em SP</li>
+      <li>Aprovado no ES e em SP</li>
+      <li>Atendimento pelo WhatsApp</li>
+    </ul>
+  </div>
+
+  <section class="bloco" id="para-quem">
+    <div class="wrap">
+      <span class="olho">Para quem é</span>
+      <h2>Para quem leva a <em>carreira de Delegado</em> a sério.</h2>
+      <p class="intro">Não importa em que ponto você está. O plano parte do seu momento atual.</p>
+      <div class="perfis">
+        <article class="perfil">
+          <span class="num">01</span>
+          <h3>Está começando</h3>
+          <p>Quer estudar para Delegado, mas não sabe por onde começar nem como montar a rotina.</p>
+        </article>
+        <article class="perfil">
+          <span class="num">02</span>
+          <h3>Estuda e não avança</h3>
+          <p>Já tem horas de estudo, mas a aprovação na primeira fase não vem.</p>
+        </article>
+        <article class="perfil">
+          <span class="num">03</span>
+          <h3>Está na reta final</h3>
+          <p>Passou da objetiva e precisa vencer a discursiva, a peça e a prova oral.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="bloco escuro" id="mentoria">
+    <div class="wrap">
+      <span class="olho">A mentoria</span>
+      <h2>O que você recebe.</h2>
+      <p class="intro">Acompanhamento de quem já passou por todas as fases da prova, duas vezes.</p>
+      <div class="pilares">
+        <div class="pilar"><h3>Plano sob medida</h3><p>Cronograma montado para o seu edital e para as horas que você realmente tem.</p></div>
+        <div class="pilar"><h3>Acompanhamento</h3><p>Revisões periódicas do seu desempenho e ajustes de rota quando necessário.</p></div>
+        <div class="pilar"><h3>Discursivas e peça</h3><p>Correção e orientação para a fase escrita, onde muita gente fica.</p></div>
+        <div class="pilar"><h3>Prova oral</h3><p>Simulações para chegar à banca seguro e com o discurso afiado.</p></div>
+        <div class="pilar"><h3>Material de apoio</h3><p>Resumos, modelos e roteiros de revisão usados na preparação.</p></div>
+        <div class="pilar"><h3>Contato direto</h3><p>Dúvidas resolvidas com o mentor, sem intermediários.</p></div>
+      </div>
+      <p class="nota">Formato e conteúdo a confirmar com o mentor.</p>
+    </div>
+  </section>
+
+  <section class="bloco" id="mentor">
+    <div class="wrap mentor-grid">
+      <div class="mentor-foto"><div><span>JV</span>Foto do Vitor</div></div>
+      <div class="mentor-texto">
+        <span class="olho">O mentor</span>
+        <h2>José Vitor <em>Soares</em></h2>
+        <p>Delegado de Polícia do Estado de São Paulo, aprovado nos concursos de Delegado do Espírito Santo e de São Paulo.</p>
+        <p>Ele já passou por todas as fases da prova de Delegado, duas vezes. Na mentoria, organiza essa experiência num acompanhamento próximo para quem quer chegar ao mesmo lugar.</p>
+        <ul class="marcos">
+          <li>Delegado PC-SP</li>
+          <li>Aprovado PC-ES</li>
+          <li>Aprovado PC-SP</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="bloco depoimentos" id="aprovados">
+    <div class="wrap">
+      <span class="olho">Aprovados</span>
+      <h2>Quem já passou pela <em>mentoria</em>.</h2>
+      <p class="intro">Espaço reservado para depoimentos reais de alunos.</p>
+      <div class="depo-grid">
+        <div class="depo"><p>Depoimento de aluno aprovado, com autorização.</p><span>Nome · Cargo · Ano</span></div>
+        <div class="depo"><p>Depoimento de aluno aprovado, com autorização.</p><span>Nome · Cargo · Ano</span></div>
+        <div class="depo"><p>Depoimento de aluno aprovado, com autorização.</p><span>Nome · Cargo · Ano</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bloco analise" id="analise">
+    <div class="wrap analise-grid">
+      <div>
+        <span class="olho">Análise de perfil</span>
+        <h2>Ainda não sabe se a mentoria é <em>para você</em>?</h2>
+        <p class="intro">Responda quatro perguntas rápidas. As respostas vão direto para o WhatsApp do Vitor, que avalia o seu caso e responde pessoalmente.</p>
+      </div>
+      <form class="form" id="form-analise" onsubmit="return false">
+        <div>
+          <span class="campo-titulo">Seu nome</span>
+          <input type="text" id="nome" placeholder="Como você se chama?" autocomplete="given-name">
+        </div>
+        <div>
+          <span class="campo-titulo">Em que fase você está?</span>
+          <div class="opcoes" data-campo="fase"></div>
+        </div>
+        <div>
+          <span class="campo-titulo">Qual é o seu concurso?</span>
+          <div class="opcoes" data-campo="concurso"></div>
+        </div>
+        <div>
+          <span class="campo-titulo">Horas de estudo por semana</span>
+          <div class="opcoes" data-campo="horas"></div>
+        </div>
+        <div>
+          <span class="campo-titulo">Maiores dificuldades</span>
+          <div class="opcoes" data-campo="dificuldades" data-multiplo></div>
+        </div>
+        <a class="btn btn-ouro" id="enviar-analise" href="#" target="_blank" rel="noopener">Enviar minha análise</a>
+      </form>
+    </div>
+  </section>
+
+  <section class="bloco" id="duvidas">
+    <div class="wrap duvidas">
+      <div>
+        <span class="olho">Dúvidas</span>
+        <h2>Perguntas <em>frequentes</em>.</h2>
+      </div>
+      <div class="faq">
+        <details>
+          <summary>Serve para quem está começando do zero?</summary>
+          <p>Serve. O plano parte do seu momento atual, seja o primeiro edital ou a reta final.</p>
+        </details>
+        <details>
+          <summary>Vale para concursos de Delegado de outros estados?</summary>
+          <p>Vale. O plano é montado a partir do edital que você escolher.</p>
+        </details>
+        <details>
+          <summary>Quanto tempo por semana eu preciso ter?</summary>
+          <p>Não existe um mínimo fixo. O plano é feito para as horas que você realmente tem.</p>
+        </details>
+        <details>
+          <summary>Como funciona a inscrição?</summary>
+          <p>Você fala com o Vitor pelo WhatsApp, tira suas dúvidas e recebe as condições para entrar.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="bloco escuro final">
+    <div class="wrap">
+      <span class="olho">Sua vaga</span>
+      <h2>A próxima posse pode ser a <em>sua</em>.</h2>
+      <p class="intro">Fale com o Vitor e entenda como a mentoria funciona.</p>
+      <div class="acoes">
+        <a class="btn btn-ouro" data-entrar href="#" target="_blank" rel="noopener">Quero entrar na mentoria</a>
+        <a class="btn btn-contorno" href="#analise">Fazer análise de perfil</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="rodape">
+  <div class="wrap">
+    <span>José Vitor Soares · Mentoria para Delegado de Polícia · <a href="https://www.instagram.com/vitorsoares_dp/" target="_blank" rel="noopener">@vitorsoares_dp</a></span>
+    <span>Site por <a href="https://www.matheusjammal.com">Matheus Jammal</a></span>
+  </div>
+</footer>
+
+<script>
+const CONFIG = {
+  whatsapp: '5511986421214',
+  campos: {
+    fase: ['Começando agora', 'Estudo há mais de 1 ano', 'Já passei na objetiva', 'Já fui à prova oral'],
+    concurso: ['Delegado PC-SP', 'Delegado de outro estado', 'Delegado PF', 'Ainda não decidi'],
+    horas: ['Até 10h', '10 a 20h', '20 a 30h', 'Mais de 30h'],
+    dificuldades: ['Organizar os estudos', 'Constância', 'Discursiva e peça', 'Prova oral', 'Conciliar com trabalho'],
+  },
+};
+
+const $ = s => document.querySelector(s);
+const linkWhatsApp = texto => `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(texto)}`;
+
+document.querySelectorAll('[data-entrar]').forEach(a => {
+  a.href = linkWhatsApp('Olá, Vitor! Vim pelo site e quero entrar na mentoria. Como funciona a inscrição?');
+});
+
+const respostas = { fase: '', concurso: '', horas: '', dificuldades: new Set() };
+const enviar = $('#enviar-analise');
+
+function atualizarAnalise() {
+  const nome = $('#nome').value.trim();
+  const itens = [
+    respostas.fase && `• Fase: ${respostas.fase}`,
+    respostas.concurso && `• Concurso: ${respostas.concurso}`,
+    respostas.horas && `• Estudo por semana: ${respostas.horas}`,
+    respostas.dificuldades.size > 0 && `• Dificuldades: ${[...respostas.dificuldades].join(', ')}`,
+  ].filter(Boolean);
+  const abertura = `Olá, Vitor! ${nome ? `Sou ${nome} e fiz` : 'Fiz'} a análise de perfil no site.`;
+  const texto = itens.length
+    ? [abertura, '', ...itens, '', 'A mentoria é para mim?']
+    : [abertura, 'A mentoria é para mim?'];
+  enviar.href = linkWhatsApp(texto.join('\n'));
+}
+
+document.querySelectorAll('[data-campo]').forEach(grupo => {
+  const campo = grupo.dataset.campo;
+  const multiplo = grupo.hasAttribute('data-multiplo');
+  CONFIG.campos[campo].forEach(valor => {
+    const label = document.createElement('label');
+    label.className = 'opcao';
+    label.innerHTML = `<input type="${multiplo ? 'checkbox' : 'radio'}" name="${campo}" value="${valor}"><span>${valor}</span>`;
+    label.querySelector('input').addEventListener('change', ev => {
+      if (multiplo) ev.target.checked ? respostas[campo].add(valor) : respostas[campo].delete(valor);
+      else respostas[campo] = valor;
+      atualizarAnalise();
+    });
+    grupo.append(label);
+  });
+});
+
+$('#nome').addEventListener('input', atualizarAnalise);
+atualizarAnalise();
+</script>
+</body>
+</html>
