@@ -73,8 +73,7 @@ h2 em,h1 em{font-style:normal;color:var(--ouro)}
 .acoes{display:flex;flex-wrap:wrap;gap:12px}
 .credencial{justify-self:center;width:min(100%,340px);background:linear-gradient(160deg,var(--marinho-2),var(--marinho));border:1px solid rgba(201,165,75,.55);border-radius:14px;padding:26px;box-shadow:0 30px 60px rgba(0,0,0,.35)}
 .credencial-topo{display:flex;justify-content:space-between;align-items:center;padding-bottom:16px;margin-bottom:20px;border-bottom:1px solid rgba(201,165,75,.35);font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--ouro)}
-.foto{display:grid;place-items:center;aspect-ratio:4/5;margin-bottom:20px;border-radius:8px;background:var(--marinho-3);color:var(--cinza);font-size:13px;text-align:center;padding:20px}
-.foto span{display:block;font-variation-settings:'wdth' 72;font-weight:800;font-size:64px;line-height:1;color:var(--ouro);margin-bottom:8px}
+.foto{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:50% 15%;margin-bottom:20px;border-radius:8px;background:var(--marinho-3)}
 .credencial dl{display:grid;grid-template-columns:auto 1fr;gap:8px 14px;font-size:14px}
 .credencial dt{color:var(--cinza);text-transform:uppercase;letter-spacing:.1em;font-size:11px;padding-top:3px}
 .credencial dd{font-weight:700}
@@ -100,8 +99,7 @@ h2 em,h1 em{font-style:normal;color:var(--ouro)}
 
 /* mentor */
 .mentor-grid{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:64px;align-items:center}
-.mentor-foto{aspect-ratio:4/5;border-radius:8px;background:var(--marinho);display:grid;place-items:center;color:var(--cinza);font-size:14px;text-align:center;padding:24px;border:1px solid var(--linha)}
-.mentor-foto span{display:block;font-variation-settings:'wdth' 72;font-weight:800;font-size:90px;line-height:1;color:var(--ouro);margin-bottom:10px}
+.mentor-foto{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:50% 20%;border-radius:8px;background:var(--marinho);box-shadow:16px 16px 0 var(--ouro)}
 .mentor-texto p{font-size:18px;color:var(--tinta-2);margin-bottom:18px;max-width:34em}
 .marcos{list-style:none;display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
 .marcos li{padding:10px 16px 9px;border:2px solid var(--marinho);border-radius:4px;font-variation-settings:'wdth' 80;font-weight:800;font-size:15px;letter-spacing:.06em;text-transform:uppercase}
@@ -207,7 +205,7 @@ h2 em,h1 em{font-style:normal;color:var(--ouro)}
       </div>
       <div class="credencial">
         <div class="credencial-topo"><span>Mentor</span><span>PC-SP</span></div>
-        <div class="foto"><div><span>JV</span>Foto do Vitor</div></div>
+        <img class="foto" src="foto.jpg" alt="José Vitor Soares" width="690" height="880">
         <dl>
           <dt>Nome</dt><dd>José Vitor Soares</dd>
           <dt>Cargo</dt><dd>Delegado de Polícia</dd>
@@ -269,7 +267,7 @@ h2 em,h1 em{font-style:normal;color:var(--ouro)}
 
   <section class="bloco" id="mentor">
     <div class="wrap mentor-grid">
-      <div class="mentor-foto"><div><span>JV</span>Foto do Vitor</div></div>
+      <img class="mentor-foto" src="foto.jpg" alt="José Vitor Soares" width="690" height="880" loading="lazy">
       <div class="mentor-texto">
         <span class="olho">O mentor</span>
         <h2>José Vitor <em>Soares</em></h2>
