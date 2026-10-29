@@ -114,6 +114,25 @@ h2{font-size:clamp(30px,4.2vw,46px);font-weight:900;line-height:1.08;letter-spac
 .link-personalizar{padding:10px;border:0;background:none;color:var(--tinta);font:inherit;font-size:15px;font-weight:700;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
 .link-personalizar:hover{color:var(--verde)}
 
+.pagamento{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.pagamento-rotulo{margin-right:4px;font-size:13px;font-weight:700;color:var(--tinta-2)}
+.pagamento label{position:relative;cursor:pointer}
+.pagamento input{position:absolute;opacity:0;pointer-events:none}
+.pagamento label span{display:block;padding:8px 12px 6px;border:2px solid var(--borda);border-radius:6px;font-size:14px;font-weight:700}
+.pagamento input:checked + span{border-color:var(--preto);background:var(--amarelo-claro)}
+.pagamento input:focus-visible + span{outline:3px solid var(--amarelo);outline-offset:2px}
+
+/* venda consultiva */
+.ajuda-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:48px;align-items:center}
+.ajuda .intro{margin-bottom:0}
+.ajuda-caixa{display:flex;flex-direction:column;gap:18px;background:var(--verde-escuro);border:2px solid rgba(255,255,255,.18);border-radius:10px;padding:28px}
+.ajuda-titulo{font-size:18px;font-weight:800}
+.ajuda-titulo small{font-size:14px;font-weight:600;color:rgba(255,255,255,.65)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{padding:10px 14px 8px;border:2px solid rgba(255,255,255,.4);border-radius:999px;background:none;color:#fff;font:inherit;font-size:15px;font-weight:700;cursor:pointer}
+.chip:hover{border-color:#fff}
+.chip[aria-pressed="true"]{background:var(--amarelo);border-color:var(--amarelo);color:var(--preto)}
+
 /* monte o seu */
 .monte{background:var(--papel-2)}
 .passos{list-style:none;display:flex;flex-wrap:wrap;gap:10px 30px;margin-bottom:40px;font-weight:700;color:var(--tinta-2)}
@@ -163,6 +182,11 @@ legend + *{clear:both}
 .total strong{font-family:'Overpass Mono',monospace;font-size:34px;font-weight:700;color:var(--amarelo)}
 .resumo .btn{width:100%}
 .obs{font-size:13px;line-height:1.45;color:rgba(255,255,255,.7)}
+.resumo .pagamento-rotulo{color:rgba(255,255,255,.8)}
+.resumo .pagamento label span{border-color:rgba(255,255,255,.35)}
+.resumo .pagamento input:checked + span{border-color:var(--amarelo);background:var(--amarelo);color:var(--preto)}
+.link-ajuda{font-size:14px;font-weight:700;text-underline-offset:3px}
+.link-ajuda:hover{color:var(--amarelo)}
 
 /* por que */
 .motivos{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid #3a3d42}
@@ -206,7 +230,7 @@ legend + *{clear:both}
   .motivo:nth-child(3){padding-left:0;border-left:0}
   .monte-grid{grid-template-columns:1fr}
   .resumo{position:static}
-  .duvidas,.contato-grid{grid-template-columns:1fr;gap:32px}
+  .duvidas,.contato-grid,.ajuda-grid{grid-template-columns:1fr;gap:32px}
   .barra{display:flex}
   .barra.visivel{transform:none}
 }
@@ -261,8 +285,8 @@ legend + *{clear:both}
         <h1>As regras da CNH mudaram. <em>Agora você escolhe o seu pacote.</em></h1>
         <p class="sub">Desde a Resolução CONTRAN nº 1.020/2025, bastam 2 horas de aula prática para tirar a CNH de carro ou moto. Escolha um pacote pronto ou monte o seu, e feche direto pelo WhatsApp.</p>
         <div class="acoes">
-          <a class="btn btn-amarelo" href="#pacotes">Ver pacotes</a>
-          <a class="btn btn-contorno" data-whatsapp href="#" target="_blank" rel="noopener">Falar no WhatsApp</a>
+          <a class="btn btn-amarelo" href="#pacotes">Já sei o que quero</a>
+          <a class="btn btn-contorno" data-ajuda href="#" target="_blank" rel="noopener">Quero ajuda para escolher</a>
         </div>
       </div>
       <div class="sinal-wrap">
@@ -290,8 +314,23 @@ legend + *{clear:both}
     <div class="wrap">
       <span class="placa">Pacotes</span>
       <h2>Escolha o pacote que combina com você.</h2>
-      <p class="intro">Clique em “Quero este pacote” e ele chega pronto no nosso WhatsApp. Se quiser mudar alguma coisa, personalize antes de enviar.</p>
+      <p class="intro">Escolha como pagar e clique em “Quero este pacote”: o pedido chega pronto no nosso WhatsApp. Se quiser mudar alguma coisa, personalize antes de enviar.</p>
       <div class="pacotes-grid" id="pacotes-grid"></div>
+    </div>
+  </section>
+
+  <section class="bloco verde ajuda" id="ajuda">
+    <div class="wrap ajuda-grid">
+      <div>
+        <span class="placa">Prefere conversar?</span>
+        <h2>Não sabe quantas aulas precisa? A gente monta o pacote com você.</h2>
+        <p class="intro">Conte rapidinho o seu caso e fale com a nossa equipe pelo WhatsApp. Sem compromisso.</p>
+      </div>
+      <div class="ajuda-caixa">
+        <span class="ajuda-titulo">Qual é o seu caso? <small>(opcional)</small></span>
+        <div class="chips" id="chips"></div>
+        <a class="btn btn-amarelo" id="enviar-ajuda" href="#" target="_blank" rel="noopener">Falar com a equipe</a>
+      </div>
     </div>
   </section>
 
@@ -347,11 +386,13 @@ legend + *{clear:both}
           <span class="resumo-perfil" id="resumo-perfil"></span>
           <ul id="resumo-itens"></ul>
           <div class="total"><span>Total estimado</span><strong id="total"></strong></div>
+          <div class="pagamento" id="pagamento-resumo"><span class="pagamento-rotulo">Pagar com</span></div>
           <a class="btn btn-amarelo" data-enviar href="#" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.7 14.9L2 22l5.2-1.3A10 10 0 1 0 12 2Z"/></svg>
             Enviar pelo WhatsApp
           </a>
-          <p class="obs">Valor estimado. Confirmamos valores e condições de pagamento pelo WhatsApp.</p>
+          <p class="obs">Valor estimado. A autoescola confirma o valor e envia os dados para pagamento.</p>
+          <a class="link-ajuda" data-ajuda href="#" target="_blank" rel="noopener">Prefere ajuda para montar? Fale com a equipe</a>
         </aside>
       </div>
     </div>
@@ -390,6 +431,10 @@ legend + *{clear:both}
         <h2>Perguntas que todo aluno faz.</h2>
       </div>
       <div class="faq">
+        <details>
+          <summary>Não sei qual pacote escolher. E agora?</summary>
+          <p>Fale com a nossa equipe pelo WhatsApp. Você conta o seu caso e a gente monta o pacote com você. <a data-ajuda href="#" target="_blank" rel="noopener">Falar com a equipe</a></p>
+        </details>
         <details>
           <summary>Se o mínimo é de 2 horas, por que fazer mais aulas?</summary>
           <p>Porque o mínimo é o que a lei exige, não o que a prova cobra. O exame prático continua igual e quem chega sem preparo arrisca reprovar e perder tempo. Com a gente você faz quantas aulas precisar para chegar seguro no dia.</p>
@@ -450,6 +495,10 @@ legend + *{clear:both}
 <script>
 const CONFIG = {
   whatsapp: '5541999967219',
+  // Vendedor para quem prefere atendimento consultivo. Mesmo número enquanto não houver um separado.
+  whatsappConsultor: '5541999967219',
+  pagamentos: ['Pix', 'Cartão de crédito'],
+  casos: ['Nunca dirigi', 'Tenho medo de dirigir', 'Quero tirar moto', 'Já reprovei na prova', 'Tenho CNH e não dirijo'],
   // Valores ilustrativos da demonstração. Trocar pela tabela real da autoescola.
   hora: { carro: 85, moto: 75 },
   minimoHoras: 2,
@@ -486,11 +535,13 @@ const DICAS = {
   habilitado: 'Para quem já tem CNH não há mínimo. Comece com uma hora e aumente quando quiser.',
 };
 
-const estado = { perfil: 'primeira', carro: 2, moto: 0, extras: new Set() };
+const estado = { perfil: 'primeira', carro: 2, moto: 0, extras: new Set(), pagamento: CONFIG.pagamentos[0] };
 const $ = s => document.querySelector(s);
 const real = n => n.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 0, maximumFractionDigits: 0 });
 const minimo = () => (estado.perfil === 'habilitado' ? 1 : CONFIG.minimoHoras);
-const linkWhatsApp = texto => `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(texto)}`;
+const linkWhatsApp = (texto, numero = CONFIG.whatsapp) => `https://wa.me/${numero}?text=${encodeURIComponent(texto)}`;
+const opcoesPagamento = nome => CONFIG.pagamentos.map((f, j) =>
+  `<label><input type="radio" name="${nome}" value="${f}"${j ? '' : ' checked'}><span>${f}</span></label>`).join('');
 const extraPorId = id => CONFIG.extras.find(x => x.id === id);
 
 function itensDe(p) {
@@ -506,7 +557,7 @@ function itensDe(p) {
 
 const somar = itens => itens.reduce((s, [, preco]) => s + preco, 0);
 
-function mensagem(titulo, perfil, itens) {
+function mensagem(titulo, perfil, itens, pagamento) {
   return [
     titulo,
     '',
@@ -514,20 +565,51 @@ function mensagem(titulo, perfil, itens) {
     ...itens.map(([nome]) => `• ${nome}`),
     '',
     `Total: ${real(somar(itens))}`,
-    'Como faço para fechar?',
+    `Pagamento: ${pagamento}`,
+    '',
+    'Pode me enviar os dados para pagamento?',
   ].join('\n');
 }
 
 document.querySelectorAll('[data-whatsapp]').forEach(a => {
-  a.href = linkWhatsApp('Olá! Vim pelo site e gostaria de mais informações sobre os pacotes.');
+  a.href = linkWhatsApp('Olá! Vim pelo site e quero tirar algumas dúvidas.', CONFIG.whatsappConsultor);
 });
+
+document.querySelectorAll('[data-ajuda]').forEach(a => {
+  a.href = linkWhatsApp('Olá! Quero ajuda para escolher meu pacote.', CONFIG.whatsappConsultor);
+});
+
+const casos = new Set();
+const enviarAjuda = $('#enviar-ajuda');
+const atualizarAjuda = () => {
+  const caso = casos.size ? ` Meu caso: ${[...casos].join(', ').toLowerCase()}.` : '';
+  enviarAjuda.href = linkWhatsApp(`Olá! Quero ajuda para escolher meu pacote.${caso}`, CONFIG.whatsappConsultor);
+};
+CONFIG.casos.forEach(c => {
+  const chip = Object.assign(document.createElement('button'), { type: 'button', className: 'chip', textContent: c });
+  chip.setAttribute('aria-pressed', 'false');
+  chip.addEventListener('click', () => {
+    casos.has(c) ? casos.delete(c) : casos.add(c);
+    chip.setAttribute('aria-pressed', casos.has(c));
+    atualizarAjuda();
+  });
+  $('#chips').append(chip);
+});
+atualizarAjuda();
+
+const pagamentoResumo = $('#pagamento-resumo');
+pagamentoResumo.insertAdjacentHTML('beforeend', opcoesPagamento('pagamento'));
+pagamentoResumo.querySelectorAll('input').forEach(r => r.addEventListener('change', () => {
+  estado.pagamento = r.value;
+  render();
+}));
 
 document.querySelectorAll('[data-preco-hora]').forEach(el => {
   el.textContent = real(CONFIG.hora[el.dataset.precoHora]) + '/h';
 });
 
 const grade = $('#pacotes-grid');
-CONFIG.pacotes.forEach(p => {
+CONFIG.pacotes.forEach((p, i) => {
   const itens = itensDe(p);
   const card = document.createElement('article');
   card.className = 'pacote-card';
@@ -538,11 +620,19 @@ CONFIG.pacotes.forEach(p => {
       <h3>${p.nome}</h3>
       <ul class="pacote-itens">${itens.map(([nome]) => `<li>${nome}</li>`).join('')}</ul>
       <div class="pacote-preco"><small>Total do pacote</small>${real(somar(itens))}</div>
+      <div class="pagamento"><span class="pagamento-rotulo">Pagar com</span>${opcoesPagamento(`pagamento-${i}`)}</div>
       <div class="pacote-acoes">
-        <a class="btn btn-amarelo" href="${linkWhatsApp(mensagem(`Olá! Quero o pacote ${p.nome} que vi no site:`, p.perfil, itens))}" target="_blank" rel="noopener">Quero este pacote</a>
+        <a class="btn btn-amarelo" data-fechar href="#" target="_blank" rel="noopener">Quero este pacote</a>
         <button type="button" class="link-personalizar">Personalizar este pacote</button>
       </div>
     </div>`;
+  const fechar = card.querySelector('[data-fechar]');
+  const atualizarFechar = () => {
+    const pagamento = card.querySelector('.pagamento input:checked').value;
+    fechar.href = linkWhatsApp(mensagem(`Olá! Quero fechar o pacote ${p.nome}:`, p.perfil, itens, pagamento));
+  };
+  card.querySelectorAll('.pagamento input').forEach(r => r.addEventListener('change', atualizarFechar));
+  atualizarFechar();
   card.querySelector('.link-personalizar').addEventListener('click', () => {
     estado.perfil = p.perfil;
     estado.carro = p.carro;
@@ -622,7 +712,7 @@ function render() {
   $('#barra-total').textContent = real(somar(itens));
 
   const vazio = !estado.carro && !estado.moto;
-  const link = linkWhatsApp(mensagem('Olá! Montei meu pacote pelo site:', estado.perfil, itens));
+  const link = linkWhatsApp(mensagem('Olá! Quero fechar este pacote que montei no site:', estado.perfil, itens, estado.pagamento));
   document.querySelectorAll('[data-enviar]').forEach(a => {
     a.href = vazio ? '#monte' : link;
     a.setAttribute('aria-disabled', vazio);
