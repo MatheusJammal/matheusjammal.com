@@ -1,0 +1,691 @@
+<!doctype html>
+<!-- Demonstração: remover a faixa .demo e o noindex quando virar o site oficial. -->
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Autoescola Classe A · Curitiba</title>
+<meta name="description" content="Pacotes de aulas práticas de carro e moto com fechamento pelo WhatsApp. Há 25 anos formando motoristas conscientes em Curitiba.">
+<link rel="icon" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Overpass:wght@400;600;700;800;900&family=Overpass+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* cores tiradas do logo da Classe A */
+  --amarelo:#fdc901;
+  --vermelho:#ec1a25;
+  --verde:#165d5b;
+  --verde-escuro:#0f4645;
+  --preto:#17181a;
+  --papel:#fbf8f0;
+  --papel-2:#f1ecdf;
+  --branco:#ffffff;
+  --tinta:#17181a;
+  --tinta-2:#4b4f55;
+  --cinza:#9aa0a8;
+  --amarelo-claro:#fff5cc;
+  --borda:#dcd6c8;
+  --raio:6px;
+  --max:1120px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{font-family:'Overpass',system-ui,sans-serif;background:var(--papel);color:var(--tinta);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+img,svg{display:block;max-width:100%}
+a{color:inherit}
+[hidden]{display:none!important}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+
+/* faixa de demonstração */
+.demo{background:var(--preto);color:#c9ccd1;font-size:13px;line-height:1.4;text-align:center;padding:8px 20px}
+.demo a{color:var(--amarelo)}
+
+/* botões */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font:inherit;font-weight:800;font-size:16px;line-height:1;text-decoration:none;padding:16px 22px 14px;border-radius:var(--raio);border:2px solid transparent;cursor:pointer;transition:background .15s,border-color .15s}
+.btn-amarelo{background:var(--amarelo);color:var(--preto);border-color:var(--preto)}
+.btn-amarelo:hover{background:#ffd633}
+.btn-contorno{border-color:rgba(255,255,255,.55);color:#fff}
+.btn-contorno:hover{border-color:#fff}
+.btn-pequeno{padding:11px 14px 9px;font-size:14px}
+.btn[aria-disabled="true"]{opacity:.4;pointer-events:none}
+.btn svg{flex:none}
+
+/* losango vermelho do logo, usado como marcador */
+.losango{position:relative;isolation:isolate;display:grid;place-items:center;flex:none;width:30px;height:30px;color:#fff;font-weight:900;font-size:14px;padding-top:2px}
+.losango::before{content:"";position:absolute;inset:4px;z-index:-1;background:var(--vermelho);border-radius:2px;transform:rotate(45deg)}
+
+/* topo */
+.topo{position:sticky;top:0;z-index:20;background:var(--branco);border-bottom:3px solid var(--amarelo)}
+.topo .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:78px}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.logo img{width:60px;height:60px}
+.logo-texto{display:flex;flex-direction:column;line-height:1.1}
+.logo-texto strong{font-weight:900;font-size:19px}
+.logo-texto small{font-size:12px;font-weight:600;color:var(--tinta-2)}
+.topo nav{display:flex;align-items:center;gap:26px}
+.topo nav .link{color:var(--tinta-2);text-decoration:none;font-size:15px;font-weight:700}
+.topo nav .link:hover{color:var(--preto)}
+
+/* hero */
+.hero{position:relative;overflow:hidden;background:var(--verde);color:#fff}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,.6fr);gap:48px;align-items:center;padding-top:76px;padding-bottom:124px}
+.olho{display:block;font-size:13px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--amarelo);margin-bottom:22px}
+.hero h1{font-size:clamp(38px,6vw,70px);font-weight:900;line-height:1.02;letter-spacing:-.022em;margin-bottom:26px}
+.hero h1 em{font-style:normal;color:var(--amarelo)}
+.hero .sub{font-size:19px;color:rgba(255,255,255,.84);max-width:34em;margin-bottom:34px}
+.acoes{display:flex;flex-wrap:wrap;gap:12px}
+.sinal-wrap{position:relative;justify-self:center;width:min(100%,270px)}
+.sinal{position:relative;z-index:1;width:100%;filter:drop-shadow(0 16px 26px rgba(0,0,0,.35))}
+.antes{position:relative;z-index:1;margin-top:18px;text-align:center;font-size:14px;color:rgba(255,255,255,.75)}
+.antes s{color:#fff;text-decoration-color:var(--vermelho);text-decoration-thickness:3px}
+.faixa{position:absolute;left:0;right:0;bottom:48px;height:6px;background:repeating-linear-gradient(90deg,var(--amarelo) 0 56px,transparent 56px 100px)}
+
+/* fatos */
+.fatos{background:var(--amarelo);border-bottom:2px solid var(--preto)}
+.fatos ul{list-style:none;display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 32px;padding:19px 20px 16px;font-weight:800;font-size:16px}
+.fatos li{display:flex;align-items:center;gap:12px}
+.fatos li::before{content:"";width:10px;height:10px;background:var(--vermelho);transform:rotate(45deg) translateY(-1px)}
+
+/* blocos */
+.bloco{padding:100px 0}
+.escuro{background:var(--preto);color:#fff}
+.verde{background:var(--verde);color:#fff}
+.placa{display:inline-block;background:var(--amarelo);color:var(--preto);border:2px solid var(--preto);border-radius:4px;padding:7px 12px 5px;font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;margin-bottom:22px}
+.escuro .placa,.verde .placa{border-color:var(--amarelo)}
+h2{font-size:clamp(30px,4.2vw,46px);font-weight:900;line-height:1.08;letter-spacing:-.016em;max-width:19em;margin-bottom:18px}
+.intro{font-size:18px;color:var(--tinta-2);max-width:38em;margin-bottom:48px}
+.escuro .intro,.verde .intro{color:rgba(255,255,255,.8)}
+
+/* pacotes prontos */
+.pacotes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.pacote-card{display:flex;flex-direction:column;background:var(--branco);border:2px solid var(--preto);border-radius:10px;overflow:hidden}
+.pacote-card::before{content:"";height:10px;background:var(--cor);border-bottom:2px solid var(--preto)}
+.pacote-corpo{display:flex;flex-direction:column;gap:14px;flex:1;padding:26px}
+.pacote-para{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--tinta-2)}
+.pacote-card h3{font-size:30px;font-weight:900;line-height:1;letter-spacing:-.01em}
+.pacote-itens{list-style:none;display:flex;flex-direction:column;gap:8px;flex:1;font-size:16px}
+.pacote-itens li{display:flex;align-items:baseline;gap:11px}
+.pacote-itens li::before{content:"";flex:none;width:8px;height:8px;background:var(--vermelho);transform:rotate(45deg) translateY(-2px)}
+.pacote-preco{padding-top:16px;border-top:1px dashed var(--borda);font-family:'Overpass Mono',monospace;font-size:36px;font-weight:700;line-height:1.1}
+.pacote-preco small{display:block;margin-bottom:4px;font-family:'Overpass',sans-serif;font-size:13px;font-weight:600;color:var(--tinta-2)}
+.pacote-acoes{display:flex;flex-direction:column;gap:4px}
+.link-personalizar{padding:10px;border:0;background:none;color:var(--tinta);font:inherit;font-size:15px;font-weight:700;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.link-personalizar:hover{color:var(--verde)}
+
+/* monte o seu */
+.monte{background:var(--papel-2)}
+.passos{list-style:none;display:flex;flex-wrap:wrap;gap:10px 30px;margin-bottom:40px;font-weight:700;color:var(--tinta-2)}
+.passos li{display:flex;align-items:center;gap:8px}
+.monte-grid{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:24px;align-items:start}
+.montador{display:flex;flex-direction:column;gap:16px}
+fieldset{background:var(--branco);border:1px solid var(--borda);border-radius:10px;padding:28px}
+legend{float:left;width:100%;display:flex;align-items:center;gap:10px;margin-bottom:20px;font-size:19px;font-weight:800}
+legend + *{clear:both}
+.opcoes{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.opcao{position:relative;cursor:pointer}
+.opcao input{position:absolute;opacity:0;pointer-events:none}
+.opcao span{display:flex;flex-direction:column;gap:4px;height:100%;padding:16px;border:2px solid var(--borda);border-radius:8px;transition:border-color .15s,background .15s}
+.opcao strong{font-weight:800;line-height:1.2}
+.opcao small{font-size:14px;line-height:1.35;color:var(--tinta-2)}
+.opcao:hover span{border-color:#a8a293}
+.opcao input:checked + span{border-color:var(--preto);background:var(--amarelo-claro);box-shadow:inset 0 0 0 1px var(--preto)}
+.opcao input:focus-visible + span{outline:3px solid var(--amarelo);outline-offset:2px}
+.contador{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 0;border-bottom:1px dashed var(--borda)}
+.contador:first-of-type{padding-top:0}
+.contador strong{display:block;font-size:18px;font-weight:800}
+.contador small{font-size:14px;color:var(--tinta-2)}
+.stepper{display:flex;align-items:center;flex:none;border:2px solid var(--preto);border-radius:8px;overflow:hidden}
+.stepper button{width:48px;height:48px;border:0;background:var(--branco);color:var(--preto);font:inherit;font-size:24px;font-weight:700;cursor:pointer}
+.stepper button:hover{background:var(--amarelo-claro)}
+.stepper button:disabled{color:#c2bdb1;background:var(--branco);cursor:not-allowed}
+.stepper output{display:grid;place-items:center;min-width:64px;height:48px;border-left:2px solid var(--preto);border-right:2px solid var(--preto);font-family:'Overpass Mono',monospace;font-size:20px;font-weight:700}
+.dica{margin-top:18px;padding-left:14px;border-left:3px solid var(--amarelo);font-size:14px;color:var(--tinta-2)}
+.extras{display:flex;flex-direction:column;gap:10px}
+.extra{display:flex;align-items:flex-start;gap:14px;padding:14px 16px;border:2px solid var(--borda);border-radius:8px;cursor:pointer;transition:border-color .15s,background .15s}
+.extra:hover{border-color:#a8a293}
+.extra:has(input:checked){border-color:var(--preto);background:var(--amarelo-claro)}
+.extra input{flex:none;width:20px;height:20px;margin-top:2px;accent-color:var(--verde)}
+.extra-txt{flex:1}
+.extra-txt strong{display:block;font-weight:700;line-height:1.25}
+.extra-txt small{font-size:14px;color:var(--tinta-2)}
+.extra .preco{font-family:'Overpass Mono',monospace;font-weight:700;white-space:nowrap}
+.resumo{position:sticky;top:100px;display:flex;flex-direction:column;gap:18px;background:var(--verde);color:#fff;border-radius:10px;padding:28px}
+.resumo-titulo{font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--amarelo)}
+.resumo-perfil{margin-top:-10px;font-size:15px;color:rgba(255,255,255,.8)}
+.resumo ul{list-style:none;display:flex;flex-direction:column;gap:10px;font-size:15px}
+.resumo li{display:flex;justify-content:space-between;gap:12px;padding-bottom:10px;border-bottom:1px dashed rgba(255,255,255,.25)}
+.resumo li span:last-child{font-family:'Overpass Mono',monospace;white-space:nowrap}
+.resumo li.vazio{border:0;color:rgba(255,255,255,.7)}
+.total{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.total span{font-size:15px;color:rgba(255,255,255,.8)}
+.total strong{font-family:'Overpass Mono',monospace;font-size:34px;font-weight:700;color:var(--amarelo)}
+.resumo .btn{width:100%}
+.obs{font-size:13px;line-height:1.45;color:rgba(255,255,255,.7)}
+
+/* o que mudou */
+.mudancas{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.mudanca{display:flex;flex-direction:column;gap:10px;background:var(--branco);border:1px solid var(--borda);border-radius:10px;padding:28px 24px}
+.mudanca .num{font-family:'Overpass Mono',monospace;font-size:13px;font-weight:700;color:var(--vermelho)}
+.mudanca h3{font-size:20px;font-weight:800;line-height:1.2}
+.mudanca p{font-size:16px;color:var(--tinta-2)}
+.fonte{margin-top:22px;font-size:14px;color:var(--tinta-2)}
+
+/* por que */
+.motivos{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid #3a3d42}
+.motivo{padding:34px 28px 0 0}
+.motivo + .motivo{padding-left:28px;border-left:1px dashed #4b4f55}
+.motivo h3{font-size:25px;font-weight:900;line-height:1.1;color:var(--amarelo);margin-bottom:12px}
+.motivo p{font-size:16px;color:#b9bdc3}
+
+/* dúvidas */
+.duvidas{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:48px;align-items:start}
+.faq details{border-bottom:1px solid var(--borda)}
+.faq details:first-child{border-top:1px solid var(--borda)}
+.faq summary{position:relative;list-style:none;cursor:pointer;padding:22px 44px 20px 0;font-size:19px;font-weight:800;line-height:1.3}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";position:absolute;right:6px;top:17px;font-size:28px;font-weight:600;transition:transform .2s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{padding-bottom:22px;color:var(--tinta-2);max-width:40em}
+
+/* contato */
+.contato-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:48px;align-items:end}
+.contato-grid .intro{margin-bottom:32px}
+.canais{list-style:none;border-top:1px solid rgba(255,255,255,.25)}
+.canais li{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.25)}
+.canais span{font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.7)}
+.canais a{font-weight:700;text-decoration:none;text-align:right}
+.canais a:hover{color:var(--amarelo)}
+
+/* rodapé */
+.rodape{background:var(--preto);color:var(--cinza);font-size:14px}
+.rodape .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;padding-top:24px;padding-bottom:24px}
+.rodape a{color:#c9ccd1}
+
+/* barra fixa do pacote no celular */
+.barra{position:fixed;left:0;right:0;bottom:0;z-index:30;display:none;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:var(--verde);color:#fff;border-top:3px solid var(--amarelo);transform:translateY(110%);transition:transform .2s}
+.barra small{display:block;font-size:12px;color:rgba(255,255,255,.75)}
+.barra strong{font-family:'Overpass Mono',monospace;font-size:22px;color:var(--amarelo)}
+
+@media (max-width:960px){
+  .pacotes-grid{grid-template-columns:1fr;max-width:520px}
+  .mudancas{grid-template-columns:repeat(2,1fr)}
+  .motivos{grid-template-columns:repeat(2,1fr)}
+  .motivo:nth-child(3){padding-left:0;border-left:0}
+  .monte-grid{grid-template-columns:1fr}
+  .resumo{position:static}
+  .duvidas,.contato-grid{grid-template-columns:1fr;gap:32px}
+  .barra{display:flex}
+  .barra.visivel{transform:none}
+}
+@media (max-width:860px){
+  .topo nav .link{display:none}
+  .hero .wrap{grid-template-columns:1fr;gap:44px;padding-top:52px;padding-bottom:112px}
+  .sinal-wrap{justify-self:start;width:180px}
+  .antes{text-align:left}
+}
+@media (max-width:640px){
+  body{font-size:16px}
+  .bloco{padding:72px 0}
+  .topo .wrap{height:68px}
+  .logo img{width:50px;height:50px}
+  .logo-texto small{display:none}
+  .opcoes,.mudancas,.motivos{grid-template-columns:1fr}
+  .motivo + .motivo{padding-left:0;border-left:0;border-top:1px dashed #4b4f55;margin-top:28px}
+  .motivo{padding-right:0}
+  fieldset{padding:22px 18px}
+  .hero .sub{font-size:17px}
+  .acoes .btn{flex:1 1 100%}
+}
+</style>
+</head>
+<body>
+
+<div class="demo">Proposta de site para a Autoescola Classe A, criada por <a href="https://www.matheusjammal.com">Matheus Jammal</a>. Pacotes e valores ilustrativos.</div>
+
+<header class="topo">
+  <div class="wrap">
+    <a class="logo" href="#">
+      <img src="logo.png" alt="" width="60" height="60">
+      <span class="logo-texto"><strong>Autoescola Classe A</strong><small>Centro de Formação de Condutores</small></span>
+    </a>
+    <nav aria-label="Principal">
+      <a class="link" href="#pacotes">Pacotes</a>
+      <a class="link" href="#monte">Monte o seu</a>
+      <a class="link" href="#mudou">O que mudou</a>
+      <a class="link" href="#duvidas">Dúvidas</a>
+      <a class="btn btn-amarelo btn-pequeno" data-whatsapp href="#" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.7 14.9L2 22l5.2-1.3A10 10 0 1 0 12 2Z"/></svg>
+        WhatsApp
+      </a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <span class="olho">Há 25 anos formando motoristas conscientes</span>
+        <h1>As regras da CNH mudaram. <em>Agora você escolhe o seu pacote.</em></h1>
+        <p class="sub">Desde a Resolução CONTRAN nº 1.020/2025, bastam 2 horas de aula prática para tirar a CNH de carro ou moto. Escolha um pacote pronto ou monte o seu, e feche direto pelo WhatsApp.</p>
+        <div class="acoes">
+          <a class="btn btn-amarelo" href="#pacotes">Ver pacotes</a>
+          <a class="btn btn-contorno" data-whatsapp href="#" target="_blank" rel="noopener">Falar no WhatsApp</a>
+        </div>
+      </div>
+      <div class="sinal-wrap">
+        <svg class="sinal" viewBox="0 0 200 200" role="img" aria-label="Placa de trânsito indicando mínimo de 2 horas">
+          <circle cx="100" cy="100" r="97" fill="#fff"/>
+          <circle cx="100" cy="100" r="81" fill="none" stroke="#ec1a25" stroke-width="22"/>
+          <text x="100" y="124" text-anchor="middle" font-family="Overpass, sans-serif" font-weight="900" font-size="76" fill="#17181a" letter-spacing="-3">2h</text>
+          <text x="100" y="148" text-anchor="middle" font-family="Overpass, sans-serif" font-weight="800" font-size="13" fill="#17181a" letter-spacing="2.5">MÍNIMO</text>
+        </svg>
+        <p class="antes">Antes eram <s>20 horas</s>.</p>
+      </div>
+    </div>
+    <div class="faixa" aria-hidden="true"></div>
+  </section>
+
+  <div class="fatos">
+    <ul class="wrap">
+      <li>Aulas de carro e moto</li>
+      <li>Pacotes prontos ou sob medida</li>
+      <li>Fechamento pelo WhatsApp</li>
+    </ul>
+  </div>
+
+  <section class="bloco" id="pacotes">
+    <div class="wrap">
+      <span class="placa">Pacotes</span>
+      <h2>Escolha o pacote que combina com você.</h2>
+      <p class="intro">Clique em “Quero este pacote” e ele chega pronto no nosso WhatsApp. Se quiser mudar alguma coisa, personalize antes de enviar.</p>
+      <div class="pacotes-grid" id="pacotes-grid"></div>
+    </div>
+  </section>
+
+  <section class="bloco monte" id="monte">
+    <div class="wrap">
+      <span class="placa">Monte o seu</span>
+      <h2>Prefere escolher cada detalhe? Monte o seu pacote.</h2>
+      <ol class="passos">
+        <li><span class="losango">1</span>Escolha as aulas</li>
+        <li><span class="losango">2</span>Envie pelo WhatsApp</li>
+        <li><span class="losango">3</span>Feche com a gente</li>
+      </ol>
+      <div class="monte-grid">
+        <form class="montador" onsubmit="return false">
+          <fieldset>
+            <legend><span class="losango">1</span>Qual é o seu momento?</legend>
+            <div class="opcoes">
+              <label class="opcao"><input type="radio" name="perfil" value="primeira" checked><span><strong>Primeira habilitação</strong><small>Ainda não tenho CNH</small></span></label>
+              <label class="opcao"><input type="radio" name="perfil" value="adicao"><span><strong>Adicionar categoria</strong><small>Tenho carro e quero moto, ou o contrário</small></span></label>
+              <label class="opcao"><input type="radio" name="perfil" value="habilitado"><span><strong>Já tenho CNH</strong><small>Quero perder o medo de dirigir</small></span></label>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend><span class="losango">2</span>Quantas horas de aula prática?</legend>
+            <div class="contador" data-veiculo="carro">
+              <div><strong>Carro</strong><small>Categoria B · <span data-preco-hora="carro"></span></small></div>
+              <div class="stepper">
+                <button type="button" data-delta="-1" aria-label="Menos horas de carro">−</button>
+                <output id="horas-carro" aria-live="polite">2h</output>
+                <button type="button" data-delta="1" aria-label="Mais horas de carro">+</button>
+              </div>
+            </div>
+            <div class="contador" data-veiculo="moto">
+              <div><strong>Moto</strong><small>Categoria A · <span data-preco-hora="moto"></span></small></div>
+              <div class="stepper">
+                <button type="button" data-delta="-1" aria-label="Menos horas de moto">−</button>
+                <output id="horas-moto" aria-live="polite">0h</output>
+                <button type="button" data-delta="1" aria-label="Mais horas de moto">+</button>
+              </div>
+            </div>
+            <p class="dica" id="dica"></p>
+          </fieldset>
+
+          <fieldset id="grupo-extras">
+            <legend><span class="losango">3</span>Extras</legend>
+            <div class="extras" id="extras"></div>
+          </fieldset>
+        </form>
+
+        <aside class="resumo" id="resumo" aria-live="polite">
+          <span class="resumo-titulo">Seu pacote</span>
+          <span class="resumo-perfil" id="resumo-perfil"></span>
+          <ul id="resumo-itens"></ul>
+          <div class="total"><span>Total estimado</span><strong id="total"></strong></div>
+          <a class="btn btn-amarelo" data-enviar href="#" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.7 14.9L2 22l5.2-1.3A10 10 0 1 0 12 2Z"/></svg>
+            Enviar pelo WhatsApp
+          </a>
+          <p class="obs">Valor estimado. Confirmamos valores e condições de pagamento pelo WhatsApp.</p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="bloco" id="mudou">
+    <div class="wrap">
+      <span class="placa">O que mudou</span>
+      <h2>Menos horas obrigatórias. Mais escolha para você.</h2>
+      <p class="intro">A nova regra deixou o processo mais barato e mais flexível. Veja o que mudou para quem vai tirar a primeira habilitação.</p>
+      <div class="mudancas">
+        <article class="mudanca">
+          <span class="num">01</span>
+          <h3>Só 2 horas obrigatórias</h3>
+          <p>O mínimo de aula prática para carro e moto caiu de 20 para 2 horas. Você faz quantas precisar.</p>
+        </article>
+        <article class="mudanca">
+          <span class="num">02</span>
+          <h3>Prova no carro do candidato</h3>
+          <p>O exame prático pode ser feito no seu veículo. Não tem carro? Use o nosso no dia da prova.</p>
+        </article>
+        <article class="mudanca">
+          <span class="num">03</span>
+          <h3>Segunda chance sem taxa</h3>
+          <p>Se não passar na primeira tentativa, a segunda não cobra uma nova taxa.</p>
+        </article>
+        <article class="mudanca">
+          <span class="num">04</span>
+          <h3>Instrutor autônomo liberado</h3>
+          <p>Agora dá para aprender fora da autoescola. A diferença está em quem prepara você para passar.</p>
+        </article>
+      </div>
+      <p class="fonte">Fonte: Resolução CONTRAN nº 1.020/2025, aplicada pelo Detran-PR.</p>
+    </div>
+  </section>
+
+  <section class="bloco escuro" id="por-que">
+    <div class="wrap">
+      <span class="placa">Por que a Classe A</span>
+      <h2>Aprender a dirigir não é cumprir hora. É sair seguro.</h2>
+      <p class="intro">Com menos aulas obrigatórias, cada aula precisa valer mais. É aí que a experiência faz diferença.</p>
+      <div class="motivos">
+        <div class="motivo">
+          <h3>25 anos</h3>
+          <p>Formando motoristas conscientes, do aluno que nunca sentou ao volante ao que trava na baliza.</p>
+        </div>
+        <div class="motivo">
+          <h3>Duplo comando</h3>
+          <p>Nos nossos veículos o instrutor também tem freio. Você erra, aprende e segue com segurança.</p>
+        </div>
+        <div class="motivo">
+          <h3>Foco na prova</h3>
+          <p>As aulas treinam o que é avaliado no exame prático do Detran-PR, para você não depender da sorte.</p>
+        </div>
+        <div class="motivo">
+          <h3>Sob medida</h3>
+          <p>Você paga só pelas aulas que precisa e pode completar o pacote depois.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bloco" id="duvidas">
+    <div class="wrap duvidas">
+      <div>
+        <span class="placa">Dúvidas</span>
+        <h2>Perguntas que todo aluno faz.</h2>
+      </div>
+      <div class="faq">
+        <details>
+          <summary>Ainda preciso fazer autoescola?</summary>
+          <p>Não é mais obrigatório. Pela Resolução CONTRAN nº 1.020/2025, as aulas práticas podem ser feitas em autoescola ou com instrutor autônomo credenciado, com mínimo de 2 horas para carro e moto. As provas teórica e prática continuam obrigatórias.</p>
+        </details>
+        <details>
+          <summary>Quantas aulas eu preciso fazer?</summary>
+          <p>O mínimo legal é de 2 horas, mas cada pessoa tem seu ritmo. Quem nunca dirigiu costuma precisar de mais. Na primeira aula o instrutor avalia você e indica quantas horas fazem sentido. Dá para começar com poucas e completar depois.</p>
+        </details>
+        <details>
+          <summary>Posso usar o carro da autoescola na prova?</summary>
+          <p>Pode. É só incluir o extra no seu pacote.</p>
+        </details>
+        <details>
+          <summary>Tenho CNH, mas não dirijo há anos. Vocês dão aula?</summary>
+          <p>Damos. São aulas para habilitados, no trânsito real e no seu ritmo, para você recuperar a confiança ao volante.</p>
+        </details>
+        <details>
+          <summary>Como faço para pagar?</summary>
+          <p>Depois que você envia o pacote, combinamos a forma de pagamento pelo WhatsApp.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="bloco verde" id="contato">
+    <div class="wrap contato-grid">
+      <div>
+        <span class="placa">Contato</span>
+        <h2>Pronto para começar?</h2>
+        <p class="intro">Tire suas dúvidas ou envie o pacote que você escolheu.</p>
+        <div class="acoes">
+          <a class="btn btn-amarelo" data-whatsapp href="#" target="_blank" rel="noopener">Chamar no WhatsApp</a>
+          <a class="btn btn-contorno" href="tel:+554132445544">Ligar (41) 3244-5544</a>
+        </div>
+      </div>
+      <ul class="canais">
+        <li><span>WhatsApp</span><a data-whatsapp href="#" target="_blank" rel="noopener">(41) 99996-7219</a></li>
+        <li><span>Telefone</span><a href="tel:+554132445544">(41) 3244-5544</a></li>
+        <li><span>Instagram</span><a href="https://www.instagram.com/autoescola.classea/" target="_blank" rel="noopener">@autoescola.classea</a></li>
+        <li><span>Facebook</span><a href="https://www.facebook.com/classeacfc/" target="_blank" rel="noopener">/classeacfc</a></li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer class="rodape">
+  <div class="wrap">
+    <span>© 2026 Autoescola Classe A · Centro de Formação de Condutores · Curitiba, PR</span>
+    <span>Site por <a href="https://www.matheusjammal.com">Matheus Jammal</a></span>
+  </div>
+</footer>
+
+<div class="barra" id="barra" aria-hidden="true">
+  <div><small>Total estimado</small><strong id="barra-total"></strong></div>
+  <a class="btn btn-amarelo btn-pequeno" data-enviar href="#" target="_blank" rel="noopener">Enviar no WhatsApp</a>
+</div>
+
+<script>
+const CONFIG = {
+  whatsapp: '5541999967219',
+  // Valores ilustrativos da demonstração. Trocar pela tabela real da autoescola.
+  hora: { carro: 85, moto: 75 },
+  minimoHoras: 2,
+  maximoHoras: 40,
+  extras: [
+    { id: 'carro-prova', nome: 'Carro da autoescola no dia da prova', desc: 'Faça o exame sem precisar ter carro.', preco: 280,
+      mostra: e => e.carro > 0 && e.perfil !== 'habilitado' },
+    { id: 'moto-prova', nome: 'Moto da autoescola no dia da prova', desc: 'Faça o exame sem precisar ter moto.', preco: 220,
+      mostra: e => e.moto > 0 && e.perfil !== 'habilitado' },
+    { id: 'teorico', nome: 'Preparatório para a prova teórica', desc: 'Simulados e revisão do conteúdo cobrado.', preco: 90,
+      mostra: e => e.perfil === 'primeira' },
+    { id: 'detran', nome: 'Apoio com a documentação no Detran', desc: 'Orientação sobre exames, taxas e etapas do processo.', preco: 120,
+      mostra: e => e.perfil !== 'habilitado' },
+  ],
+  pacotes: [
+    { nome: 'Essencial', para: 'Para quem já tem alguma prática', cor: 'var(--amarelo)',
+      perfil: 'primeira', carro: 2, moto: 0, extras: ['carro-prova'] },
+    { nome: 'Do zero', para: 'Para quem nunca dirigiu', cor: 'var(--vermelho)',
+      perfil: 'primeira', carro: 10, moto: 0, extras: ['carro-prova', 'teorico'] },
+    { nome: 'Volta ao volante', para: 'Para quem tem CNH e não dirige', cor: 'var(--verde)',
+      perfil: 'habilitado', carro: 5, moto: 0, extras: [] },
+  ],
+};
+
+const PERFIS = {
+  primeira: 'Primeira habilitação',
+  adicao: 'Adição de categoria',
+  habilitado: 'Já tenho CNH, quero perder o medo',
+};
+
+const DICAS = {
+  primeira: 'O mínimo legal é de 2 horas por categoria. Quem nunca dirigiu costuma precisar de mais, e o instrutor indica na primeira aula.',
+  adicao: 'Escolha só a categoria que você quer adicionar, com no mínimo 2 horas.',
+  habilitado: 'Para quem já tem CNH não há mínimo. Comece com uma hora e aumente quando quiser.',
+};
+
+const estado = { perfil: 'primeira', carro: 2, moto: 0, extras: new Set() };
+const $ = s => document.querySelector(s);
+const real = n => n.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 0, maximumFractionDigits: 0 });
+const minimo = () => (estado.perfil === 'habilitado' ? 1 : CONFIG.minimoHoras);
+const linkWhatsApp = texto => `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(texto)}`;
+const extraPorId = id => CONFIG.extras.find(x => x.id === id);
+
+function itensDe(p) {
+  const itens = [];
+  if (p.carro) itens.push([`Carro: ${p.carro}h de aula`, p.carro * CONFIG.hora.carro]);
+  if (p.moto) itens.push([`Moto: ${p.moto}h de aula`, p.moto * CONFIG.hora.moto]);
+  p.extras.forEach(id => {
+    const x = extraPorId(id);
+    itens.push([x.nome, x.preco]);
+  });
+  return itens;
+}
+
+const somar = itens => itens.reduce((s, [, preco]) => s + preco, 0);
+
+function mensagem(titulo, perfil, itens) {
+  return [
+    titulo,
+    '',
+    `Momento: ${PERFIS[perfil]}`,
+    ...itens.map(([nome]) => `• ${nome}`),
+    '',
+    `Total: ${real(somar(itens))}`,
+    'Como faço para fechar?',
+  ].join('\n');
+}
+
+document.querySelectorAll('[data-whatsapp]').forEach(a => {
+  a.href = linkWhatsApp('Olá! Vim pelo site e gostaria de mais informações sobre os pacotes.');
+});
+
+document.querySelectorAll('[data-preco-hora]').forEach(el => {
+  el.textContent = real(CONFIG.hora[el.dataset.precoHora]) + '/h';
+});
+
+const grade = $('#pacotes-grid');
+CONFIG.pacotes.forEach(p => {
+  const itens = itensDe(p);
+  const card = document.createElement('article');
+  card.className = 'pacote-card';
+  card.style.setProperty('--cor', p.cor);
+  card.innerHTML = `
+    <div class="pacote-corpo">
+      <span class="pacote-para">${p.para}</span>
+      <h3>${p.nome}</h3>
+      <ul class="pacote-itens">${itens.map(([nome]) => `<li>${nome}</li>`).join('')}</ul>
+      <div class="pacote-preco"><small>Total do pacote</small>${real(somar(itens))}</div>
+      <div class="pacote-acoes">
+        <a class="btn btn-amarelo" href="${linkWhatsApp(mensagem(`Olá! Quero o pacote ${p.nome} que vi no site:`, p.perfil, itens))}" target="_blank" rel="noopener">Quero este pacote</a>
+        <button type="button" class="link-personalizar">Personalizar este pacote</button>
+      </div>
+    </div>`;
+  card.querySelector('.link-personalizar').addEventListener('click', () => {
+    estado.perfil = p.perfil;
+    estado.carro = p.carro;
+    estado.moto = p.moto;
+    estado.extras = new Set(p.extras);
+    document.querySelector(`input[name="perfil"][value="${p.perfil}"]`).checked = true;
+    render();
+    $('#monte').scrollIntoView({ behavior: 'smooth' });
+  });
+  grade.append(card);
+});
+
+const listaExtras = $('#extras');
+CONFIG.extras.forEach(x => {
+  const label = document.createElement('label');
+  label.className = 'extra';
+  label.dataset.extra = x.id;
+  label.innerHTML = `<input type="checkbox"><span class="extra-txt"><strong>${x.nome}</strong><small>${x.desc}</small></span><span class="preco">+ ${real(x.preco)}</span>`;
+  label.querySelector('input').addEventListener('change', ev => {
+    ev.target.checked ? estado.extras.add(x.id) : estado.extras.delete(x.id);
+    render();
+  });
+  listaExtras.append(label);
+});
+
+document.querySelectorAll('input[name="perfil"]').forEach(r => r.addEventListener('change', () => {
+  estado.perfil = r.value;
+  ['carro', 'moto'].forEach(v => {
+    if (estado[v] > 0 && estado[v] < minimo()) estado[v] = minimo();
+  });
+  render();
+}));
+
+document.querySelectorAll('.contador').forEach(c => {
+  const v = c.dataset.veiculo;
+  c.querySelectorAll('button').forEach(b => b.addEventListener('click', () => {
+    const delta = Number(b.dataset.delta);
+    let h = estado[v] + delta;
+    if (h > 0 && h < minimo()) h = delta < 0 ? 0 : minimo();
+    estado[v] = Math.max(0, Math.min(CONFIG.maximoHoras, h));
+    render();
+  }));
+});
+
+function render() {
+  ['carro', 'moto'].forEach(v => {
+    $(`#horas-${v}`).textContent = estado[v] + 'h';
+    const c = $(`.contador[data-veiculo="${v}"]`);
+    c.querySelector('[data-delta="-1"]').disabled = estado[v] === 0;
+    c.querySelector('[data-delta="1"]').disabled = estado[v] >= CONFIG.maximoHoras;
+  });
+
+  let algumExtra = false;
+  CONFIG.extras.forEach(x => {
+    const el = listaExtras.querySelector(`[data-extra="${x.id}"]`);
+    const visivel = x.mostra(estado);
+    el.hidden = !visivel;
+    if (visivel) algumExtra = true;
+    else estado.extras.delete(x.id);
+    el.querySelector('input').checked = estado.extras.has(x.id);
+  });
+  $('#grupo-extras').hidden = !algumExtra;
+  $('#dica').textContent = DICAS[estado.perfil];
+
+  const itens = itensDe({ carro: estado.carro, moto: estado.moto, extras: CONFIG.extras.map(x => x.id).filter(id => estado.extras.has(id)) });
+  const lista = $('#resumo-itens');
+  lista.replaceChildren(...itens.map(([nome, preco]) => {
+    const li = document.createElement('li');
+    li.append(Object.assign(document.createElement('span'), { textContent: nome }));
+    li.append(Object.assign(document.createElement('span'), { textContent: real(preco) }));
+    return li;
+  }));
+  if (!itens.length) lista.innerHTML = '<li class="vazio">Escolha pelo menos uma hora de aula.</li>';
+
+  $('#resumo-perfil').textContent = PERFIS[estado.perfil];
+  $('#total').textContent = real(somar(itens));
+  $('#barra-total').textContent = real(somar(itens));
+
+  const vazio = !estado.carro && !estado.moto;
+  const link = linkWhatsApp(mensagem('Olá! Montei meu pacote pelo site:', estado.perfil, itens));
+  document.querySelectorAll('[data-enviar]').forEach(a => {
+    a.href = vazio ? '#monte' : link;
+    a.setAttribute('aria-disabled', vazio);
+  });
+}
+
+const barra = $('#barra');
+let vendoMonte = false;
+let vendoResumo = false;
+const observador = new IntersectionObserver(entradas => {
+  entradas.forEach(e => {
+    if (e.target.id === 'monte') vendoMonte = e.isIntersecting;
+    else vendoResumo = e.isIntersecting;
+  });
+  const mostrar = vendoMonte && !vendoResumo;
+  barra.classList.toggle('visivel', mostrar);
+  barra.setAttribute('aria-hidden', !mostrar);
+});
+observador.observe($('#monte'));
+observador.observe($('#resumo'));
+
+render();
+</script>
+</body>
+</html>
