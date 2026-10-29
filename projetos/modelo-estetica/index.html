@@ -78,6 +78,7 @@ h2{font-size:clamp(36px,4.8vw,58px);line-height:1.05;margin-bottom:18px;max-widt
 
 /* hero */
 .hero{position:relative;overflow:hidden;margin-top:-76px;padding-top:76px}
+.fundo-topo{position:absolute;top:0;left:0;right:0;height:min(100vh,940px);overflow:hidden;pointer-events:none}
 .bolha{position:absolute;border-radius:50%;filter:blur(70px);opacity:.75;pointer-events:none}
 .bolha-1{width:620px;height:620px;background:var(--rosa);top:-180px;left:-140px;animation:flutua 18s ease-in-out infinite}
 .bolha-2{width:520px;height:520px;background:color-mix(in srgb,var(--acento) 35%,var(--fundo));bottom:-220px;right:-120px;animation:flutua 22s ease-in-out infinite reverse}
@@ -229,6 +230,10 @@ h2{font-size:clamp(36px,4.8vw,58px);line-height:1.05;margin-bottom:18px;max-widt
 .rodape .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;padding-top:26px;padding-bottom:26px}
 .rodape a{color:var(--rosa)}
 
+/* pétalas ao fundo */
+.petalas{position:fixed;inset:0;z-index:0;width:100%;height:100%;pointer-events:none}
+main,.rodape{position:relative;z-index:1}
+
 .flutuante{position:fixed;left:24px;bottom:24px;z-index:30;display:grid;place-items:center;width:58px;height:58px;border-radius:50%;background:var(--escuro);color:var(--fundo);box-shadow:0 12px 26px rgba(58,42,44,.3);transition:transform .25s}
 .flutuante:hover{transform:scale(1.06)}
 
@@ -263,6 +268,12 @@ h2{font-size:clamp(36px,4.8vw,58px);line-height:1.05;margin-bottom:18px;max-widt
 </head>
 <body>
 
+<div class="fundo-topo" aria-hidden="true">
+  <span class="bolha bolha-1"></span>
+  <span class="bolha bolha-2"></span>
+</div>
+<canvas class="petalas" id="petalas" aria-hidden="true"></canvas>
+
 <div class="demo" id="demo"></div>
 
 <header class="topo" id="topo">
@@ -285,8 +296,6 @@ h2{font-size:clamp(36px,4.8vw,58px);line-height:1.05;margin-bottom:18px;max-widt
 
 <main>
   <section class="hero" id="inicio" data-rotulo="Início">
-    <span class="bolha bolha-1"></span>
-    <span class="bolha bolha-2"></span>
     <div class="wrap">
       <div>
         <span class="olho revela" id="hero-olho"></span>
@@ -483,6 +492,7 @@ const CONFIG = {
   whatsapp: '', // ex.: '5541999999999'; vazio abre o WhatsApp para escolher o contato
   instagram: '',
   foto: '', // ex.: 'foto.jpg'; vazio mostra as iniciais
+  petalas: true, // pétalas caindo ao fundo, que fogem do mouse
   cores: { escuro: '#3a2a2c', acento: '#b0855a', rosa: '#ecd2cc', fundo: '#fbf6f3', fundo2: '#f3e7e2' },
   hero: {
     olho: 'Harmonização facial em Curitiba',
@@ -705,6 +715,100 @@ const marcar = new IntersectionObserver(entradas => entradas.forEach(en => {
   if (en.isIntersecting) $$('#trilho a').forEach(a => a.classList.toggle('ativo', a.dataset.alvo === en.target.dataset.rotulo));
 }), { rootMargin: '-45% 0px -50% 0px' });
 secoes.forEach(s => marcar.observe(s));
+
+// pétalas caindo que fogem do mouse
+(() => {
+  const canvas = $('#petalas');
+  if (!CONFIG.petalas || matchMedia('(prefers-reduced-motion: reduce)').matches) { canvas.remove(); return; }
+  const ctx = canvas.getContext('2d');
+  const cores = [CONFIG.cores.rosa, CONFIG.cores.acento, '#f6dfda', '#e8c3a6'];
+  const RAIO = 130;       // distância em que o mouse começa a empurrar
+  const FORCA = 0.9;      // intensidade do empurrão
+  const mouse = { x: -9999, y: -9999 };
+  let largura, altura, petalas = [], quadro;
+
+  const sorteio = (min, max) => min + Math.random() * (max - min);
+  const nova = (noTopo) => ({
+    x: sorteio(0, largura),
+    y: noTopo ? sorteio(-80, -20) : sorteio(0, altura),
+    vx: 0,
+    vy: 0,
+    queda: sorteio(0.35, 0.9),
+    tamanho: sorteio(9, 18),
+    giro: sorteio(0, Math.PI * 2),
+    velGiro: sorteio(-0.012, 0.012),
+    virada: sorteio(0, Math.PI * 2),
+    velVirada: sorteio(0.01, 0.03),
+    fase: sorteio(0, Math.PI * 2),
+    cor: cores[Math.floor(Math.random() * cores.length)],
+    opacidade: sorteio(0.45, 0.85),
+  });
+
+  function ajustar() {
+    const dpr = Math.min(devicePixelRatio || 1, 2);
+    largura = innerWidth;
+    altura = innerHeight;
+    canvas.width = largura * dpr;
+    canvas.height = altura * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const total = Math.max(10, Math.min(38, Math.round((largura * altura) / 32000)));
+    while (petalas.length < total) petalas.push(nova(false));
+    petalas.length = total;
+  }
+
+  function desenhar(p) {
+    const w = p.tamanho * 0.62, h = p.tamanho;
+    ctx.save();
+    ctx.translate(p.x, p.y);
+    ctx.rotate(p.giro);
+    ctx.scale(Math.cos(p.virada), 1); // achata a pétala para parecer que ela vira no ar
+    ctx.globalAlpha = p.opacidade;
+    ctx.fillStyle = p.cor;
+    ctx.beginPath();
+    ctx.moveTo(0, -h);
+    ctx.bezierCurveTo(w, -h * 0.6, w * 0.85, h * 0.55, 0, h);
+    ctx.bezierCurveTo(-w * 0.85, h * 0.55, -w, -h * 0.6, 0, -h);
+    ctx.fill();
+    ctx.restore();
+  }
+
+  function passo(t) {
+    ctx.clearRect(0, 0, largura, altura);
+    for (const p of petalas) {
+      const dx = p.x - mouse.x, dy = p.y - mouse.y;
+      const dist = Math.hypot(dx, dy);
+      if (dist < RAIO && dist > 0) {
+        const empurrao = (1 - dist / RAIO) * FORCA;
+        p.vx += (dx / dist) * empurrao;
+        p.vy += (dy / dist) * empurrao;
+      }
+      p.vx *= 0.94;
+      p.vy *= 0.94;
+      p.x += p.vx + Math.sin(t / 1400 + p.fase) * 0.45;
+      p.y += p.vy + p.queda;
+      p.giro += p.velGiro;
+      p.virada += p.velVirada;
+      if (p.y > altura + 30) Object.assign(p, nova(true));
+      if (p.x < -30) p.x = largura + 30;
+      if (p.x > largura + 30) p.x = -30;
+      desenhar(p);
+    }
+    quadro = requestAnimationFrame(passo);
+  }
+
+  addEventListener('resize', ajustar);
+  addEventListener('pointermove', e => { mouse.x = e.clientX; mouse.y = e.clientY; }, { passive: true });
+  addEventListener('pointerleave', () => { mouse.x = mouse.y = -9999; });
+  document.addEventListener('mouseleave', () => { mouse.x = mouse.y = -9999; });
+  addEventListener('touchend', () => { mouse.x = mouse.y = -9999; }, { passive: true });
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) cancelAnimationFrame(quadro);
+    else quadro = requestAnimationFrame(passo);
+  });
+
+  ajustar();
+  quadro = requestAnimationFrame(passo);
+})();
 </script>
 </body>
 </html>
