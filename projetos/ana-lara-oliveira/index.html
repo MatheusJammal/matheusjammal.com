@@ -1,0 +1,384 @@
+<!doctype html>
+<!-- Demonstração: remover a faixa .demo e o noindex quando virar o site oficial. -->
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Dra. Ana Lara Oliveira · Harmonização Facial em Curitiba</title>
+<meta name="description" content="Harmonização facial, rinomodelação, lábios, toxina botulínica e perfiloplastia em Curitiba. Biomédica esteta, CRBM 8911.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%233b2a26'/%3E%3Ctext x='16' y='21' text-anchor='middle' font-family='Georgia' font-style='italic' font-size='15' fill='%23e8c9c1'%3EAL%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* paleta provisória: ajustar com o logo e o feed dela */
+  --cacau:#3b2a26;
+  --cacau-2:#54403a;
+  --rose:#c98e86;
+  --rose-escuro:#9c5f58;
+  --rose-claro:#ecd3cd;
+  --nude:#f4ebe6;
+  --creme:#fbf7f4;
+  --tinta:#3b2a26;
+  --tinta-2:#76655f;
+  --linha:#e5d6cf;
+  --max:1120px;
+  --serif:'Instrument Serif',Georgia,serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{font-family:'Instrument Sans',system-ui,sans-serif;background:var(--creme);color:var(--tinta);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+
+.demo{background:var(--cacau);color:var(--rose-claro);font-size:13px;line-height:1.4;text-align:center;padding:8px 20px}
+.demo a{color:#fff}
+
+h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.01em}
+h1 em,h2 em{color:var(--rose-escuro)}
+h2{font-size:clamp(38px,5.2vw,62px);line-height:1.02;margin-bottom:18px;max-width:14em}
+.olho{display:inline-block;font-size:13px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--rose-escuro);margin-bottom:18px}
+.intro{font-size:18px;color:var(--tinta-2);max-width:34em}
+.bloco{padding:110px 0}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font:inherit;font-size:16px;font-weight:600;text-decoration:none;padding:16px 28px;border-radius:999px;border:1.5px solid transparent;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.btn-cacau{background:var(--cacau);color:var(--creme)}
+.btn-cacau:hover{background:var(--cacau-2)}
+.btn-contorno{border-color:var(--cacau);color:var(--cacau)}
+.btn-contorno:hover{background:var(--cacau);color:var(--creme)}
+.btn-rose{background:var(--rose-claro);color:var(--cacau)}
+.btn-rose:hover{background:#fff}
+.btn-pequeno{padding:11px 20px;font-size:14px}
+
+/* topo */
+.topo{position:sticky;top:0;z-index:20;background:rgba(251,247,244,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--linha)}
+.topo .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:72px}
+.marca{text-decoration:none;line-height:1.15}
+.marca strong{display:block;font-family:var(--serif);font-size:24px;font-weight:400}
+.marca small{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--tinta-2)}
+.topo nav{display:flex;align-items:center;gap:28px}
+.topo nav .link{font-size:15px;color:var(--tinta-2);text-decoration:none}
+.topo nav .link:hover{color:var(--tinta)}
+
+/* hero */
+.hero{text-align:center;padding:110px 0 90px;background:radial-gradient(ellipse at 50% 0%,var(--nude) 0%,var(--creme) 70%)}
+.hero h1{font-size:clamp(54px,9vw,128px);line-height:.95;margin:0 auto 28px;max-width:10em}
+.hero .intro{margin:0 auto 38px}
+.acoes{display:flex;flex-wrap:wrap;gap:12px}
+.hero .acoes{justify-content:center}
+.atalhos{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:56px}
+.atalhos a{display:block;padding:9px 18px;border:1px solid var(--linha);border-radius:999px;background:var(--creme);font-size:15px;text-decoration:none;color:var(--tinta-2);transition:border-color .2s,color .2s}
+.atalhos a:hover{border-color:var(--rose);color:var(--tinta)}
+
+/* procedimentos */
+.proc-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:18px;margin-top:56px}
+.proc{grid-column:span 2;display:flex;flex-direction:column;gap:14px;background:var(--nude);border-radius:28px;padding:34px 30px}
+.proc:nth-child(4),.proc:nth-child(5){grid-column:span 3}
+.proc h3{font-size:36px;line-height:1}
+.proc p{color:var(--tinta-2);flex:1}
+.proc .tag{align-self:flex-start;padding:5px 12px;border-radius:999px;background:var(--creme);font-size:13px;font-weight:500;color:var(--rose-escuro)}
+.proc a{align-self:flex-start;font-weight:600;font-size:15px;text-decoration:none;border-bottom:1.5px solid var(--rose);padding-bottom:2px}
+.proc a:hover{color:var(--rose-escuro)}
+.nota{margin-top:24px;font-size:14px;color:var(--tinta-2)}
+
+/* qual procedimento */
+.quiz{background:var(--cacau);color:var(--creme)}
+.quiz .olho{color:var(--rose-claro)}
+.quiz h2 em{color:var(--rose)}
+.quiz .intro{color:rgba(251,247,244,.75)}
+.quiz-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:56px;align-items:center}
+.quiz-caixa{background:var(--cacau-2);border-radius:28px;padding:36px}
+.quiz-titulo{display:block;margin-bottom:16px;font-size:14px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--rose-claro)}
+.areas{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:24px}
+.area{padding:14px 10px;border:1px solid rgba(251,247,244,.3);border-radius:16px;background:none;color:var(--creme);font:inherit;font-size:15px;cursor:pointer;transition:background .2s,border-color .2s,color .2s}
+.area:hover{border-color:var(--creme)}
+.area[aria-pressed="true"]{background:var(--rose-claro);border-color:var(--rose-claro);color:var(--cacau);font-weight:600}
+.sugestao{min-height:92px;margin-bottom:24px;padding:18px 20px;border-radius:16px;background:rgba(251,247,244,.06);font-size:16px;color:rgba(251,247,244,.85)}
+.sugestao strong{display:block;font-family:var(--serif);font-size:26px;font-weight:400;color:var(--creme);margin-bottom:4px}
+.quiz-caixa .btn{width:100%}
+
+/* sobre */
+.sobre-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:center}
+.sobre-selo{justify-self:center;display:grid;place-items:center;width:min(100%,360px);aspect-ratio:1;border-radius:50%;background:var(--nude);text-align:center}
+.sobre-selo span{display:block;font-family:var(--serif);font-style:italic;font-size:clamp(90px,12vw,150px);line-height:1;color:var(--rose-escuro)}
+.sobre-selo small{display:block;margin-top:8px;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--tinta-2)}
+.sobre-texto p{font-size:18px;color:var(--tinta-2);max-width:32em;margin-bottom:18px}
+
+/* como funciona */
+.como{background:var(--nude)}
+.etapas{list-style:none;counter-reset:e;display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:56px}
+.etapas li{counter-increment:e;background:var(--creme);border-radius:24px;padding:30px 26px}
+.etapas li::before{content:counter(e);display:grid;place-items:center;width:42px;height:42px;margin-bottom:18px;border-radius:50%;background:var(--rose-claro);font-family:var(--serif);font-size:22px;color:var(--cacau)}
+.etapas h3{font-size:28px;line-height:1.1;margin-bottom:8px}
+.etapas p{color:var(--tinta-2)}
+
+/* dúvidas */
+.duvidas{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:56px;align-items:start}
+.faq details{border-bottom:1px solid var(--linha)}
+.faq details:first-child{border-top:1px solid var(--linha)}
+.faq summary{position:relative;list-style:none;cursor:pointer;padding:22px 44px 20px 0;font-size:19px;font-weight:500;line-height:1.35}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";position:absolute;right:6px;top:16px;font-size:28px;color:var(--rose-escuro);transition:transform .2s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{padding-bottom:22px;color:var(--tinta-2);max-width:38em}
+
+/* chamada final */
+.final{text-align:center;background:var(--rose-claro)}
+.final h2{margin:0 auto 18px}
+.final .intro{margin:0 auto 34px}
+.final .acoes{justify-content:center}
+
+.rodape{background:var(--cacau);color:var(--rose-claro);font-size:14px}
+.rodape .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;padding-top:26px;padding-bottom:26px}
+.rodape a{color:#fff}
+
+.flutuante{position:fixed;right:20px;bottom:20px;z-index:30;display:grid;place-items:center;width:58px;height:58px;border-radius:50%;background:var(--cacau);color:var(--creme);box-shadow:0 10px 24px rgba(59,42,38,.3)}
+.flutuante:hover{background:var(--cacau-2)}
+
+@media (max-width:960px){
+  .proc-grid{grid-template-columns:1fr 1fr}
+  .proc,.proc:nth-child(4),.proc:nth-child(5){grid-column:span 1}
+  .proc:nth-child(5){grid-column:span 2}
+  .quiz-grid,.sobre-grid,.duvidas{grid-template-columns:1fr;gap:40px}
+  .sobre-selo{justify-self:start;width:240px}
+  .etapas{grid-template-columns:1fr 1fr}
+}
+@media (max-width:860px){
+  .topo nav .link{display:none}
+}
+@media (max-width:640px){
+  body{font-size:16px}
+  .bloco{padding:76px 0}
+  .hero{padding:72px 0 64px}
+  .proc-grid,.etapas{grid-template-columns:1fr}
+  .proc:nth-child(5){grid-column:span 1}
+  .areas{grid-template-columns:1fr 1fr}
+  .quiz-caixa{padding:26px 20px}
+  .acoes .btn{flex:1 1 100%}
+  .marca small{display:none}
+  .topo .btn{display:none}
+}
+</style>
+</head>
+<body>
+
+<div class="demo">Proposta de site para Ana Lara Oliveira, criada por <a href="https://www.matheusjammal.com">Matheus Jammal</a>. Textos ilustrativos e cores provisórias.</div>
+
+<header class="topo">
+  <div class="wrap">
+    <a class="marca" href="#"><strong>Dra. Ana Lara Oliveira</strong><small>Biomédica esteta · CRBM 8911</small></a>
+    <nav aria-label="Principal">
+      <a class="link" href="#procedimentos">Procedimentos</a>
+      <a class="link" href="#qual">Qual é para mim?</a>
+      <a class="link" href="#sobre">Sobre</a>
+      <a class="btn btn-cacau btn-pequeno" data-avaliacao href="#" target="_blank" rel="noopener">Agendar avaliação</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <span class="olho">Harmonização facial · Curitiba</span>
+      <h1>Sua melhor versão <em>começa aqui.</em></h1>
+      <p class="intro">Procedimentos planejados para o seu rosto, com equilíbrio e naturalidade. Tudo começa com uma avaliação individual.</p>
+      <div class="acoes">
+        <a class="btn btn-cacau" data-avaliacao href="#" target="_blank" rel="noopener">Agendar avaliação</a>
+        <a class="btn btn-contorno" href="#qual">Qual procedimento é para mim?</a>
+      </div>
+      <ul class="atalhos" aria-label="Procedimentos">
+        <li><a href="#procedimentos">Harmonização facial</a></li>
+        <li><a href="#procedimentos">Rinomodelação</a></li>
+        <li><a href="#procedimentos">Lábios</a></li>
+        <li><a href="#procedimentos">Toxina botulínica</a></li>
+        <li><a href="#procedimentos">Perfiloplastia</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="bloco" id="procedimentos">
+    <div class="wrap">
+      <span class="olho">Procedimentos</span>
+      <h2>O que podemos <em>realçar</em> em você.</h2>
+      <p class="intro">Cada procedimento é indicado depois da avaliação, de acordo com o seu rosto e com o que você deseja.</p>
+      <div class="proc-grid">
+        <article class="proc">
+          <span class="tag">Rosto inteiro</span>
+          <h3>Harmonização facial</h3>
+          <p>Análise do rosto como um todo para combinar procedimentos e equilibrar as proporções.</p>
+          <a data-procedimento="harmonização facial" href="#" target="_blank" rel="noopener">Quero uma avaliação →</a>
+        </article>
+        <article class="proc">
+          <span class="tag">Sem cortes</span>
+          <h3>Rinomodelação</h3>
+          <p>Ajuste de pequenas imperfeições do nariz, como giba e ponta caída, com ácido hialurônico.</p>
+          <a data-procedimento="rinomodelação" href="#" target="_blank" rel="noopener">Quero uma avaliação →</a>
+        </article>
+        <article class="proc">
+          <span class="tag">Contorno e volume</span>
+          <h3>Lábios</h3>
+          <p>Preenchimento com ácido hialurônico para contorno, volume e hidratação, respeitando o seu formato.</p>
+          <a data-procedimento="preenchimento labial" href="#" target="_blank" rel="noopener">Quero uma avaliação →</a>
+        </article>
+        <article class="proc">
+          <span class="tag">Linhas de expressão</span>
+          <h3>Toxina botulínica</h3>
+          <p>Suaviza as linhas da testa, entre as sobrancelhas e ao redor dos olhos, mantendo a expressão natural.</p>
+          <a data-procedimento="toxina botulínica" href="#" target="_blank" rel="noopener">Quero uma avaliação →</a>
+        </article>
+        <article class="proc">
+          <span class="tag">Perfil do rosto</span>
+          <h3>Perfiloplastia</h3>
+          <p>Planejamento do perfil, equilibrando nariz, lábios, queixo e mandíbula numa mesma linha.</p>
+          <a data-procedimento="perfiloplastia" href="#" target="_blank" rel="noopener">Quero uma avaliação →</a>
+        </article>
+      </div>
+      <p class="nota">Indicação, duração e resultado variam de pessoa para pessoa e são definidos na avaliação.</p>
+    </div>
+  </section>
+
+  <section class="bloco quiz" id="qual">
+    <div class="wrap quiz-grid">
+      <div>
+        <span class="olho">Qual é para mim?</span>
+        <h2>Ainda não sabe o que fazer? <em>Comece pelo que te incomoda.</em></h2>
+        <p class="intro">Toque na área que você gostaria de melhorar e veja o que pode ser indicado. Quem confirma é a avaliação.</p>
+      </div>
+      <div class="quiz-caixa">
+        <span class="quiz-titulo">O que você quer melhorar?</span>
+        <div class="areas" id="areas"></div>
+        <div class="sugestao" id="sugestao" aria-live="polite">Escolha uma área para ver a sugestão.</div>
+        <a class="btn btn-rose" id="enviar-quiz" href="#" target="_blank" rel="noopener">Pedir orientação pelo WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bloco" id="sobre">
+    <div class="wrap sobre-grid">
+      <div class="sobre-selo"><div><span>AL</span><small>CRBM 8911</small></div></div>
+      <div class="sobre-texto">
+        <span class="olho">Sobre mim</span>
+        <h2>Prazer, <em>Ana Lara.</em></h2>
+        <p>Sou biomédica esteta em Curitiba e dedico o meu trabalho à harmonização facial.</p>
+        <p>Acredito que a melhor versão de cada pessoa já está ali. O meu papel é planejar com cuidado, explicar cada etapa com transparência e realçar o que você tem de mais bonito.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bloco como" id="como">
+    <div class="wrap">
+      <span class="olho">Como funciona</span>
+      <h2>Do primeiro contato ao <em>resultado.</em></h2>
+      <ol class="etapas">
+        <li><h3>Contato</h3><p>Você me chama no WhatsApp e agendamos a sua avaliação.</p></li>
+        <li><h3>Avaliação</h3><p>Analisamos o seu rosto e conversamos sobre o que você deseja.</p></li>
+        <li><h3>Planejamento</h3><p>Você recebe um plano individual, com indicações e valores.</p></li>
+        <li><h3>Procedimento</h3><p>Realizado com cuidado, no seu tempo e com acompanhamento.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="bloco" id="duvidas">
+    <div class="wrap duvidas">
+      <div>
+        <span class="olho">Dúvidas</span>
+        <h2>Perguntas <em>frequentes.</em></h2>
+      </div>
+      <div class="faq">
+        <details>
+          <summary>Vou ficar com o rosto artificial?</summary>
+          <p>O planejamento é feito para realçar os seus traços, não para mudar quem você é. Doses e volumes são pensados para um resultado equilibrado.</p>
+        </details>
+        <details>
+          <summary>Rinomodelação substitui a cirurgia?</summary>
+          <p>Ela corrige pequenas imperfeições sem cortes, mas não substitui a cirurgia em todos os casos. Na avaliação você fica sabendo se é indicada para você.</p>
+        </details>
+        <details>
+          <summary>Dói?</summary>
+          <p>Em geral o desconforto é leve e passageiro. Quando indicado, usamos anestésico para deixar o procedimento mais confortável.</p>
+        </details>
+        <details>
+          <summary>Quanto custa?</summary>
+          <p>O valor depende do plano definido na avaliação. Assim você investe apenas no que realmente precisa.</p>
+        </details>
+        <details>
+          <summary>Onde é o atendimento?</summary>
+          <p>Em Curitiba. O endereço completo é enviado no agendamento.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="bloco final">
+    <div class="wrap">
+      <span class="olho">Agende</span>
+      <h2>Vamos planejar a sua <em>melhor versão?</em></h2>
+      <p class="intro">Me chame no WhatsApp e agende a sua avaliação.</p>
+      <div class="acoes">
+        <a class="btn btn-cacau" data-avaliacao href="#" target="_blank" rel="noopener">Agendar avaliação</a>
+        <a class="btn btn-contorno" href="https://www.instagram.com/draanalaraoliv/" target="_blank" rel="noopener">Ver o Instagram</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="rodape">
+  <div class="wrap">
+    <span>Dra. Ana Lara Oliveira · Biomédica esteta · CRBM 8911 · Curitiba, PR</span>
+    <span>Site por <a href="https://www.matheusjammal.com">Matheus Jammal</a></span>
+  </div>
+</footer>
+
+<a class="flutuante" data-avaliacao href="#" target="_blank" rel="noopener" aria-label="Agendar avaliação pelo WhatsApp">
+  <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.7 14.9L2 22l5.2-1.3A10 10 0 1 0 12 2Z"/></svg>
+</a>
+
+<script>
+const CONFIG = {
+  // Número da Ana Lara com DDI e DDD, ex.: '5541999999999'. Vazio: o WhatsApp abre para escolher o contato.
+  whatsapp: '',
+  areas: [
+    { nome: 'Nariz', indicacao: 'Rinomodelação', texto: 'Para suavizar giba, ponta caída e pequenas assimetrias sem cortes.' },
+    { nome: 'Lábios', indicacao: 'Preenchimento labial', texto: 'Para contorno, volume e hidratação, respeitando o seu formato.' },
+    { nome: 'Rugas', indicacao: 'Toxina botulínica', texto: 'Para suavizar as linhas de expressão da testa e dos olhos.' },
+    { nome: 'Perfil', indicacao: 'Perfiloplastia', texto: 'Para equilibrar nariz, lábios, queixo e mandíbula.' },
+    { nome: 'Rosto todo', indicacao: 'Harmonização facial', texto: 'Para um plano completo, olhando o rosto como um todo.' },
+    { nome: 'Não sei', indicacao: 'Avaliação', texto: 'Sem problema. Na avaliação a gente descobre junto o melhor caminho.' },
+  ],
+};
+
+const $ = s => document.querySelector(s);
+const linkWhatsApp = texto => `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(texto)}`;
+const saudacao = 'Olá, Ana Lara! Vim pelo seu site';
+
+document.querySelectorAll('[data-avaliacao]').forEach(a => {
+  a.href = linkWhatsApp(`${saudacao} e quero agendar uma avaliação.`);
+});
+
+document.querySelectorAll('[data-procedimento]').forEach(a => {
+  a.href = linkWhatsApp(`${saudacao} e quero agendar uma avaliação de ${a.dataset.procedimento}.`);
+});
+
+const sugestao = $('#sugestao');
+const enviarQuiz = $('#enviar-quiz');
+enviarQuiz.href = linkWhatsApp(`${saudacao} e queria entender qual procedimento é indicado para mim.`);
+
+CONFIG.areas.forEach(area => {
+  const botao = Object.assign(document.createElement('button'), { type: 'button', className: 'area', textContent: area.nome });
+  botao.setAttribute('aria-pressed', 'false');
+  botao.addEventListener('click', () => {
+    document.querySelectorAll('.area').forEach(b => b.setAttribute('aria-pressed', b === botao));
+    sugestao.innerHTML = '';
+    sugestao.append(Object.assign(document.createElement('strong'), { textContent: area.indicacao }), area.texto);
+    const pedido = area.nome === 'Não sei'
+      ? 'e queria entender qual procedimento é indicado para mim.'
+      : `e queria melhorar: ${area.nome.toLowerCase()}. Pode me orientar?`;
+    enviarQuiz.href = linkWhatsApp(`${saudacao} ${pedido}`);
+  });
+  $('#areas').append(botao);
+});
+</script>
+</body>
+</html>
