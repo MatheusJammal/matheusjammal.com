@@ -112,6 +112,21 @@
     .item:hover{padding-left:14px;padding-right:14px;}
   }
 
+  /* freelance */
+  .free{padding:10px 0 40px;border-bottom:2px solid var(--line);}
+  .free .intro{margin:0 0 20px;max-width:70ch;color:var(--ink-2);font-size:15.5px;}
+  .fgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));border-top:2px solid var(--line);border-left:2px solid var(--line);}
+  .fcard{display:flex;flex-direction:column;gap:10px;padding:24px;border-right:2px solid var(--line);border-bottom:2px solid var(--line);transition:background .2s,color .2s;}
+  .fcard .fk{display:flex;justify-content:space-between;gap:12px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint);}
+  .fcard h3{margin:0;font-size:21px;text-transform:uppercase;letter-spacing:-.01em;line-height:1.05;}
+  .fcard p{margin:0;font-size:15px;color:var(--ink-2);flex:1;}
+  .fcard .st{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;border:1.5px solid var(--ink);padding:3px 8px;align-self:flex-start;}
+  .fcard .go{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;font-weight:600;color:var(--klein-ink);}
+  .fcard:hover{background:var(--klein);color:var(--paper);}
+  .fcard:hover .fk,.fcard:hover p,.fcard:hover .go{color:var(--paper);}
+  .fcard:hover .st{border-color:var(--paper);}
+  @media(max-width:560px){.fgrid{grid-template-columns:1fr;}}
+
   /* IA */
   .ai{padding:10px 0 40px;border-bottom:2px solid var(--line);}
   .aigrid{display:grid;grid-template-columns:repeat(3,1fr);border:2px solid var(--line);}
@@ -176,6 +191,7 @@
     <span>Matheus A. G. Jammal</span>
     <div class="r">
       <a href="#trabalho">Projetos</a>
+      <a href="#freelance">Freelance</a>
       <a href="#ia">IA</a>
       <a href="#stack">Stack</a>
       <a href="#trajeto">Experiência</a>
@@ -252,6 +268,48 @@
       </div>
       <div class="meta-r">2025<br>Em produção<br>Código da empresa</div>
     </article>
+  </section>
+
+  <section id="freelance" class="free">
+    <div class="shead flat"><h2>Freelance</h2><span class="c">[ landing pages · 2026 ]</span></div>
+    <p class="intro">Páginas que construí para propostas de freelance: cada uma foi desenhada para o negócio de um cliente em potencial, com a identidade e o caminho de contato dele. Nenhuma foi contratada, e por isso ficam aqui como demonstração. Preços, serviços e depoimentos que aparecem nelas são ilustrativos.</p>
+    <div class="fgrid">
+      <a class="fcard" href="projetos/autoescola-classe-a/" target="_blank" rel="noopener">
+        <div class="fk"><span>F/01</span><span>Curitiba</span></div>
+        <h3>Autoescola</h3>
+        <p>Vitrine de pacotes com dois caminhos: fechamento rápido (pacote e forma de pagamento, direto para o WhatsApp) e atendimento consultivo para quem ainda não sabe o que escolher.</p>
+        <span class="st">Proposta · não contratada</span>
+        <span class="go">Ver a página ↗</span>
+      </a>
+      <a class="fcard" href="projetos/mariana-cassol/" target="_blank" rel="noopener">
+        <div class="fk"><span>F/02</span><span>Curitiba</span></div>
+        <h3>Biomédica esteta</h3>
+        <p>Página de saúde com o tom que a área exige: chamada para agendar avaliação, sem preço e sem promoção, com o registro profissional sempre visível.</p>
+        <span class="st">Proposta · não contratada</span>
+        <span class="go">Ver a página ↗</span>
+      </a>
+      <a class="fcard" href="projetos/ana-lara-oliveira/" target="_blank" rel="noopener">
+        <div class="fk"><span>F/03</span><span>Curitiba</span></div>
+        <h3>Harmonização facial</h3>
+        <p>Quiz "qual procedimento é para mim" que encaminha a paciente para a conversa certa. Identidade visual feita de propósito bem diferente da F/02, porque as duas atuam no mesmo mercado.</p>
+        <span class="st">Proposta · não contratada</span>
+        <span class="go">Ver a página ↗</span>
+      </a>
+      <a class="fcard" href="projetos/vitor-soares/" target="_blank" rel="noopener">
+        <div class="fk"><span>F/04</span><span>Mentoria</span></div>
+        <h3>Mentoria para concurso</h3>
+        <p>Página de venda de mentoria para carreiras policiais, com o perfil de quem ela atende, o que entrega, perguntas frequentes e uma análise de perfil que vira mensagem pronta no WhatsApp.</p>
+        <span class="st">Proposta · não contratada</span>
+        <span class="go">Ver a página ↗</span>
+      </a>
+      <a class="fcard" href="projetos/modelo-estetica/" target="_blank" rel="noopener">
+        <div class="fk"><span>F/05</span><span>Modelo</span></div>
+        <h3>Modelo para estética</h3>
+        <p>Modelo reutilizável: nome, cores, procedimentos, antes e depois, depoimentos e FAQ vêm de um único objeto de configuração. Tem antes e depois arrastável, triagem em 3 passos e animação em canvas.</p>
+        <span class="st">Modelo configurável</span>
+        <span class="go">Ver a página ↗</span>
+      </a>
+    </div>
   </section>
 
   <section id="ia" class="ai">
